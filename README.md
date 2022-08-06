@@ -9,7 +9,10 @@
 A plugin that helps to use FMOD wasm upstream builds for RPG Maker MV.  
 Created by Creta Park (https://creft.me/cretapark)
 
-This plugin is free for use, please observe the license terms below :
+This plugin's license is a variant of the MIT License,
+so you are free to use it as long as you comply with these terms.
+
+Please observe the license terms below :
 
 1. When using this plugin with other software, the software must be
    a game developed and made with RPG Maker, and `FMOD_MV.js by Creta Park`
@@ -49,10 +52,22 @@ If you curious what it does, watch this video.
   </a>
 </p>
 
-##
+## Table of content
+
+
+# [1.](#Table-of-content) Basic knowledge requirements
+
+- Knows how to use FMOD Studio.
+- Well aware of the [license][fmod-license], [attribution][fmod-attribution]
+  and [legal information][fmod-legal] of FMOD.
+- 
+
 
 [releases]: https://github.com/creta5164/fmod-rmmv/releases
 [LICENSE]: https://github.com/creta5164/fmod-rmmv/blob/main/LICENSE
 [1map]: https://1map1chicken.com/entries/jam2022
 [1map-twitter]: https://twitter.com/1map1chicken
 [DOWNFALLEN]: https://1map1chicken.com/entries/jam2022/downfallen-다운폴른
+[fmod-license]: https://www.fmod.com/licensing
+[fmod-attribution]: https://www.fmod.com/attribution
+[fmod-legal]: https://www.fmod.com/legal
