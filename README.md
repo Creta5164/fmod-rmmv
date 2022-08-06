@@ -40,6 +40,6 @@ If you curious what it does, watch this video.
 
 <p align="center">
   <a href="https://youtu.be/YcVaRldGb4c">
-    <img alt="DOWNFALLEN demonstration video thumbnail" src="https://img.youtube.com/vi/YcVaRldGb4c/maxresdefault.jpg"/>
+    <img alt="DOWNFALLEN demonstration video thumbnail" width="640" src="https://img.youtube.com/vi/YcVaRldGb4c/maxresdefault.jpg"/>
   </a>
 </p>
