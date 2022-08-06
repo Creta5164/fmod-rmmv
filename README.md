@@ -29,10 +29,15 @@ This plugin is free for use, please observe the license terms below :
 
 ## Background
 
-This plugin was created for the [2022 1Chicken game jam contest][1map], a game jam event hosted by 1Map1Chicken in Korea.  
-The game created through this is a game called DOWNFALLEN.
+This plugin was created for the [2022 1Chicken game jam contest][1map],
+a game jam event hosted by [1Map1Chicken RPG Maker contest][1map-twitter] in Korea.
+
+The game we made by participating in this game jam was DOWNFALLEN,
+and it was the opportunity to create the corresponding plug-in for this game.
+
 [The entry page can be viewed here][DOWNFALLEN], but this game is in Korean.
-> However, the text has been pulled out to support fan translations, so contributions are always welcome!
+
+> *However, the text has been pulled out to support fan translations, so contributions are always welcome!*
 
 ## Demonstration
 
@@ -44,7 +49,10 @@ If you curious what it does, watch this video.
   </a>
 </p>
 
+##
+
 [releases]: https://github.com/creta5164/fmod-rmmv/releases
 [LICENSE]: https://github.com/creta5164/fmod-rmmv/blob/main/LICENSE
 [1map]: https://1map1chicken.com/entries/jam2022
+[1map-twitter]: https://twitter.com/1map1chicken
 [DOWNFALLEN]: https://1map1chicken.com/entries/jam2022/downfallen-다운폴른
