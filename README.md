@@ -39,6 +39,7 @@ The game created through this is a game called DOWNFALLEN.
 If you curious what it does, watch this video.
 
 <p align="center">
-
-[![Video Label](http://img.youtube.com/vi/YcVaRldGb4c/0.jpg)](https://youtu.be/YcVaRldGb4c)
+  <a href="https://youtu.be/YcVaRldGb4c">
+    <img alt="DOWNFALLEN demonstration video thumbnail" src="https://img.youtube.com/vi/YcVaRldGb4c/maxresdefault.jpg"/>
+  </a>
 </p>
