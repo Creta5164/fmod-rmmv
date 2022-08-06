@@ -36,6 +36,9 @@ The game created through this is a game called DOWNFALLEN.
 
 ## Demonstration
 
+If you curious what it does, watch this video.
 
-If you curious what it does, watch this video.  
+<p align="center">
+
 [![Video Label](http://img.youtube.com/vi/YcVaRldGb4c/0.jpg)](https://youtu.be/YcVaRldGb4c)
+</p>
