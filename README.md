@@ -4,7 +4,7 @@
   <img alt="FMOD_MV.js" width="640" src="./og-image.png"/>
 </p>
 
-### [Download plugin](https://github.com/creta5164/fmod-rmmv/releases)
+### [Download plugin][releases]
 
 A plugin that helps to use FMOD wasm upstream builds for RPG Maker MV.  
 Created by Creta Park (https://creft.me/cretapark)
@@ -23,15 +23,15 @@ This plugin is free for use, please observe the license terms below :
 
 4. When redistributed after modification, the original author must be indicated.
 
-*This can also be found in the [LICENSE](https://github.com/creta5164/fmod-rmmv/blob/main/LICENSE) file.*
+*This can also be found in the [LICENSE][LICENSE] file.*
 
 ---
 
 ## Background
 
-This plugin was created for the 2022 1Chicken game jam contest, a game jam event hosted by 1Map1Chicken in Korea.  
+This plugin was created for the [2022 1Chicken game jam contest][1map], a game jam event hosted by 1Map1Chicken in Korea.  
 The game created through this is a game called DOWNFALLEN.
-[The entry page can be viewed here](https://1map1chicken.com/entries/jam2022/downfallen-다운폴른), but this game is in Korean.
+[The entry page can be viewed here][DOWNFALLEN], but this game is in Korean.
 > However, the text has been pulled out to support fan translations, so contributions are always welcome!
 
 ## Demonstration
@@ -43,3 +43,8 @@ If you curious what it does, watch this video.
     <img alt="DOWNFALLEN demonstration video thumbnail" width="640" src="https://img.youtube.com/vi/YcVaRldGb4c/maxresdefault.jpg"/>
   </a>
 </p>
+
+[releases]: https://github.com/creta5164/fmod-rmmv/releases
+[LICENSE]: https://github.com/creta5164/fmod-rmmv/blob/main/LICENSE
+[1map]: https://1map1chicken.com/entries/jam2022
+[DOWNFALLEN]: https://1map1chicken.com/entries/jam2022/downfallen-다운폴른
