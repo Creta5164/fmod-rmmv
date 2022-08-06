@@ -1,0 +1,31 @@
+Copyright (c) 2022 Creta Park
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+1. When using this plugin with other software, the software must be
+   a game developed and made with RPG Maker, and 'FMOD_MV.js by Creta Park'
+   must be written in the credit of these game.
+2. Should not be confused 1's content with the attribution of FMOD.
+   Mark completely separate from the attribution of the FMOD.
+3. Neither this plugin nor any of its individual components,
+   in Original or Modified Versions, may be sold by itself.
+4. When redistributed after modification, the original author must be indicated.
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+FMOD is registered trademarks or trademarks of Firelight Technologies Pty Ltd.
+RPG Maker MV is registered trademarks or trademarks of KADOKAWA Corporation.
