@@ -73,11 +73,6 @@ Pull request or contribution are always welcome!
 
 Currently, the limitations I have identified are as follows.
 
-- System-specific audio settings not implemented yet  
-  There is not yet a features that allows you to specifying system-specified audio,
-  like from music such as title, game-over, etc.
-  to sound effects such as cursor move, choice, cancel, save, load, etc.
-
 - Velocity for doppler effect, etc.  
   The characters in RPG Maker have very consistent movement speeds,
   so when I applied velocity to them, the results were very strange
@@ -124,7 +119,7 @@ Plugin's order doesn't matter, unless you're using additional audio-related feat
 ## [3.2.](#table-of-content) Add FMOD Engine
 
 ![download-fmod-html5](./img/download-fmod-html5.png)  
-[Download FMOD Engine here][fmod-download], it requires HTML5 version.
+[Download FMOD Engine at here][fmod-download], it requires HTML5 version.
 
 ![add-library-to-project](./img/add-library-to-project.png)  
 Put `fmodstudio.js` and `fmodstudio.wasm` in `api/studio/lib/upstream/wasm` of the downloaded zip file into `js/lib` in the project folder.
@@ -178,7 +173,8 @@ Then you are ready to go!
 
 # [4.](#table-of-content) Plugin options
 
-This section covers the plugin settings menu.
+![plugins-options](./img/plugins-options.png)  
+This section covers the plugin options menu.
 
 ![celeste-fmod](./img/celeste-fmod.png)  
 To see an quick example in action, create a new RPG Maker project, and overwrite the `plugins.js` enclosed in the repository with `js/plugins.js` in the newly created project directory.
