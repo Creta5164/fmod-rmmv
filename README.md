@@ -180,7 +180,10 @@ This section covers the plugin options menu.
 To see an quick example in action, create a new RPG Maker project, and overwrite the `plugins.js` enclosed in the repository with `js/plugins.js` in the newly created project directory.
 
 ![build-celeste-fmod](./img/build-celeste-fmod.png)  
-Build the [Celeste FMOD Studio Project][fmod-learning-resources], and setup them by referring to [Bank asset path](#42table-of-content-bank-asset-path), [Bank assets](#43table-of-content-bank-assets), and [GUIDs js path](#44table-of-content-guids-js-path) in this section.
+Build the [Celeste FMOD Studio Project][fmod-learning-resources], and setup them by referring to
+[Bank asset path](#42table-of-content-bank-asset-path),
+[Bank assets](#43table-of-content-bank-assets),
+and [GUIDs js path](#44table-of-content-guids-js-path) in this section.
 
 ## [4.1.](#table-of-content) Total memory
 
