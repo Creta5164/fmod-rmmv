@@ -116,11 +116,75 @@ Currently, the limitations I have identified are as follows.
 
 # [3.](#table-of-content) Setup project
 
-First, put `FMOD_MV.js` in the `plugins` folder, and then add the plugin in the project.
+## [3.1.](#table-of-content) Add plugin to your project
 
+Put `FMOD_MV.js` in the `plugins` folder, and then add the plugin in your RPG Maker project.  
 Plugin's order doesn't matter, unless you're using additional audio-related featured plugins.
 
+## [3.2.](#table-of-content) Add FMOD Engine
+
+![download-fmod-html5](./img/download-fmod-html5.png)  
+[Download FMOD Engine here][fmod-download], it requires HTML5 version.
+
+![add-library-to-project](./img/add-library-to-project.png)  
+Put `fmodstudio.js` and `fmodstudio.wasm` in `api/studio/lib/upstream/wasm` of the downloaded zip file into `js/lib` in the project folder.
+
+![modify-fmodstudio.js](./img/modify-fmodstudio.js.png)  
+Then open `fmodstudio.js` and find the section `ENVIRONMENT_IS_NODE=typeof process==="object"&&typeof process`.  
+Then add `false&&` after `ENVIRONMENT_IS_NODE=` and save it.
+
+Then, open `index.html` in the project folder and add the following line as below into `<body>` tags.
+
+```
+<script type="text/javascript" src="js/libs/fmodstudio.js"></script>
+```
+
+If you've been working on the index.html you created as a new project, it should look like this :
+
+```diff
+ <!DOCTYPE html>
+ <html>
+     <head>
+         <meta charset="UTF-8">
+         <meta name="apple-mobile-web-app-capable" content="yes">
+         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+         <meta name="viewport" content="user-scalable=no">
+         <link rel="icon" href="icon/icon.png" type="image/png">
+         <link rel="apple-touch-icon" href="icon/icon.png">
+         <link rel="stylesheet" type="text/css" href="fonts/gamefont.css">
+         <title>Project1</title>
+     </head>
+     <body style="background-color: black">
+         <script type="text/javascript" src="js/libs/pixi.js"></script>
+         <script type="text/javascript" src="js/libs/pixi-tilemap.js"></script>
+         <script type="text/javascript" src="js/libs/pixi-picture.js"></script>
+         <script type="text/javascript" src="js/libs/fpsmeter.js"></script>
+         <script type="text/javascript" src="js/libs/lz-string.js"></script>
+         <script type="text/javascript" src="js/libs/iphone-inline-video.browser.js"></script>
++        <script type="text/javascript" src="js/libs/fmodstudio.js"></script>
+         <script type="text/javascript" src="js/rpg_core.js"></script>
+         <script type="text/javascript" src="js/rpg_managers.js"></script>
+         <script type="text/javascript" src="js/rpg_objects.js"></script>
+         <script type="text/javascript" src="js/rpg_scenes.js"></script>
+         <script type="text/javascript" src="js/rpg_sprites.js"></script>
+         <script type="text/javascript" src="js/rpg_windows.js"></script>
+         <script type="text/javascript" src="js/plugins.js"></script>
+         <script type="text/javascript" src="js/main.js"></script>
+     </body>
+ </html>
+```
+
+Then you are ready to go!
+
 # [4.](#table-of-content) Plugin options
+
+This section covers the plugin settings menu.
+
+![celeste-fmod](./img/celeste-fmod.png)  
+To see an quick example in action, create a new RPG Maker project, and overwrite the `plugins.js` enclosed in the repository with `js/plugins.js` in the newly created project directory.
+
+![build-celeste-fmod](./img/build-celeste-fmod.png)  
+Build the [Celeste FMOD Studio Project][fmod-learning-resorces], and setup them by referring to [Bank asset path](#42table-of-content-bank-asset-path), [Bank assets](#43table-of-content-bank-assets), and [GUIDs js path](#44table-of-content-guids-js-path) in this section.
 
 ## [4.1.](#table-of-content) Total memory
 
@@ -172,7 +236,7 @@ If you leave these blank, FMOD_MV.js will try finds a VCA name
 with `BGM`, `BGS`, `ME`, `SE`, if found them then
 it will be used automatically.
 
-
+## [4.6.](#table-of-content) 
 
 [releases]: https://github.com/creta5164/fmod-rmmv/releases
 [LICENSE]: https://github.com/creta5164/fmod-rmmv/blob/main/LICENSE
@@ -182,3 +246,5 @@ it will be used automatically.
 [fmod-license]: https://www.fmod.com/licensing
 [fmod-attribution]: https://www.fmod.com/attribution
 [fmod-legal]: https://www.fmod.com/legal
+[fmod-download]: https://www.fmod.com/download#fmodengine
+[fmod-learning-resources]: https://www.fmod.com/download#learningresources
