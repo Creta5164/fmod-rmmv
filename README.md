@@ -181,9 +181,9 @@ To see an quick example in action, create a new RPG Maker project, and overwrite
 
 ![build-celeste-fmod](./img/build-celeste-fmod.png)  
 Build the [Celeste FMOD Studio Project][fmod-learning-resources], and setup them by referring to
-[Bank asset path](#42table-of-content-bank-asset-path),
-[Bank assets](#43table-of-content-bank-assets),
-and [GUIDs js path](#44table-of-content-guids-js-path) in this section.
+[Bank asset path](#42-bank-asset-path),
+[Bank assets](#43-bank-assets),
+and [GUIDs js path](#44-guids-js-path) in this section.
 
 ## [4.1.](#table-of-content) Total memory
 
