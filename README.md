@@ -186,7 +186,7 @@ and overwrite the `plugins.js` enclosed in the repository with `js/plugins.js` i
 
 ![celeste-fmod](./img/celeste-fmod.png)  
 ![build-celeste-fmod](./img/build-celeste-fmod.png)  
-Build the [Celeste FMOD Studio Project][fmod-learning-resources], and setup them by referring to
+And then build the [Celeste FMOD Studio Project][fmod-learning-resources], and setup them by referring to
 [Bank asset path](#52-bank-asset-path),
 [Bank assets](#53-bank-assets),
 and [GUIDs js path](#54-guids-js-path) in this section.
