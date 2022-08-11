@@ -382,6 +382,8 @@ Plays Event as ME category.
 As with RPG Maker, when an event in the ME category is triggered, the BGM remembers the state and goes into a stopped state.  
 When all MEs are finished or stopped, the BGM recalls what it remembered and plays it again.
 
+> Note : FMOD Events played in this category will not be recorded in save file.
+
 - `guid` : The Event you want to play in the ME category.  
   You can use the event defined in **`GUID script`**.  
   If you're not sure what to put in, check out the example below.
@@ -455,7 +457,7 @@ It has the most functions, please read carefully and check it with examples.
   For detailed usage examples, please refer to the **Example** below.
 
 - `forceBind` : (Optional) Whether to force bind to the `at`.  
-  So if `at` is `null` or is of the form `{x:<X>,y:<Y>}` then don't need to use it.
+  So if `at` is `null` or `{x:<X>,y:<Y>}` then don't need to use it.
   
 
 [releases]: https://github.com/creta5164/fmod-rmmv/releases
