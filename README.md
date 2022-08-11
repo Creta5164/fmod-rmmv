@@ -250,7 +250,7 @@ If you leave these blank, FMOD_MV.js will try finds a VCA name
 with `BGM`, `BGS`, `ME`, `SE`, if found them then
 it will be used automatically.
 
-Applicable VCA names can be found in `VCA` of `fmod_studio_guids.js` created in [GUIDs js path][guids-js].
+Applicable VCA names can be found in `VCA` of **`GUID script`** created in [GUIDs js path][guids-js].
 
 ## [5.6.](#table-of-content) System musics
 
@@ -260,7 +260,7 @@ If you leave it blank, it will be played as the music set by RPG Maker. (RM Audi
 
 ![guid-events-location][guid-events-location]
 
-Applicable event names can be found in `Event` of `fmod_studio_guids.js` created in [GUIDs js path section][guids-js].
+Applicable event names can be found in `Event` of **`GUID script`** created in [GUIDs js path section][guids-js].
 
 > Note : Battle-related system audio assignments are available for future use.  
 > Battle-related parts are not implemented yet, so unintended behavior may occur.
@@ -273,7 +273,7 @@ If you leave it blank, it will be played as the music effect set by RPG Maker. (
 
 ![guid-events-location][guid-events-location]
 
-Applicable event names can be found in `Event` of `fmod_studio_guids.js` created in [GUIDs js path section][guids-js].
+Applicable event names can be found in `Event` of **`GUID script`** created in [GUIDs js path section][guids-js].
 
 > Note : Battle-related system audio assignments are available for future use.  
 > Battle-related parts are not implemented yet, so unintended behavior may occur.
@@ -286,7 +286,7 @@ If you leave it blank, it will be played as the sound effect set by RPG Maker. (
 
 ![guid-events-location][guid-events-location]
 
-Applicable event names can be found in `Event` of `fmod_studio_guids.js` created in [GUIDs js path section][guids-js].
+Applicable event names can be found in `Event` of **`GUID script`** created in [GUIDs js path section][guids-js].
 
 ## [6.](#table-of-content) Basic usage
 
