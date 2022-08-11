@@ -181,10 +181,10 @@ Then you are ready to go!
 
 # [5.](#table-of-content) Quick example
 
-![celeste-fmod](./img/celeste-fmod.png)  
 To see an quick example in action, create a new RPG Maker project,
 and overwrite the `plugins.js` enclosed in the repository with `js/plugins.js` in your newly created project directory.
 
+![celeste-fmod](./img/celeste-fmod.png)  
 ![build-celeste-fmod](./img/build-celeste-fmod.png)  
 Build the [Celeste FMOD Studio Project][fmod-learning-resources], and setup them by referring to
 [Bank asset path](#52-bank-asset-path),
