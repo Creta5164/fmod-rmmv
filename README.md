@@ -83,6 +83,15 @@ Currently, the limitations I have identified are as follows.
   and output it through the bus, but this has not been
   implemented yet.
 
+- Create FMOD Event instance of RPG Maker's resources  
+  FMOD can also create Event instances from audio files.  
+  However, it has not been decided how to solve and implement RPG Maker's encryption/decryption pipeline.
+
+- Listener position and third-party camera plug-in compatibility unverified  
+  If you have a third-party camera plug-in that zooms in, zooms out or controls the camera, there is a chance that the sound won't sound right.  
+  If you want to make them compatible directly, search `Game_Map.prototype.updateListenerAttributes` in the `FMOD_MV.js`.  
+  This contains the code to update the listener's position.
+
 - Can't support event callbacks  
   Event callback is a feature that receives this signal from the game
   when a call function is put in an event created in FMOD Studio.  
@@ -311,7 +320,14 @@ So keep this in mind.
 <img alt="explain-rmmv-space-and-fmod-space" width="720" src="./img/explain-rmmv-space-n-fmod-space.gif"/>
 
 If there is a sound, then there must be a listener to hear the sound.  
-Basically, the listener is a structure facing the front from the back `10 units` from the position (depth) where the characters are as shown in the figure.
+Basically, the listener is a structure facing the front from the back `10 units (-Z)` from the position (depth) where the characters are as shown in the figure.
+
+Listeners are always being at the camera's center point.
+
+The reason I designed it this way is that after all, the player plays RPG Maker game through the screen.  
+And the reason I've put the listener at a distance of `10 units` is to make sure the sound doesn't feel like it's going 'through' the listener(the player)'s head.
+
+So, when you designing an Event in FMOD Studio, keep in mind that the listener is always `10 units` apart.
 
 ### [6.1.](#table-of-content) Playing event
 
@@ -423,14 +439,14 @@ It has the most functions, please read carefully and check it with examples.
   
   - `this` is for RPG Maker event itself that executing this script.  
     There's also have explicit expression as `this.event()`.  
-    If the FMOD Event is 3D or `forceBind` is `true`, it will be bound to this character's Speaker.
+    If the FMOD Event is 3D or `forceBind` is `true`, it will be bound to this character's `Speaker`.
   
   - `$gamePlayer` is for player character.  
-    If the FMOD Event is 3D or `forceBind` is `true`, it will be bound to player character's Speaker.
+    If the FMOD Event is 3D or `forceBind` is `true`, it will be bound to player character's `Speaker`.
   
   - `$gameMap.event(<ID>)` is for RPG Maker event in current map by ID.  
     In example, if you want make sound to RPG Maker event with ID 12 then use `$gameMap.event(12)`.  
-    If the FMOD Event is 3D or `forceBind` is `true`, it will be bound to target RPG Maker event character's Speaker.
+    If the FMOD Event is 3D or `forceBind` is `true`, it will be bound to target RPG Maker event character's `Speaker`.
   
   - `{x:<X>,y:<Y>}` is for only specifying sound's location.  
     In example, if you want make sound to event on `X:51`, `Y:64` then use `{x:51,y:64}`.  
@@ -462,7 +478,37 @@ It has the most functions, please read carefully and check it with examples.
 
 **Example**
 
+1. Play `game_general_spring` at camera position.
+   ```js
+   FMOD_MV.PlaySE(FMOD_FSPRO.Event.game_general_spring);
+   ```
 
+2. Play `game_general_spring` at this event.
+   ```js
+   FMOD_MV.PlaySE(FMOD_FSPRO.Event.game_general_spring, this);
+   ```
+
+3. Play `game_general_spring` at RPG Maker event with `ID:1`.
+   ```js
+   FMOD_MV.PlaySE(FMOD_FSPRO.Event.game_general_spring, $gameMap.event(1));
+   ```
+
+4. Play `char_madeline_footstep` at player, with set parameter `surface_index` to `5`.
+   ```js
+   FMOD_MV.PlaySE(FMOD_FSPRO.Event.char_madeline_footstep, $gamePlayer, {
+     "surface_index": [5, true]
+   });
+   ```
+
+5. Play `char_madeline_footstep` at player, with set parameter `surface_index` as player's located region ID.
+   ```js
+   FMOD_MV.PlaySE(FMOD_FSPRO.Event.char_madeline_footstep, $gamePlayer, {
+     "surface_index": [$gameMap.regionId($gamePlayer.x, $gamePlayer.y), true]
+   });
+   ```
+   ![play-sfx-with-param](./img/play-sfx-with-param.png)  
+   Put this example inside an invisible parallel processing RPG Maker event with a `15 frame` wait, then place the Region tiles in RPG Maker like this image.  
+   You can hear footstep sounds when walk around there with the player.
 
 [releases]: https://github.com/creta5164/fmod-rmmv/releases
 [LICENSE]: https://github.com/creta5164/fmod-rmmv/blob/main/LICENSE
