@@ -313,7 +313,7 @@ If the FMOD Event is 3D, stereo sound can be used, and for this purpose, Speaker
 
 So keep this in mind.
 
-https://github.com/creta5164/fmod-rmmv/blob/initial-work/img/explain-rmmv-space-n-fmod-space.mp4
+https://github.com/creta5164/fmod-rmmv/blob/initial-work/img/explain-rmmv-space-n-fmod-space.mp4?raw=true
 
 If there is a sound, then there must be a listener to hear the sound.  
 Basically, the listener is a structure facing the front from the back `10 units` from the position (depth) where the characters are as shown in the figure.
