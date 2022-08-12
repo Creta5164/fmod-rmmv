@@ -313,6 +313,11 @@ If the FMOD Event is 3D, stereo sound can be used, and for this purpose, Speaker
 
 So keep this in mind.
 
+https://github.com/creta5164/fmod-rmmv/blob/initial-work/img/explain-rmmv-space-n-fmod-space.mp4
+
+If there is a sound, then there must be a listener to hear the sound.  
+Basically, the listener is a structure facing the front from the back `10 units` from the position (depth) where the characters are as shown in the figure.
+
 ### [6.1.](#table-of-content) Playing event
 
 #### [6.1.1.](#table-of-content) Play BGM
@@ -328,10 +333,10 @@ Plays Event as BGM category.
   If you're not sure what to put in, check out the example below.
 
 - `isAppend` : (Optional) Determines whether to play a new BGM event while leaving the playing BGM as it is.  
-  Acceptable value is `true` for yes, `false` for no, and default value is `false`.
+  Acceptable value is `true` for yes, `false` for no, and default is `false`.
 
 - `immediateStop` : (Optional) Determines how the FMOD stops previously playing music.  
-  Acceptable value is `true` for yes, `false` for no, and default value is `false`.
+  Acceptable value is `true` for yes, `false` for no, and default is `false`.
 
 **Example**
 
@@ -363,10 +368,10 @@ Plays Event as BGS category.
   If you're not sure what to put in, check out the example below.
 
 - `isAppend` : (Optional) Determines whether to play a new BGS event while leaving the playing BGS as it is.  
-  Acceptable value is `true` for yes, `false` for no, and default value is `false`.
+  Acceptable value is `true` for yes, `false` for no, and default is `false`.
 
 - `immediateStop` : (Optional) Determines how the FMOD stops previously playing music.  
-  Acceptable value is `true` for yes, `false` for no, and default value is `false`.
+  Acceptable value is `true` for yes, `false` for no, and default is `false`.
 
 **Example**
 
@@ -389,7 +394,7 @@ When all MEs are finished or stopped, the BGM recalls what it remembered and pla
   If you're not sure what to put in, check out the example below.
 
 - `immediateStop` : (Optional) Determines how the FMOD stops previously playing music.  
-  Acceptable value is `true` for yes, `false` for no, and default value is `false`.
+  Acceptable value is `true` for yes, `false` for no, and default is `false`.
 
 **Example**
 
@@ -419,7 +424,7 @@ It has the most functions, please read carefully and check it with examples.
   If you're not sure what to put in, check out the example below.
 
 - `at` : (Optional) Specifies where the sound is coming from.  
-  Acceptable values are below, default value is `null`(none).
+  Acceptable values are below, default is `null`(none).
   
   - `this` is for RPG Maker event itself that executing this script.  
     There's also have explicit expression as `this.event()`.  
@@ -457,8 +462,12 @@ It has the most functions, please read carefully and check it with examples.
   For detailed usage examples, please refer to the **Example** below.
 
 - `forceBind` : (Optional) Whether to force bind to the `at`.  
-  So if `at` is `null` or `{x:<X>,y:<Y>}` then don't need to use it.
-  
+  So if `at` is `null` or `{x:<X>,y:<Y>}` then don't need to use it.  
+  Acceptable value is `true` for yes, `false` for no, and default is `false`.
+
+**Example**
+
+
 
 [releases]: https://github.com/creta5164/fmod-rmmv/releases
 [LICENSE]: https://github.com/creta5164/fmod-rmmv/blob/main/LICENSE
