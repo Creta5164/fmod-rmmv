@@ -83,11 +83,6 @@ Currently, the limitations I have identified are as follows.
   and output it through the bus, but this has not been
   implemented yet.
 
-- Not fully implemented ME specs  
-  I have not yet implemented the specification of ME that plays
-  BGM when it is interrupted during BGM playback and ME plays
-  and disappears.
-
 - Can't support event callbacks  
   Event callback is a feature that receives this signal from the game
   when a call function is put in an event created in FMOD Studio.  
