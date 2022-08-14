@@ -347,6 +347,7 @@ Plays Event as BGM category.
   Acceptable value is `true` for yes, `false` for no, and default is `false`.
 
 - `immediateStop` : (Optional) Determines how the FMOD stops previously playing music.  
+  If not set immediate stop, the event will be stopped gradually as the behavior defined for the Event in FMOD Studio.  
   Acceptable value is `true` for yes, `false` for no, and default is `false`.
 
 **Example**
@@ -382,11 +383,13 @@ Plays Event as BGS category.
   Acceptable value is `true` for yes, `false` for no, and default is `false`.
 
 - `immediateStop` : (Optional) Determines how the FMOD stops previously playing music.  
+  If not set immediate stop, the event will be stopped gradually as the behavior defined for the Event in FMOD Studio.  
   Acceptable value is `true` for yes, `false` for no, and default is `false`.
 
 **Example**
 
-This is similar to [Play BGM](#611-play-bgm), check out the [Play BGM](#611-play-bgm)'s example.
+This is similar to [Play BGM](#611-play-bgm), check out the [Play BGM](#611-play-bgm)'s example.  
+The only difference is that BGM is replaced as BGS. (`FMOD_MV.PlayBGS(...)`)
 
 #### [6.1.3.](#table-of-content) Play ME
 
@@ -405,6 +408,7 @@ When all MEs are finished or stopped, the BGM recalls what it remembered and pla
   If you're not sure what to put in, check out the example below.
 
 - `immediateStop` : (Optional) Determines how the FMOD stops previously playing music.  
+  If not set immediate stop, the event will be stopped gradually as the behavior defined for the Event in FMOD Studio.  
   Acceptable value is `true` for yes, `false` for no, and default is `false`.
 
 **Example**
@@ -509,6 +513,269 @@ It has the most functions, please read carefully and check it with examples.
    ![play-sfx-with-param](./img/play-sfx-with-param.png)  
    Put this example inside an invisible parallel processing RPG Maker event with a `15 frame` wait, then place the Region tiles in RPG Maker like this image.  
    You can hear footstep sounds when walk around there with the player.
+
+> Note : If you want to change a parameter that is playing in the middle or stop a specific FMOD Event on the target, please refer to the [Speaker](#) section.
+
+### [6.2.](#table-of-content) Controls event
+
+#### [6.2.1.](#table-of-content) Stop BGM
+
+```js
+FMOD_MV.StopBGM(immediateStop, specifiedGuid);
+```
+
+Stops the BGM categorized Event.
+
+- `immediateStop` : (Optional) Specifies whether to stop the Event immediately.  
+  If not set immediate stop, the event will be stopped gradually as the behavior defined for the Event in FMOD Studio.  
+  Acceptable value is `true` for yes, `false` for no, and default is `false`.
+
+- `specifiedGuid` : (Optional) The Event you want to stop in the BGM category.  
+  You can use the event defined in **`GUID script`**.  
+  If you're not sure what to put in, check out the example below.
+  Default is `null`(all events).
+
+**Example**
+
+These examples assume after starting the FMOD Event in the example of [Play BGM](#611-play-bgm).
+
+1. Stops all BGM categorized events.
+   ```js
+   FMOD_MV.StopBGM();
+   ```
+
+2. Stops all BGM categorized events immediately.
+   ```js
+   FMOD_MV.StopBGM(true);
+   ```
+
+3. Stops specific (`music_lvl1_main` in this case) BGM
+   ```js
+   FMOD_MV.StopBGM(false, FMOD_FSPRO.Event.music_lvl1_main);
+   ```
+
+4. Stops specific (`music_lvl1_main` in this case) BGM immediately.
+   ```js
+   FMOD_MV.StopBGM(true, FMOD_FSPRO.Event.music_lvl1_main);
+   ```
+
+#### [6.2.2.](#table-of-content) Set BGM Parameter
+
+```js
+FMOD_MV.SetBGMParameter(guid, name, value, skip);
+```
+
+Set the event parameter in BGM categorized specific event.
+
+- `guid` : The Event you want to set parameter in the BGM category.  
+  You can use the event defined in **`GUID script`**.  
+  If you're not sure what to put in, check out the example below.
+
+- `name` : The parameter name you want to specify in the event.  
+  Double quotation marks (`"`) must be placed around the name.  
+  (like `"progress"`, `"stinger"`)
+
+- `value` : A numeric value to set for the parameter you want to assign.  
+  The range of this value is the range set in FMOD Studio for the parameter you put in the target Event.
+
+- `skip` : Whether to override the acceleration setting of the parameter
+  specified in FMOD Studio and immediately assign the parameter's value.  
+  Acceptable value is `true` for yes, `false` for no, and default is `false`.
+
+**Example**
+
+This example assume after starting the FMOD Event, `music_lvl1_main` in the example of [Play BGM](#611-play-bgm).
+
+1. Set Event `music_lvl1_main`'s parameter, `layer1` to `0` and `layer3` to `0`.  
+   > Note : This example assume after starting the FMOD Event, `music_lvl1_main` in the example of [Play BGM](#611-play-bgm)'s first example.
+   ```js
+   FMOD_MV.SetBGMParameter(FMOD_FSPRO.Event.music_lvl1_main, "layer1", 0);
+   FMOD_MV.SetBGMParameter(FMOD_FSPRO.Event.music_lvl1_main, "layer3", 0);
+   ```
+
+2. Set Event `music_lvl1_main`'s parameter, `layer1` to `0` and `layer2` to `0` and `layer3` to `1` immediately.  
+   > Note : This example assume after starting the FMOD Event, `music_lvl1_main` in the example of [Play BGM](#611-play-bgm)'s first example.
+   ```js
+   FMOD_MV.SetBGMParameter(FMOD_FSPRO.Event.music_lvl1_main, "layer1", 0, true);
+   FMOD_MV.SetBGMParameter(FMOD_FSPRO.Event.music_lvl1_main, "layer2", 0, true);
+   FMOD_MV.SetBGMParameter(FMOD_FSPRO.Event.music_lvl1_main, "layer3", 1, true);
+   ```
+
+3. Stop BGM events and play `music_lvl6_main` then set parameter `layer2` to `1` immediately.  
+   > Note : [`PlayBGM`](#611-play-bgm) automatically stops it's categorized events before starting event if additional option not set.
+   ```js
+   FMOD_MV.PlayBGM(FMOD_FSPRO.Event.music_lvl6_main);
+   FMOD_MV.SetBGMParameter(FMOD_FSPRO.Event.music_lvl6_main, "layer2", 1, true);
+   ```
+
+#### [6.2.3.](#table-of-content) Check BGM categorized event is playing
+
+```js
+FMOD_MV.BGMIsPlaying(guid)
+```
+
+Check if the event is playing in the BGM category.
+
+> Note : Even when the event is stopping, it is detected as being played.
+
+- `guid` : (Optional) The Event you want to check is playing in the BGM category.  
+  You can use the event defined in **`GUID script`**.  
+  If you're not sure what to put in, check out the example below.  
+  Default is `null`(any events is playing in BGM).
+
+**Example**
+
+With or without ‘music_lvl1_main’ being played as BGM, you can check both dialogues by inserting the following events into the event you want to check, and interacting with them.
+
+```
+◆ Condition : Script : FMOD_MV.BGMIsPlaying(FMOD_FSPRO.Event.music_lvl1_main)
+  ◆ Dialogue : music_lvl1_main is playing!
+: Else
+  ◆ Dialogue : music_lvl1_main is not playing...
+:Condition End
+```
+
+#### [6.2.4.](#table-of-content) Stop BGS
+
+```js
+FMOD_MV.StopBGS(immediateStop, specifiedGuid);
+```
+
+Stops the BGS categorized Event.
+
+- `immediateStop` : (Optional) Specifies whether to stop the Event immediately.  
+  If not set immediate stop, the event will be stopped gradually as the behavior defined for the Event in FMOD Studio.  
+  Acceptable value is `true` for yes, `false` for no, and default is `false`.
+
+- `specifiedGuid` : (Optional) The Event you want to stop in the BGS category.  
+  You can use the event defined in **`GUID script`**.  
+  If you're not sure what to put in, check out the example below.
+  Default is `null`(all events).
+
+**Example**
+
+This is similar to [Stop BGM](#621-stop-bgm), check out the [Stop BGM](#621-stop-bgm)'s example.  
+The only difference is that BGM is replaced as BGS. (`FMOD_MV.StopBGS(...)`)
+
+#### [6.2.5.](#table-of-content) Set BGS Parameter
+
+```js
+FMOD_MV.SetBGSParameter(guid, name, value, skip);
+```
+
+Set the event parameter in BGS categorized specific event.
+
+- `guid` : The Event you want to set parameter in the BGS category.  
+  You can use the event defined in **`GUID script`**.  
+  If you're not sure what to put in, check out the example below.
+
+- `name` : The parameter name you want to specify in the event.  
+  Double quotation marks (`"`) must be placed around the name.  
+  (like `"progress"`, `"stinger"`)
+
+- `value` : A numeric value to set for the parameter you want to assign.  
+  The range of this value is the range set in FMOD Studio for the parameter you put in the target Event.
+
+- `skip` : Whether to override the acceleration setting of the parameter
+  specified in FMOD Studio and immediately assign the parameter's value.  
+  Acceptable value is `true` for yes, `false` for no, and default is `false`.
+
+**Example**
+
+This is similar to [Set BGM Parameter](#622-set-bgm-parameter), check out the [Set BGM Parameter](#622-set-bgm-parameter)'s example.  
+The only difference is that BGM is replaced as BGS. (`FMOD_MV.SetBGSParameter(...)`)
+
+#### [6.2.6.](#table-of-content) Check BGS categorized event is playing
+
+```js
+FMOD_MV.BGSIsPlaying(guid)
+```
+
+Check if the event is playing in the BGS category.
+
+> Note : Even when the event is stopping, it is detected as being played.
+
+- `guid` : (Optional) The Event you want to check is playing in the BGS category.  
+  You can use the event defined in **`GUID script`**.  
+  If you're not sure what to put in, check out the example below.  
+  Default is `null`(any events is playing in BGS).
+
+**Example**
+
+This is similar to [Check BGM categorized event is playing](#623-check-bgm-categorized-event-is-playing), check out the [Check BGM categorized event is playing](#623-check-bgm-categorized-event-is-playing)'s example.  
+The only difference is that BGM is replaced as BGS. (`FMOD_MV.BGSIsPlaying(...)`)
+
+#### [6.2.7.](#table-of-content) Stop ME
+
+```js
+FMOD_MV.StopME(immediateStop, specifiedGuid);
+```
+
+Stops the ME categorized Event.
+
+- `immediateStop` : (Optional) Specifies whether to stop the Event immediately.  
+  If not set immediate stop, the event will be stopped gradually as the behavior defined for the Event in FMOD Studio.  
+  Acceptable value is `true` for yes, `false` for no, and default is `false`.
+
+- `specifiedGuid` : (Optional) The Event you want to stop in the ME category.  
+  You can use the event defined in **`GUID script`**.  
+  If you're not sure what to put in, check out the example below.
+  Default is `null`(all events).
+
+**Example**
+
+This is similar to [Stop BGM](#621-stop-bgm), check out the [Stop BGM](#621-stop-bgm)'s example.  
+The only difference is that BGM is replaced as ME. (`FMOD_MV.StopME(...)`)
+
+#### [6.2.8.](#table-of-content) Set ME Parameter
+
+```js
+FMOD_MV.SetMEParameter(guid, name, value, skip);
+```
+
+Set the event parameter in ME categorized specific event.
+
+- `guid` : The Event you want to set parameter in the ME category.  
+  You can use the event defined in **`GUID script`**.  
+  If you're not sure what to put in, check out the example below.
+
+- `name` : The parameter name you want to specify in the event.  
+  Double quotation marks (`"`) must be placed around the name.  
+  (like `"progress"`, `"stinger"`)
+
+- `value` : A numeric value to set for the parameter you want to assign.  
+  The range of this value is the range set in FMOD Studio for the parameter you put in the target Event.
+
+- `skip` : Whether to override the acceleration setting of the parameter
+  specified in FMOD Studio and immediately assign the parameter's value.  
+  Acceptable value is `true` for yes, `false` for no, and default is `false`.
+
+**Example**
+
+This is similar to [Set BGM Parameter](#622-set-bgm-parameter), check out the [Set BGM Parameter](#622-set-bgm-parameter)'s example.  
+The only difference is that BGM is replaced as ME. (`FMOD_MV.SetMEParameter(...)`)
+
+#### [6.2.9.](#table-of-content) Check ME categorized event is playing
+
+```js
+FMOD_MV.MEIsPlaying(guid)
+```
+
+Check if the event is playing in the ME category.
+
+> Note : Even when the event is stopping, it is detected as being played.
+
+- `guid` : (Optional) The Event you want to check is playing in the ME category.  
+  You can use the event defined in **`GUID script`**.  
+  If you're not sure what to put in, check out the example below.  
+  Default is `null`(any events is playing in ME).
+
+**Example**
+
+This is similar to [Check BGM categorized event is playing](#623-check-bgm-categorized-event-is-playing), check out the [Check BGM categorized event is playing](#623-check-bgm-categorized-event-is-playing)'s example.  
+The only difference is that BGM is replaced as BGS. (`FMOD_MV.BGSIsPlaying(...)`)
+
+TODO : 효과음 이벤트 정지 시 Speaker 안내
 
 [releases]: https://github.com/creta5164/fmod-rmmv/releases
 [LICENSE]: https://github.com/creta5164/fmod-rmmv/blob/main/LICENSE
