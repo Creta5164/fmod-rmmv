@@ -183,7 +183,7 @@ If you've been working on the index.html you created as a new project, it should
 
 Then you are ready to go!
 
-# [5.](#table-of-content) Quick example
+# [4.](#table-of-content) Quick example
 
 To see an quick example in action, create a new RPG Maker project,
 and overwrite the `plugins.js` enclosed in the repository with `js/plugins.js` in your newly created project directory.
@@ -292,17 +292,18 @@ If you leave it blank, it will be played as the sound effect set by RPG Maker. (
 
 Applicable event names can be found in `Event` of **`GUID script`** created in [GUIDs js path section][guids-js].
 
-## [6.](#table-of-content) Basic usage
+# [6.](#table-of-content) Basic usage
 
 FMOD_MV.js is designed in a way to maintain as much unity as possible with RPG Maker.  
 However, it has not yet been implemented to harmonize with all functions of RPG Maker.  
 (Refer to [2. Limitation](#2-limitation) for details)
 
-The example code in this section can be tried directly in [Quick example](#5-quick-example) if you have created a project set up as instructed in that project!
+The example scripts in this section can be tried directly in [Quick example](#5-quick-example)
+if you have created a project set up as instructed in that project!
 
 All guides presented here are based on **script event**.
 
-### [6.1.](#table-of-content) How Events work in FMOD_MV.js
+## [6.1.](#table-of-content) How Events work in FMOD_MV.js
 
 By default, in FMOD, all sounds is Event, but here you can decide which category to play the Event you want to play in: `BGM`, `BGS`, `ME`, `SE`.  
 As mentioned earlier, this is because the focus is on unifying the functional elements with RPG Maker.  
@@ -310,10 +311,10 @@ Such as assigning the Event played in the `BGM` and `BGS` categories in the save
 
 ![speaker](./img/speaker.png)
 
-And in FMOD_MV.js, the concept is implemented that called Speaker, in all character elements (e.g. events on the map, player characters, party members, vehicles, etc.).
+And in FMOD_MV.js, the concept is implemented that called [Speaker](#63-speaker), in all character elements (e.g. events on the map, player characters, party members, vehicles, etc.).
 
-Speakers work so that sound is attached to a specific object.  
-If the FMOD Event is 3D, stereo sound can be used, and for this purpose, Speaker is used.
+[Speakers](#63-speaker) work so that sound is attached to a specific object.  
+If the FMOD Event is 3D, stereo sound can be used, and for this purpose, [Speaker](#63-speaker) is used.
 
 So keep this in mind.
 
@@ -329,17 +330,18 @@ And the reason I've put the listener at a distance of `10 units` is to make sure
 
 So, when you designing an Event in FMOD Studio, keep in mind that the listener is always `10 units` apart.
 
-### [6.1.](#table-of-content) Playing event
+## [6.2.](#table-of-content) Playing event
 
-#### [6.1.1.](#table-of-content) Play BGM
+### [6.2.1.](#table-of-content) Play BGM
 
 ```js
 FMOD_MV.PlayBGM(guid, isAppend, immediateStop);
 ```
 
-Plays Event as BGM category.
+Plays Event as BGM category.  
+It returns FMOD event that being play by this.
 
-- `guid` : The Event you want to play in the BGM category.  
+- `guid` : The Event id you want to play in the BGM category.  
   You can use the event defined in **`GUID script`**.  
   If you're not sure what to put in, check out the example below.
 
@@ -352,30 +354,31 @@ Plays Event as BGM category.
 
 **Example**
 
-1. Play `music_lvl1_main` Event with slowly stopping the previous BGM Events  
+1. Play `music_lvl1_main` Event with slowly stopping the previous BGM Events.
    ```js
    FMOD_MV.PlayBGM(FMOD_FSPRO.Event.music_lvl1_main);
    ```
 
-2. Overlaying `music_lvl1_theo` Event  
+2. Overlaying `music_lvl1_theo` Event.
    ```js
    FMOD_MV.PlayBGM(FMOD_FSPRO.Event.music_lvl1_theo, true);
    ```
 
-3. Immediately stop the BGM Events being played and play `music_lvl2_chase` Event.  
+3. Immediately stop the BGM Events being played and play `music_lvl2_chase` Event.
    ```js
    FMOD_MV.PlayBGM(FMOD_FSPRO.Event.music_lvl2_chase, false, true);
    ```
 
-#### [6.1.2.](#table-of-content) Play BGS
+### [6.2.2.](#table-of-content) Play BGS
 
 ```js
 FMOD_MV.PlayBGS(guid, isAppend, immediateStop);
 ```
 
-Plays Event as BGS category.
+Plays Event as BGS category.  
+It returns FMOD event that being play by this.
 
-- `guid` : The Event you want to play in the BGS category.  
+- `guid` : The Event id you want to play in the BGS category.  
   You can use the event defined in **`GUID script`**.  
   If you're not sure what to put in, check out the example below.
 
@@ -391,7 +394,7 @@ Plays Event as BGS category.
 This is similar to [Play BGM](#611-play-bgm), check out the [Play BGM](#611-play-bgm)'s example.  
 The only difference is that BGM is replaced as BGS. (`FMOD_MV.PlayBGS(...)`)
 
-#### [6.1.3.](#table-of-content) Play ME
+### [6.2.3.](#table-of-content) Play ME
 
 ```js
 FMOD_MV.PlayME(guid, immediateStop);
@@ -399,11 +402,12 @@ FMOD_MV.PlayME(guid, immediateStop);
 
 Plays Event as ME category.  
 As with RPG Maker, when an event in the ME category is triggered, the BGM remembers the state and goes into a stopped state.  
-When all MEs are finished or stopped, the BGM recalls what it remembered and plays it again.
+When all MEs are finished or stopped, the BGM recalls what it remembered and plays it again.  
+It returns FMOD event that being play by this.
 
 > Note : FMOD Events played in this category will not be recorded in save file.
 
-- `guid` : The Event you want to play in the ME category.  
+- `guid` : The Event id you want to play in the ME category.  
   You can use the event defined in **`GUID script`**.  
   If you're not sure what to put in, check out the example below.
 
@@ -413,28 +417,29 @@ When all MEs are finished or stopped, the BGM recalls what it remembered and pla
 
 **Example**
 
-1. Play `ui_postgame_strawberry_total_all` Event with slowly stopping the previous ME Events  
+1. Play `ui_postgame_strawberry_total_all` Event with slowly stopping the previous ME Events.
    ```js
    FMOD_MV.PlayME(FMOD_FSPRO.Event.ui_postgame_strawberry_total_all);
    ```
 
-2. Play `ui_postgame_strawberry_total_all` while immediately stopping the previous ME Events  
+2. Play `ui_postgame_strawberry_total_all` while immediately stopping the previous ME Events.
    ```js
    FMOD_MV.PlayME(FMOD_FSPRO.Event.ui_postgame_strawberry_total_all, true);
    ```
 
-### [6.1.4.](#table-of-content) Play SE
+### [6.2.4.](#table-of-content) Play SE
 
 ```js
 FMOD_MV.PlaySE(guid, at, parameters, forceBind);
 ```
 
 Plays Event as SE category.  
-It has the most functions, please read carefully and check it with examples.
+It has the most functions, please read carefully and check it with examples.  
+It returns FMOD event that being play by this.
 
 > Note : FMOD Events played in this category will not be recorded in save file.
 
-- `guid` : The Event you want to play in the SE category.  
+- `guid` : The Event id you want to play in the SE category.  
   You can use the event defined in **`GUID script`**.  
   If you're not sure what to put in, check out the example below.
 
@@ -514,11 +519,11 @@ It has the most functions, please read carefully and check it with examples.
    Put this example inside an invisible parallel processing RPG Maker event with a `15 frame` wait, then place the Region tiles in RPG Maker like this image.  
    You can hear footstep sounds when walk around there with the player.
 
-> Note : If you want to change a parameter that is playing in the middle or stop a specific FMOD Event on the target, please refer to the [Speaker](#) section.
+> Note : If you want to change a parameter that is playing in the middle or stop a specific FMOD Event on the target, please refer to the [Speaker](#63-speaker) section.
 
-### [6.2.](#table-of-content) Controls event
+## [6.2.](#table-of-content) Controls event
 
-#### [6.2.1.](#table-of-content) Stop BGM
+### [6.2.1.](#table-of-content) Stop BGM
 
 ```js
 FMOD_MV.StopBGM(immediateStop, specifiedGuid);
@@ -559,7 +564,7 @@ These examples assume after starting the FMOD Event in the example of [Play BGM]
    FMOD_MV.StopBGM(true, FMOD_FSPRO.Event.music_lvl1_main);
    ```
 
-#### [6.2.2.](#table-of-content) Set BGM Parameter
+### [6.2.2.](#table-of-content) Set BGM Parameter
 
 ```js
 FMOD_MV.SetBGMParameter(guid, name, value, skip);
@@ -567,7 +572,7 @@ FMOD_MV.SetBGMParameter(guid, name, value, skip);
 
 Set the event parameter in BGM categorized specific event.
 
-- `guid` : The Event you want to set parameter in the BGM category.  
+- `guid` : The Event id you want to set parameter in the BGM category.  
   You can use the event defined in **`GUID script`**.  
   If you're not sure what to put in, check out the example below.
 
@@ -608,7 +613,7 @@ This example assume after starting the FMOD Event, `music_lvl1_main` in the exam
    FMOD_MV.SetBGMParameter(FMOD_FSPRO.Event.music_lvl6_main, "layer2", 1, true);
    ```
 
-#### [6.2.3.](#table-of-content) Check BGM categorized event is playing
+### [6.2.3.](#table-of-content) Check BGM categorized event is playing
 
 ```js
 FMOD_MV.BGMIsPlaying(guid)
@@ -635,7 +640,7 @@ With or without ‘music_lvl1_main’ being played as BGM, you can check both di
 :Condition End
 ```
 
-#### [6.2.4.](#table-of-content) Stop BGS
+### [6.2.4.](#table-of-content) Stop BGS
 
 ```js
 FMOD_MV.StopBGS(immediateStop, specifiedGuid);
@@ -657,7 +662,7 @@ Stops the BGS categorized Event.
 This is similar to [Stop BGM](#621-stop-bgm), check out the [Stop BGM](#621-stop-bgm)'s example.  
 The only difference is that BGM is replaced as BGS. (`FMOD_MV.StopBGS(...)`)
 
-#### [6.2.5.](#table-of-content) Set BGS Parameter
+### [6.2.5.](#table-of-content) Set BGS Parameter
 
 ```js
 FMOD_MV.SetBGSParameter(guid, name, value, skip);
@@ -665,7 +670,7 @@ FMOD_MV.SetBGSParameter(guid, name, value, skip);
 
 Set the event parameter in BGS categorized specific event.
 
-- `guid` : The Event you want to set parameter in the BGS category.  
+- `guid` : The Event id you want to set parameter in the BGS category.  
   You can use the event defined in **`GUID script`**.  
   If you're not sure what to put in, check out the example below.
 
@@ -685,7 +690,7 @@ Set the event parameter in BGS categorized specific event.
 This is similar to [Set BGM Parameter](#622-set-bgm-parameter), check out the [Set BGM Parameter](#622-set-bgm-parameter)'s example.  
 The only difference is that BGM is replaced as BGS. (`FMOD_MV.SetBGSParameter(...)`)
 
-#### [6.2.6.](#table-of-content) Check BGS categorized event is playing
+### [6.2.6.](#table-of-content) Check BGS categorized event is playing
 
 ```js
 FMOD_MV.BGSIsPlaying(guid)
@@ -705,7 +710,7 @@ Check if the event is playing in the BGS category.
 This is similar to [Check BGM categorized event is playing](#623-check-bgm-categorized-event-is-playing), check out the [Check BGM categorized event is playing](#623-check-bgm-categorized-event-is-playing)'s example.  
 The only difference is that BGM is replaced as BGS. (`FMOD_MV.BGSIsPlaying(...)`)
 
-#### [6.2.7.](#table-of-content) Stop ME
+### [6.2.7.](#table-of-content) Stop ME
 
 ```js
 FMOD_MV.StopME(immediateStop, specifiedGuid);
@@ -719,7 +724,7 @@ Stops the ME categorized Event.
 
 - `specifiedGuid` : (Optional) The Event you want to stop in the ME category.  
   You can use the event defined in **`GUID script`**.  
-  If you're not sure what to put in, check out the example below.
+  If you're not sure what to put in, check out the example below.  
   Default is `null`(all events).
 
 **Example**
@@ -727,7 +732,7 @@ Stops the ME categorized Event.
 This is similar to [Stop BGM](#621-stop-bgm), check out the [Stop BGM](#621-stop-bgm)'s example.  
 The only difference is that BGM is replaced as ME. (`FMOD_MV.StopME(...)`)
 
-#### [6.2.8.](#table-of-content) Set ME Parameter
+### [6.2.8.](#table-of-content) Set ME Parameter
 
 ```js
 FMOD_MV.SetMEParameter(guid, name, value, skip);
@@ -735,7 +740,7 @@ FMOD_MV.SetMEParameter(guid, name, value, skip);
 
 Set the event parameter in ME categorized specific event.
 
-- `guid` : The Event you want to set parameter in the ME category.  
+- `guid` : The Event id you want to set parameter in the ME category.  
   You can use the event defined in **`GUID script`**.  
   If you're not sure what to put in, check out the example below.
 
@@ -755,7 +760,7 @@ Set the event parameter in ME categorized specific event.
 This is similar to [Set BGM Parameter](#622-set-bgm-parameter), check out the [Set BGM Parameter](#622-set-bgm-parameter)'s example.  
 The only difference is that BGM is replaced as ME. (`FMOD_MV.SetMEParameter(...)`)
 
-#### [6.2.9.](#table-of-content) Check ME categorized event is playing
+### [6.2.9.](#table-of-content) Check ME categorized event is playing
 
 ```js
 FMOD_MV.MEIsPlaying(guid)
@@ -775,13 +780,95 @@ Check if the event is playing in the ME category.
 This is similar to [Check BGM categorized event is playing](#623-check-bgm-categorized-event-is-playing), check out the [Check BGM categorized event is playing](#623-check-bgm-categorized-event-is-playing)'s example.  
 The only difference is that BGM is replaced as BGS. (`FMOD_MV.BGSIsPlaying(...)`)
 
-TODO : 효과음 이벤트 정지 시 Speaker 안내
+### [6.2.10.](#table-of-content) Stop SE
+
+```js
+FMOD_MV.StopSE(immediateStop, specifiedGuid);
+```
+
+Stops the SE categorized Event.
+
+- `immediateStop` : (Optional) Specifies whether to stop the Event immediately.  
+  If not set immediate stop, the event will be stopped gradually as the behavior
+  defined for the Event in FMOD Studio.  
+  Acceptable value is `true` for yes, `false` for no, and default is `false`.
+
+- `specifiedGuid` : (Optional) The Event you want to stop in the SE category.  
+  You can use the event defined in **`GUID script`**.  
+  If you're not sure what to put in, check out the example below.  
+  Default is `null`(all events).
+  > Note : If you want to stop the sound from the speaker of
+  a specific character(like player, event, etc.), check the [Speaker](#63-speaker) section.
+
+### [6.3.](#table-of-content) Speaker
+
+Speaker is made for make the sound as if it is coming from the target
+by attributing the FMOD Event, or to manage the parameters of
+a specific Event separately.
+
+Remember that you can manage parameters separately by attributing
+specific sounds as well.
+
+Events that are playing on the speaker are automatically removed
+from the speaker when playback ends.
+
+Speakers can be obtained from characters such as events or player.
+
+**Example**
+
+> Note : After this section, the target for finding the speaker below
+is denoted as `(target)`.
+
+1. Get the speaker of the player
+   ```js
+   $gamePlayer.speaker()
+   ```
+
+2. Get the speaker of the event that is executing script
+   ```js
+   this.event().speaker()
+   ```
+
+3. Get the speaker of the specific event with `ID:1`.
+   ```js
+   $gameMap.event(1).speaker()
+   ```
+
+#### [6.3.1.](#table-of-content) Set specific event's parameter of target speaker
+
+```js
+(target).speaker().setParameter(guid, name, value, skip);
+```
+
+Set the event parameter in this speaker's specific event.  
+If the parameter setting for the specified event id is set,
+all events of the same id constrained by the speaker are synchronized.
+
+- `guid` : The Event id you want to set parameter in this speaker.  
+  You can use the event defined in **`GUID script`**.  
+  If you're not sure what to put in, check out the example below.
+
+- `name` : The parameter name you want to specify in the event.  
+  Double quotation marks (`"`) must be placed around the name.  
+  (like `"progress"`, `"stinger"`)
+
+- `value` : A numeric value to set for the parameter you want to assign.  
+  The range of this value is the range set in FMOD Studio for the parameter you put in the target Event.
+
+- `skip` : Whether to override the acceleration setting of the parameter
+  specified in FMOD Studio and immediately assign the parameter's value.  
+  Acceptable value is `true` for yes, `false` for no, and default is `false`.
+
+**Example**
+
+
 
 [releases]: https://github.com/creta5164/fmod-rmmv/releases
 [LICENSE]: https://github.com/creta5164/fmod-rmmv/blob/main/LICENSE
 [1map]: https://1map1chicken.com/entries/jam2022
 [1map-twitter]: https://twitter.com/1map1chicken
-[DOWNFALLEN]: https://1map1chicken.com/entries/jam2022/downfallen-다운폴른
+[DOWNFALLEN]: https://forums.rpgmakerweb.com/index.php?threads/downfallen-2022-1chicken-gamejam
+<!-- https://1map1chicken.com/entries/jam2022/downfallen-다운폴른 -->
 [fmod-license]: https://www.fmod.com/licensing
 [fmod-attribution]: https://www.fmod.com/attribution
 [fmod-legal]: https://www.fmod.com/legal
