@@ -71,44 +71,44 @@ FMOD는 소리를 처리하고 관리하는 오디오 미들웨어(Middleware)�
 - 2\. [플러그인의 한계](#2-플러그인의-한계)
 - 3\. [프로젝트 준비 작업](#3-프로젝트-준비-작업)
   * 3.1. [플러그인 추가하기](#31-플러그인-추가하기)
-  * 3.2. [Add FMOD Engine](#32-add-fmod-engine)
-- 4\. [Quick example](#4-quick-example)
-- 5\. [Plugin options](#5-plugin-options)
-  * 5.1. [Total memory](#51-total-memory)
-  * 5.2. [Bank asset path](#52-bank-asset-path)
-  * 5.3. [Bank assets](#53-bank-assets)
-  * 5.4. [GUIDs js path](#54-guids-js-path)
-  * 5.5. [Integrated VCAs](#55-integrated-vcas)
-  * 5.6. [System musics](#56-system-musics)
-  * 5.7. [System music effects](#57-system-music-effects)
-  * 5.8. [System sound effects](#58-system-sound-effects)
-- 6\. [How to use](#6-how-to-use)
-  * 6.1. [How Events work in FMOD_MV.js](#61-how-events-work-in-fmod-mvjs)
-  * 6.2. [Playing event](#62-playing-event)
-    + 6.2.1. [Play BGM](#621-play-bgm)
-    + 6.2.2. [Play BGS](#622-play-bgs)
-    + 6.2.3. [Play ME](#623-play-me)
-    + 6.2.4. [Play SE](#624-play-se)
-  * 6.3. [Controls event](#63-controls-event)
-    + 6.3.1. [Stop BGM](#631-stop-bgm)
-    + 6.3.2. [Set BGM Parameter](#632-set-bgm-parameter)
-    + 6.3.3. [Check BGM categorized event is playing](#633-check-bgm-categorized-event-is-playing)
-    + 6.3.4. [Stop BGS](#634-stop-bgs)
-    + 6.3.5. [Set BGS Parameter](#635-set-bgs-parameter)
-    + 6.3.6. [Check BGS categorized event is playing](#636-check-bgs-categorized-event-is-playing)
-    + 6.3.7. [Stop ME](#637-stop-me)
-    + 6.3.8. [Set ME Parameter](#638-set-me-parameter)
-    + 6.3.9. [Check ME categorized event is playing](#639-check-me-categorized-event-is-playing)
-    + 6.3.10. [Stop SE](#6310-stop-se)
-  * 6.4. [Speaker](#64-speaker)
-    + 6.4.1. [Stop Event of target speaker](#641-stop-event-of-target-speaker)
-    + 6.4.2. [Set specific event's parameter of target speaker](#642-set-specific-event-s-parameter-of-target-speaker)
-    + 6.4.3. [Clear specific memorized event parameter settings of Speaker](#643-clear-specific-memorized-event-parameter-settings-of-speaker)
-    + 6.4.4. [Clear all memorized event parameter settings of Speaker](#644-clear-all-memorized-event-parameter-settings-of-speaker)
-    + 6.4.5. [Check any Event of specified GUID is binded](#645-check-any-event-of-specified-guid-is-binded)
-  * 6.5. [Control snapshots](#65-control-snapshots)
-    + 6.5.1. [Start snapshot](#651-start-snapshot)
-    + 6.5.2. [Stop snapshot](#652-stop-snapshot)
+  * 3.2. [FMOD 엔진 추가하기](#32-fmod-엔진-추가하기)
+- 4\. [예제 빨리 확인하기](#4-예제-빨리-확인하기)
+- 5\. [플러그인 설정](#5-플러그인-설정)
+  * 5.1. [최대 메모리](#51-최대-메모리)
+  * 5.2. [뱅크 파일 경로](#52-뱅크-파일-경로)
+  * 5.3. [사용할 뱅크 파일들](#53-사용할-뱅크-파일들)
+  * 5.4. [GUID 스크립트 경로](#54-guid-스크립트-경로)
+  * 5.5. [연동할 VCA들](#55-연동할-vca들)
+  * 5.6. [시스템 음악(BGM)들](#56-시스템-음악bgm들)
+  * 5.7. [시스템 음악 효과음(ME)들](#57-시스템-음악-효과음me들)
+  * 5.8. [시스템 효과음(SE)들](#58-시스템-효과음se들)
+- 6\. [사용법](#6-사용법)
+  * 6.1. [FMOD_MV.js에서 이벤트가 동작하는 방식](#61-fmod_mvjs에서-이벤트가-동작하는-방식)
+  * 6.2. [이벤트 재생하기](#62-이벤트-재생하기)
+    + 6.2.1. [BGM 재생](#621-bgm-재생)
+    + 6.2.2. [BGS 재생](#622-bgs-재생)
+    + 6.2.3. [ME 재생](#623-me-재생)
+    + 6.2.4. [SE 재생](#624-se-재생)
+  * 6.3. [이벤트 제어하기](#63-이벤트-제어하기)
+    + 6.3.1. [BGM 정지](#631-bgm-정지)
+    + 6.3.2. [BGM 파라미터 지정](#632-bgm-파라미터-지정)
+    + 6.3.3. [BGM 카테고리의 이벤트가 재생 중인지 확인](#633-bgm-카테고리의-이벤트가-재생-중인지-확인)
+    + 6.3.4. [BGS 정지](#634-bgs-정지)
+    + 6.3.5. [BGS 파라미터 지정](#635-bgs-파라미터-지정)
+    + 6.3.6. [BGS 카테고리의 이벤트가 재생 중인지 확인](#636-bgs-카테고리의-이벤트가-재생-중인지-확인)
+    + 6.3.7. [ME 정지](#637-me-정지)
+    + 6.3.8. [ME 파라미터 지정](#638-me-파라미터-지정)
+    + 6.3.9. [ME 카테고리의 이벤트가 재생 중인지 확인](#639-me-카테고리의-이벤트가-재생-중인지-확인)
+    + 6.3.10. [SE 정지](#6310-se-정지)
+  * 6.4. [스피커](#64-스피커)
+    + 6.4.1. [대상 스피커의 이벤트 정지](#641-대상-스피커의-이벤트-정지)
+    + 6.4.2. [대상 스피커의 이벤트 파라미터 지정](#642-대상-스피커의-이벤트-파라미터-지정)
+    + 6.4.3. [대상 스피커가 기억하는 특정 이벤트의 파라미터 설정 지우기](#643-대상-스피커가-기억하는-특정-이벤트의-파라미터-설정-지우기)
+    + 6.4.4. [대상 스피커가 기억하는 모든 이벤트의 파라미터 설정 지우기](#644-대상-스피커가-기억하는-모든-이벤트의-파라미터-설정-지우기)
+    + 6.4.5. [GUID에 해당하는 이벤트가 바인딩 됐는지 확인](#645-GUID에-해당하는-이벤트가-바인딩-됐는지-확인)
+  * 6.5. [스냅샷 제어하기](#65-스냅샷-제어하기)
+    + 6.5.1. [스냅샷 시작](#651-스냅샷-시작)
+    + 6.5.2. [스냡샷 중단](#652-스냅샷-중단)
 
 # [1.][toc] 기본적인 지식 요구사항
 
@@ -120,89 +120,92 @@ FMOD는 소리를 처리하고 관리하는 오디오 미들웨어(Middleware)�
 
 # [2.][toc] 플러그인의 한계
 
-This plug-in was made in a short period of almost a week,
-so some RPG Maker features that were not contained from DOWNFALLEN,
-the game that used this plug-in or some features of FMOD, are missed for now.  
-That's the reason I released this plugin as alpha stage.
+이 플러그인은 거의 일주일이라는 짧은 기간에 만들어졌기 때문에,
+이 플러그인을 사용한 게임인 DOWNFALLEN에 포함되지 않은 일부
+RPG 만들기의 기능이나 FMOD의 일부 기능이 현재 누락된 상태입니다.  
+제가 이 플러그인을 알파 단계로 출시한 이유죠.
 
-Pull request or contribution are always welcome!
+풀 리퀘스트나 기여는 언제나 환영입니다!
 
-Currently, the limitations I have identified are as follows.
+현재 제가 확인한 한계는 다음과 같습니다.
 
-- Velocity for doppler effect, etc.  
-  The characters in RPG Maker have very consistent movement speeds,
-  so when I applied velocity to them, the results were very strange
-  so I didn't implement it.
+- 도플러 효과 등의 속도  
+  RPG Maker의 캐릭터는 이동 속도가 매우 일정하기 때문에,
+  속도를 적용했을 때 결과가 너무 이상해서 구현하지 않았습니다.
 
-- Streaming RPG Maker's native audio system to FMOD  
-  FMOD has a feature that helps to read an external audio buffer
-  and output it through the bus, but this has not been
-  implemented yet.
+- RPG Maker의 기본 오디오 시스템을 FMOD로 스트리밍  
+  FMOD는 외부 오디오 버퍼를 읽어서 버스를 통해
+  출력하는 기능이 있지만 아직 구현되지 않았습니다.
 
-- Create FMOD Event instance of RPG Maker's resources  
-  FMOD can also create Event instances from audio files.  
-  However, it has not been decided how to solve and implement RPG Maker's encryption/decryption pipeline.
+- RPG Maker 리소스의 FMOD 이벤트 인스턴스 생성  
+  FMOD는 오디오 파일에서 이벤트 인스턴스를 생성할 수도 있습니다.  
+  하지만 RPG Maker의 암복호화 파이프라인을   어떻게 해결하고 구현할 지는 아직 정해지지 않았습니다.
 
-- Listener position and third-party camera plug-in compatibility unverified  
-  If you have a third-party camera plug-in that zooms in, zooms out or controls the camera, there is a chance that the sound won't sound right.  
-  If you want to make them compatible directly, search `Game_Map.prototype.updateListenerAttributes` in the `FMOD_MV.js`.  
-  This contains the code to update the listener's position.
+- 청취자(Listener) 위치와 다른 카메라 플러그인 호환성 확인 안 됨  
+  카메라를 확대, 축소 또는 제어하는 다른 카메라 플러그인이 있는 경우,
+  입체 사운드가 제대로 들리지 않을 수 있습니다.  
+  직접 호환되게 만드려고 하는 경우, `FMOD_MV.js`에서
+  `Game_Map.prototype.updateListenerAttributes`를 찾으세요.  
+  여기에는 청취자의 위치를 ​​업데이트하는 코드가 포함되어 있습니다.
 
-- Can't support event callbacks  
-  Event callback is a feature that receives this signal from the game
-  when a call function is put in an event created in FMOD Studio.  
-  It also provides basic functions such as beat per callbacks, etc.  
+- 이벤트 콜백을 지원할 수 없습니다.  
+  이벤트 콜백은 FMOD 스튜디오에서 생성한 이벤트에 호출 함수를 넣으면
+  게임에서 이 신호를 받는 기능입니다.  
+  기본적으로 박자 당 호출 등과 같은 기능을 제공합니다.
   
-  Anyways, this is a big mistake in my plugin design.
+  이 문제는 제 플러그인 설계의 큰 실수입니다.
   
-  Callbacks can be registered for events in the FMOD, but cannot be unregistered.  
-  This is presumably because the FMOD assumes that the event is
-  instantiated and used once and then discarded.
+  콜백은 FMOD의 이벤트에 대해 등록할 수 있지만, 등록을 취소할 수는 없습니다.  
+  이는 FMOD가 이벤트를 인스턴스화 하면 한 번 사용한 다음 버려진다고 가정하기 때문이라 생각하고 있습니다.
   
-  FMOD also provides its own object pooling system.
+  또, FMOD에는 자체 개체 풀링(Object pooling)을 지원합니다.
   
-  However, I implemented the pooling of the instanced event without knowing this,
-  and the above problems resulted in an environment where callbacks could not be used naturally.
+  하지만 저는 이것을 알지 못한 채로 인스턴스화된 이벤트의 풀링을 구현했고,
+  여기에 위와 같은 문제로 인해 자연스럽게 콜백을 사용할 수 없는 상황이 되었습니다.
   
-  Currently, this mistake is the biggest technical debt for this plugin.
+  이 실수는 현재 이 플러그인의 가장 큰 기술 부채입니다.
 
-- All of the battle related features  
-  Since we didn't have to use it while making DOWNFALLEN.
+- 전투와 관련된 모든 기능
+  DOWNFALLEN을 만들 때 전투 기능을 사용 할 필요가 없었기 때문입니다.
 
 # [3.][toc] 프로젝트 준비 작업
 
 ## [3.1.][toc] 플러그인 추가하기
 
-Put `FMOD_MV.js` in the `plugins` folder, and then add the plugin in your RPG Maker project.  
-Plugin's order doesn't matter, unless you're using additional audio-related featured plugins.
+![added-to-plugins](./img/added-to-plugins.png)
 
-## [3.2.][toc] Add FMOD Engine
+`plugins` 폴더에 `FMOD_MV.js`를 넣고 RPG 만들기 프로젝트에서 이 플러그인을 추가합니다.  
+추가 오디오 관련 기능 플러그인을 사용하지 않는 한 플러그인의 순서는 중요하지 않습니다.
+
+## [3.2.][toc] FMOD 엔진 추가하기
 
 ![download-fmod-html5](./img/download-fmod-html5.png)  
-[Download FMOD Engine at here][fmod-download], it requires HTML5 version.  
-Please use version `2.01.13` for now, it's verified by me (works well on DOWNFALLEN).  
-[Here's why in this thread][nwjs-problem].
+[여기에서 FMOD 엔진을 다운로드 하세요][fmod-download], HTML5 버전이 필요합니다.  
+지금은 `2.01.13` 버전을 사용하세요, 제가 검증을 끝낸 버전입니다. (DOWNFALLEN에서 잘 작동함)  
+[이 스레드에 그 이유가 정리되어 있습니다][nwjs-problem].
 
 ![download-fmod-studio](./img/download-fmod-studio.png)  
-Because of we downloaded the `2.01.13` version of engine above, so I recommended to use Studio program with `2.01.13` version too for minimize problems.
+위에서 `2.01.13` 버전의 엔진을 다운로드했으니,
+문제를 최소화하기 위해 스튜디오 프로그램도 `2.01.13` 버전을 사용하는 것을 권장합니다.
 
 ![add-library-to-project](./img/add-library-to-project.png)  
-Put `fmodstudio.js` and `fmodstudio.wasm` in `api/studio/lib/upstream/wasm` of the downloaded zip file into `js/lib` in the project folder.
+다운로드한 압축(zip) 파일에서 `api/studio/lib/upstream/wasm`에 있는
+`fmodstudio.js`와 `fmodstudio.wasm`을 프로젝트 폴더의 `js/lib`에 넣습니다.
 
 ![modify-fmodstudio.js](./img/modify-fmodstudio.js.png)  
-Then open `fmodstudio.js` and find the section
+그런 다음, `fmodstudio.js`을 텍스트 편집기로 연 후, 아래의 구문을 찾으세요.
 ```js
-...ENVIRONMENT_IS_NODE=typeof process==="object"&&typeof process...
+ENVIRONMENT_IS_NODE=typeof process==="object"&&typeof process
 ```
-Add `false&&` after `ENVIRONMENT_IS_NODE=` and save it.
+`ENVIRONMENT_IS_NODE=` 뒤에 `false&&`를 쓴 후, 저장하세요.
 
-Then, open `index.html` in the project folder and add the following line as below into `<body>` tags.
+그런 다음, 프로젝트 폴더의 `index.html`을 열고, `<body>` 태그 안에 아래와 같이 한 줄을 추가합니다.
 
 ```
 <script type="text/javascript" src="js/libs/fmodstudio.js"></script>
 ```
 
-If you've been working on the index.html you created as a new project, it should look like this :
+새 프로젝트로 만든 `index.html`에서 작업한 경우 아래와 같은 모습이 됩니다.
 
 ```diff
  <!DOCTYPE html>
@@ -237,166 +240,174 @@ If you've been working on the index.html you created as a new project, it should
  </html>
 ```
 
-Then you are ready to go!
+준비는 모두 끝났습니다!
 
-# [4.][toc] Quick example
+# [4.][toc] 예제 빨리 확인하기
 
-To see an quick example in action, create a new RPG Maker project,
-and overwrite the `plugins.js` enclosed in the repository with `js/plugins.js` in your newly created project directory.
+바로 동작하는 예제를 확인하려면 새로 RPG 만들기 프로젝트를 만들고,
+저장소에 포함된 `plugins.js`를 새로 만든 프로젝트 폴더의 `js/plugins.js`에 덮어씁니다.
 
 ![celeste-fmod](./img/celeste-fmod.png)  
 ![build-celeste-fmod](./img/build-celeste-fmod.png)  
-And then build the [Celeste FMOD Studio Project][fmod-learning-resources], and setup them by referring to
-[Bank asset path](#52-bank-asset-path),
-[Bank assets](#53-bank-assets),
-and [GUIDs js path](#54-guids-js-path) in this section.
+그런 다음, [Celeste FMOD 스튜디오 프로젝트][fmod-learning-resources]를 빌드하고,
+[뱅크 파일 경로](#52-뱅크-파일-경로),
+[사용할 뱅크 파일들](#53-사용할-뱅크-파일들),
+[GUID 스크립트 경로](#54-guid-스크립트-경로) 항목을 확인하고 준비합니다.
 
-Make the map as large as possible (75x75 or larger) so that you can clearly
-determine the direction and location of the sounds.
+마지막으로 소리의 방향과 위치를 명확하게 파악할 수 있도록 맵을 최대한 크게(75x75 이상) 만듭니다.
 
-The space in Celeste is larger than in RPG Maker.  
-(Celeste uses 8 units per tile, so larger than 1 unit per tile in RPG Maker)
+왜냐하면 Celeste의 공간은 RPG 만들기의 공간보다 크기 때문입니다.  
+(Celeste는 타일당 `8`만큼 사용되기 때문에 RPG 만들기의 타일당 `1`보다 큼)
 
-Now you can check directly at the examples based on this setup
-in the [How to use](#6-how-to-use) section after this section.
+테스트 플레이를 시작하면, 커서 및 타이틀 음악이 Celeste의 소리로 나오는 것을 확인 할 수 있습니다.
 
-# [5.][toc] Plugin options
+설정을 마쳤다면, 이 항목 이후로 [사용법](#6-사용법) 항목에서
+이 설정을 기반으로 만든 프로젝트를 통해 모든 예제를 직접 확인할 수 있습니다.
+
+# [5.][toc] 플러그인 설정
 
 ![plugins-options](./img/plugins-options.png)  
-This section covers the plugin options menu.
+이 항목에서는 플러그인 설정을 다룹니다.
 
-## [5.1.][toc] Total memory
+## [5.1.][toc] 최대 메모리
 
-FMOD's virtual memories' maximum size. (byte units)  
-Default setting is `64MB`. (`64 * 1024 * 1024`)
+FMOD의 가상 메모리의 최대 크기입니다. (바이트 단위)  
+기본값은 `64MB`입니다. (`64 * 1024 * 1024`)
 
-## [5.2.][toc] Bank asset path
+## [5.2.][toc] 뱅크 파일 경로
 
-Specify the path where the FMOD's Bank assets are.  
-Default setting is `audio/bank`.
+FMOD에 사용할 뱅크 파일이 있는 경로를 지정합니다.  
+기본 경로는 `audio/bank` 입니다.
 
 ![bank-files](./img/bank-files.png)  
-Bank files created by building in FMOD Studio must all be in the this path.
+FMOD 스튜디오에서 빌드하여 만든 뱅크 파일은 모두 이 경로에 있어야 합니다.
 
-## [5.3.][toc] Bank assets
+## [5.3.][toc] 사용할 뱅크 파일들
 
-Specify banks to load.  
-Master bank and it's strings must be assigned.  
-i.e. if you have `Master Bank.bank`, `Master Bank.strings.bank`, `Music.bank` then
-you should add `Master Bank`, `Master Bank.strings`, `Music` at this option.
+불러올 뱅크 파일을 지정합니다.  
+마스터 뱅크 및 마스터 뱅크의 문자열 뱅크는 기본적으로 추가해야 합니다.  
+예를 들어 `Master Bank.bank`, `Master Bank.strings.bank`, `Music.bank`가 있다면,
+이 설정에 `Master Bank`, `Master Bank.strings`, `Music`을 추가하면 됩니다.
 
-## [5.4.][toc] GUIDs js path
+## [5.4.][toc] GUID 스크립트 경로
 
-Specify GUID collection script file.  
-Default setting is `audio/bank/fmod_studio_guids.js`.  
-From now on, we'll call it **`GUID script`**.
+GUID가 담겨있는 스크립트 파일의 위치를 지정합니다.  
+기본 설정은 `audio/bank/fmod_studio_guids.js`.  
+이제부터 이걸 **`GUID 스크립트`**라고 부르겠습니다.
 
 
-**`GUID script`** file(`fmod_studio_guids.js`) can be generated by the following below process.
+**`GUID 스크립트`** 파일(`fmod_studio_guids.js`)은 아래와 같은 과정을 통해 만들 수 있습니다.
 
-1. **Overwrite `exportGUIDsHeader.js` in this repository to your FMOD Studio's scripts file**  
+1. **이 저장소의 `exportGUIDsHeader.js`를 FMOD 스튜디오의 스크립트 파일에 덮어씁니다.**  
    ![overwrite-export-guids-header](./img/overwrite-export-guids-header.png)  
-   There is a folder called `scripts` in the folder where FMOD Studio is installed, overwrite the script file in it.
+   FMOD 스튜디오가 설치된 폴더에 `scripts`라는 폴더가 있습니다.  
+   그 안에 있는 스크립트 파일을 덮어씁니다.
 
-2. **Export GUIDs header in FMOD Studio's menu : `Scripts/FMOD Examples/Export GUIDs Header/js File`.**  
+2. **FMOD 스튜디오의 메뉴에서 `Scripts/FMOD Examples/Export GUIDs Header/js File`을 선택하여 만듭니다.**  
    ![export-guids-header-as-js](./img/export-guids-header-as-js.png)  
-   Then FMOD Studio will generate **`GUID script`** and save as `fmod_studio_guids.js` in the same location as the project file you are currently working on.  
+   그러면 FMOD 스튜디오는 **`GUID 스크립트`**를 만든 후, 현재 작업 중인 프로젝트 파일과 동일한 위치에 `fmod_studio_guids.js`로 저장합니다.  
    ![exported-guids](./img/exported-guids.png)  
-   > Note : If there is an unintentional duplicate of the event name
-   > in generated script(`fmod_studio_guids.js`) file, this script will not work due to an error.  
-   > This possibly can resolved by restarting FMOD Studio, and creating the **`GUID script`** again.
+   > 참고 : 생성된 스크립트(`fmod_studio_guids.js`)파일에 의도치 않게 이벤트 이름 중복이
+   > 발생할 수 있으며, 이렇게 되면 오류로 인해 스크립트가 작동하지 않게 됩니다.  
+   > FMOD 스튜디오를 다시 시작하고 **`GUID 스크립트`**를 다시 만들어서 해결할 수 있습니다.
 
-3. **Move the generated script to the path in plugin option.**  
+3. **생성된 스크립트를 플러그인 옵션에서 설정한 경로로 옮깁니다.**  
    ![move-generated-script-to-specified-path](./img/move-generated-script-to-specified-path.png)
 
-That's it!  
+이게 다에요!
 
-## [5.5.][toc] Integrated VCAs
+## [5.5.][toc] 연동할 VCA들
 
-Specify which VCA is used for each types of channels.  
-If you leave these blank, FMOD_MV.js will try finds a VCA name
-with `BGM`, `BGS`, `ME`, `SE`, if found them then
-it will be used automatically.
+각 채널 유형에 사용되는 VCA를 지정합니다.  
+이것들을 비워두면 FMOD_MV.js는 `BGM`, `BGS`, `ME`, `SE`가 포함된 VCA 이름을 찾으려고 시도합니다.  
+이들을 찾으면 자동으로 해당 VCA를 사용됩니다.
 
-Applicable VCA names can be found in `VCA` of [**`GUID script`**][guids-js] created in [GUIDs js path][guids-js].
+지정 가능한 VCA 이름은 [**`GUID 스크립트`**][guids-js]의 `VCA`에서 에서 찾을 수 있습니다.
 
-## [5.6.][toc] System musics
+## [5.6.][toc] 시스템 음악(BGM)들
 
-Replaces system music with FMOD events.  
-Each item corresponds to the corresponding system music.  
-If you leave it blank, it will be played as the music set by RPG Maker. (RM Audio based)
-
-![guid-events-location][guid-events-location]
-
-Applicable event names can be found in `Event` of [**`GUID script`**][guids-js] created in [GUIDs js path section][guids-js].
-
-> Note : Battle-related system audio assignments are available for future use.  
-> Battle-related parts are not implemented yet, so unintended behavior may occur.
-
-## [5.7.][toc] System music effects
-
-Replaces system music effect(ME) with FMOD events.  
-Each item corresponds to the corresponding system music effects.  
-If you leave it blank, it will be played as the music effect set by RPG Maker. (RM Audio based)
+시스템 음악(BGM)을 FMOD 이벤트로 대체합니다.  
+각 항목은 해당 시스템 음악에 해당합니다.  
+공란으로 두면, RPG 만들기에서 설정한 음악으로 재생됩니다.
+(RPG 만들기 오디오 시스템 기반)
 
 ![guid-events-location][guid-events-location]
 
-Applicable event names can be found in `Event` of [**`GUID script`**][guids-js] created in [GUIDs js path section][guids-js].
+지정 가능한 이벤트 이름은 [**`GUID 스크립트`**][guids-js]의 `Event`에서 에서 찾을 수 있습니다.
 
-> Note : Battle-related system audio assignments are available for future use.  
-> Battle-related parts are not implemented yet, so unintended behavior may occur.
+> 참고 : 전투 관련 시스템 항목은 추후 업데이트를 위해 준비되어 있는 항목입니다.  
+> 전투 관련 부분은 아직 구현되지 않아 의도하지 않은 동작이 발생할 수 있습니다.
 
-## [5.8.][toc] System sound effects
+## [5.7.][toc] 시스템 음악 효과음(ME)들
 
-Replaces system sound effect(SE) with FMOD events.  
-Each item corresponds to the corresponding system sound effects.  
-If you leave it blank, it will be played as the sound effect set by RPG Maker. (RM Audio based)
+시스템 음악 효과음(ME)을 FMOD 이벤트로 대체합니다.  
+각 항목은 해당 시스템 음악 효과음에 해당합니다.  
+공란으로 두면, RPG 만들기에서 설정한 음악 효과음으로 재생됩니다.
+(RPG 만들기 오디오 시스템 기반)
 
 ![guid-events-location][guid-events-location]
 
-Applicable event names can be found in `Event` of [**`GUID script`**][guids-js] created in [GUIDs js path section][guids-js].
+지정 가능한 이벤트 이름은 [**`GUID 스크립트`**][guids-js]의 `Event`에서 에서 찾을 수 있습니다.
 
-# [6.][toc] How to use
+> 참고 : 전투 관련 시스템 항목은 추후 업데이트를 위해 준비되어 있는 항목입니다.  
+> 전투 관련 부분은 아직 구현되지 않아 의도하지 않은 동작이 발생할 수 있습니다.
 
-FMOD_MV.js is designed in a way to maintain as much unity as possible with RPG Maker.  
-However, it has not yet been implemented to harmonize with all functions of RPG Maker.  
-(Refer to [2. 플러그인의 한계](#2-플러그인의-한계) for details)
+## [5.8.][toc] 시스템 효과음(SE)들
 
-The example scripts in this section can be tried directly in [Quick example](#5-quick-example)
-if you have created a project set up as instructed in that project!
+시스템 효과음(ME)을 FMOD 이벤트로 대체합니다.  
+각 항목은 해당 시스템 효과음에 해당합니다.  
+공란으로 두면, RPG 만들기에서 설정한 효과음으로 재생됩니다.
+(RPG 만들기 오디오 시스템 기반)
 
-All guides presented here are based on **script event**.
+![guid-events-location][guid-events-location]
 
-## [6.1.][toc] How Events work in FMOD_MV.js
+지정 가능한 이벤트 이름은 [**`GUID 스크립트`**][guids-js]의 `Event`에서 에서 찾을 수 있습니다.
 
-By default, in FMOD, all sounds is Event, but here you can decide which category to play the Event you want to play in: `BGM`, `BGS`, `ME`, `SE`.  
-As mentioned earlier, this is because the focus is on unifying the functional elements with RPG Maker.  
-Such as assigning the Event played in the `BGM` and `BGS` categories in the save and replaying them when they are recalled.
+# [6.][toc] 사용법
+
+FMOD_MV.js는 RPG 만들기와 가능한 통일된 구조를 가지도록 설계했습니다.
+하지만 아직 RPG 만들기의 모든 기능을 구현하지는 못했습니다.  
+(자세한 내용은 [2. 플러그인의 한계](#2-플러그인의-한계)를 확인하세요)
+
+이 항목의 예제들은 [예제 빨리 확인하기](#5-quick-example)에서 안내한 대로
+설정한 프로젝트를 준비한 경우, 직접 확인할 수 있습니다!
+
+여기에 나오는 모든 가이드는 **스크립트 이벤트**를 기반으로 합니다.
+
+## [6.1.][toc] FMOD_MV.js에서 이벤트가 동작하는 방식
+
+기본적으로 FMOD에서 모든 소리는 이벤트이지만, 여기에서는 재생하려는 이벤트의 카테고리를
+`BGM`, `BGS`, `ME`, `SE`로 지정 할 수 있습니다.  
+앞서 언급했듯이 RPG 만들기와 기능적 요소를 통일하는 데 중점을 두고 있기 때문입니다.  
+예를 들어 `BGM` 나 `BGS` 카테고리로 재생한 이벤트들은 세이브에 상태가 기록되고, 불러올 때 다시 재생됩니다.
 
 ![speaker](./img/speaker.png)
 
-And in FMOD_MV.js, the concept is implemented that called [Speaker](#63-speaker), in all character elements (e.g. events on the map, player characters, party members, vehicles, etc.).
+또, FMOD_MV.js에서는 모든 캐릭터 요소(예: 맵 상의 이벤트, 플레이어 캐릭터, 파티원, 탑승물 등)에
+[스피커](#64-스피커)라는 개념이 구현되어 있습니다.
 
-[Speakers](#63-speaker) work so that sound is attached to a specific object.  
-If the FMOD Event is 3D, stereo sound can be used, and for this purpose, [Speaker](#63-speaker) is used.
+[스피커](#64-스피커)들은 대상에 소리 이벤트가 붙도록 작동합니다.  
+FMOD 이벤트가 3D일 때 스테레오 사운드로 나오는 것과 같은 기능들을 사용할 수 있습니다.
 
-So keep this in mind.
+그러니 이를 잘 기억해두세요.
 
 <img alt="explain-rmmv-space-and-fmod-space" width="720" src="./img/explain-rmmv-space-n-fmod-space.gif"/>
 
-If there is a sound, then there must be a listener to hear the sound.  
-Basically, the listener is a structure facing the front from the back `10 units (-Z)` from the position (depth) where the characters are as shown in the figure.
+소리가 있으면 소리를 들어줄 청취자(Listener)가 있어야 합니다.  
+기본적으로 청취자는 그림과 같이 캐릭터들이 있는 위치(깊이)에서
+`10(-Z)`만큼 뒤에서 정면을 향하게 배치되어 있습니다.
 
-Listeners are always being at the camera's center point.
+청취자는 항상 카메라의 중심점에 있습니다.
 
-The reason I designed it this way is that after all, the player plays RPG Maker game through the screen.  
-And the reason I've put the listener at a distance of `10 units` is to make sure the sound doesn't feel like it's going 'through' the listener(the player)'s head.
+이렇게 설계한 이유는 결국 플레이어가 화면을 통해서 RPG 만들기 게임을 하기 때문입니다.  
+또, 리스너를 `10`만큼 뒤로 거리를 둔 이유는, 소리가 청취자(플레이어)의 머리를 '통과'하는 것처럼
+느껴지지 않도록 하기 위해서입니다.
 
-So, when you designing an Event in FMOD Studio, keep in mind that the listener is always `10 units` apart.
+그렇기 때문에 FMOD 스튜디오에서 이벤트를 디자인 할 때 청취자가 항상 `10`만큼 떨어져 있다는 점을 염두하세요.
 
-## [6.2.][toc] Playing event
+## [6.2.][toc] 이벤트 재생하기
 
-### [6.2.1.][toc] Play BGM
+### [6.2.1.][toc] BGM 재생
 
 ```js
 FMOD_MV.PlayBGM(guid, isAppend, immediateStop);
@@ -405,7 +416,7 @@ FMOD_MV.PlayBGM(guid, isAppend, immediateStop);
 Plays Event as BGM category.
 
 - `guid` : The Event GUID you want to play in the BGM category.  
-  You can use the event defined in [**`GUID script`**][guids-js].  
+  You can use the event defined in [**`GUID 스크립트`**][guids-js].  
   If you're not sure what to put in, check out the example below.
 
 - `isAppend` : (Optional) Determines whether to play a new BGM event while leaving the playing BGM as it is.  
@@ -432,7 +443,7 @@ Plays Event as BGM category.
    FMOD_MV.PlayBGM(FMOD_FSPRO.Event.music_lvl2_chase, false, true);
    ```
 
-### [6.2.2.][toc] Play BGS
+### [6.2.2.][toc] BGS 재생
 
 ```js
 FMOD_MV.PlayBGS(guid, isAppend, immediateStop);
@@ -441,7 +452,7 @@ FMOD_MV.PlayBGS(guid, isAppend, immediateStop);
 Plays Event as BGS category.
 
 - `guid` : The Event GUID you want to play in the BGS category.  
-  You can use the event defined in [**`GUID script`**][guids-js].  
+  You can use the event defined in [**`GUID 스크립트`**][guids-js].  
   If you're not sure what to put in, check out the example below.
 
 - `isAppend` : (Optional) Determines whether to play a new BGS event while leaving the playing BGS as it is.  
@@ -453,10 +464,10 @@ Plays Event as BGS category.
 
 **Example**
 
-This is similar to [Play BGM](#611-play-bgm), check out the [Play BGM](#611-play-bgm)'s example.  
+This is similar to [BGM 재생](#611-bgm-재생), check out the [BGM 재생](#611-bgm-재생)'s example.  
 The only difference is that BGM is replaced as BGS. (`FMOD_MV.PlayBGS(...)`)
 
-### [6.2.3.][toc] Play ME
+### [6.2.3.][toc] ME 재생
 
 ```js
 FMOD_MV.PlayME(guid, immediateStop);
@@ -469,7 +480,7 @@ When all MEs are finished or stopped, the BGM recalls what it remembered and pla
 > Note : FMOD Events played in this category will not be recorded in save file.
 
 - `guid` : The Event GUID you want to play in the ME category.  
-  You can use the event defined in [**`GUID script`**][guids-js].  
+  You can use the event defined in [**`GUID 스크립트`**][guids-js].  
   If you're not sure what to put in, check out the example below.
 
 - `immediateStop` : (Optional) Determines how the FMOD stops previously playing music.  
@@ -488,7 +499,7 @@ When all MEs are finished or stopped, the BGM recalls what it remembered and pla
    FMOD_MV.PlayME(FMOD_FSPRO.Event.ui_postgame_strawberry_total_all, true);
    ```
 
-### [6.2.4.][toc] Play SE
+### [6.2.4.][toc] SE 재생
 
 ```js
 FMOD_MV.PlaySE(guid, at, parameters);
@@ -500,7 +511,7 @@ It has the most functions, please read carefully and check it with examples.
 > Note : FMOD Events played in this category will not be recorded in save file.
 
 - `guid` : The Event GUID you want to play in the SE category.  
-  You can use the event defined in [**`GUID script`**][guids-js].  
+  You can use the event defined in [**`GUID 스크립트`**][guids-js].  
   If you're not sure what to put in, check out the example below.
 
 - `at` : (Optional) Specifies where the sound is coming from.  
@@ -576,11 +587,11 @@ It has the most functions, please read carefully and check it with examples.
    You can hear footstep sounds when walk around there with the player.
 
 > Note : If you want to change a parameter that is playing in the middle
-> or stop a specific FMOD Event on the target, please refer to the [Speaker](#63-speaker) section.
+> or stop a specific FMOD Event on the target, please refer to the [Speaker](#64-스피커) section.
 
-## [6.3.][toc] Controls event
+## [6.3.][toc] 이벤트 제어하기
 
-### [6.3.1.][toc] Stop BGM
+### [6.3.1.][toc] BGM 정지
 
 ```js
 FMOD_MV.StopBGM(immediateStop, specifiedGuid);
@@ -593,13 +604,13 @@ Stops the BGM categorized Event.
   Acceptable value is `true` for yes, `false` for no, and default is `false`.
 
 - `specifiedGuid` : (Optional) The Event you want to stop in the BGM category.  
-  You can use the event defined in [**`GUID script`**][guids-js].  
+  You can use the event defined in [**`GUID 스크립트`**][guids-js].  
   If you're not sure what to put in, check out the example below.
   Default is `null`(all events).
 
 **Example**
 
-These examples assume after starting the FMOD Event in the example of [Play BGM](#611-play-bgm).
+These examples assume after starting the FMOD Event in the example of [BGM 재생](#611-bgm-재생).
 
 1. Stops all BGM categorized events.
    ```js
@@ -621,7 +632,7 @@ These examples assume after starting the FMOD Event in the example of [Play BGM]
    FMOD_MV.StopBGM(true, FMOD_FSPRO.Event.music_lvl1_main);
    ```
 
-### [6.3.2.][toc] Set BGM Parameter
+### [6.3.2.][toc] BGM 파라미터 지정
 
 ```js
 FMOD_MV.SetBGMParameter(guid, name, value, skip);
@@ -630,7 +641,7 @@ FMOD_MV.SetBGMParameter(guid, name, value, skip);
 Set the event parameter in BGM categorized specific event.
 
 - `guid` : The Event GUID you want to set parameter in the BGM category.  
-  You can use the event defined in [**`GUID script`**][guids-js].  
+  You can use the event defined in [**`GUID 스크립트`**][guids-js].  
   If you're not sure what to put in, check out the example below.
 
 - `name` : The parameter name you want to specify in the event.  
@@ -646,11 +657,11 @@ Set the event parameter in BGM categorized specific event.
 
 **Example**
 
-This example assume after starting the FMOD Event, `music_lvl1_main` in the example of [Play BGM](#611-play-bgm).
+This example assume after starting the FMOD Event, `music_lvl1_main` in the example of [BGM 재생](#611-bgm-재생).
 
 1. Set Event `music_lvl1_main`'s parameter, `layer1` to `0` and `layer3` to `0`.  
    > Note : This example assume after starting the FMOD Event,
-   > `music_lvl1_main` in the example of [Play BGM](#611-play-bgm)'s first example.
+   > `music_lvl1_main` in the example of [BGM 재생](#611-bgm-재생)'s first example.
    ```js
    FMOD_MV.SetBGMParameter(FMOD_FSPRO.Event.music_lvl1_main, "layer1", 0);
    FMOD_MV.SetBGMParameter(FMOD_FSPRO.Event.music_lvl1_main, "layer3", 0);
@@ -658,22 +669,22 @@ This example assume after starting the FMOD Event, `music_lvl1_main` in the exam
 
 2. Set Event `music_lvl1_main`'s parameter, `layer1` to `0` and `layer2` to `0` and `layer3` to `1` immediately.  
    > Note : This example assume after starting the FMOD Event,
-   > `music_lvl1_main` in the example of [Play BGM](#611-play-bgm)'s first example.
+   > `music_lvl1_main` in the example of [BGM 재생](#611-bgm-재생)'s first example.
    ```js
    FMOD_MV.SetBGMParameter(FMOD_FSPRO.Event.music_lvl1_main, "layer1", 0, true);
    FMOD_MV.SetBGMParameter(FMOD_FSPRO.Event.music_lvl1_main, "layer2", 0, true);
    FMOD_MV.SetBGMParameter(FMOD_FSPRO.Event.music_lvl1_main, "layer3", 1, true);
    ```
 
-3. Stop BGM events and play `music_lvl6_main` then set parameter `layer2` to `1` immediately.  
-   > Note : [`PlayBGM`](#611-play-bgm) automatically stops it's categorized events
+3. BGM 정지 events and play `music_lvl6_main` then set parameter `layer2` to `1` immediately.  
+   > Note : [`PlayBGM`](#611-bgm-재생) automatically stops it's categorized events
    > before starting event if additional option not set.
    ```js
    FMOD_MV.PlayBGM(FMOD_FSPRO.Event.music_lvl6_main);
    FMOD_MV.SetBGMParameter(FMOD_FSPRO.Event.music_lvl6_main, "layer2", 1, true);
    ```
 
-### [6.3.3.][toc] Check BGM categorized event is playing
+### [6.3.3.][toc] BGM 카테고리의 이벤트가 재생 중인지 확인
 
 ```js
 FMOD_MV.BGMIsPlaying(guid)
@@ -684,7 +695,7 @@ Check if the event is playing in the BGM category.
 > Note : Even when the event is stopping, it is detected as being played.
 
 - `guid` : (Optional) The Event you want to check is playing in the BGM category.  
-  You can use the event defined in [**`GUID script`**][guids-js].  
+  You can use the event defined in [**`GUID 스크립트`**][guids-js].  
   If you're not sure what to put in, check out the example below.  
   Default is `null`(any events is playing in BGM).
 
@@ -700,7 +711,7 @@ With or without `music_lvl1_main` being played as BGM, you can check both dialog
 :Condition End
 ```
 
-### [6.3.4.][toc] Stop BGS
+### [6.3.4.][toc] BGS 정지
 
 ```js
 FMOD_MV.StopBGS(immediateStop, specifiedGuid);
@@ -713,16 +724,16 @@ Stops the BGS categorized Event.
   Acceptable value is `true` for yes, `false` for no, and default is `false`.
 
 - `specifiedGuid` : (Optional) The Event you want to stop in the BGS category.  
-  You can use the event defined in [**`GUID script`**][guids-js].  
+  You can use the event defined in [**`GUID 스크립트`**][guids-js].  
   If you're not sure what to put in, check out the example below.
   Default is `null`(all events).
 
 **Example**
 
-This is similar to [Stop BGM](#621-stop-bgm), check out the [Stop BGM](#621-stop-bgm)'s example.  
+This is similar to [BGM 정지](#621-bgm-정지), check out the [BGM 정지](#621-bgm-정지)'s example.  
 The only difference is that BGM is replaced as BGS. (`FMOD_MV.StopBGS(...)`)
 
-### [6.3.5.][toc] Set BGS Parameter
+### [6.3.5.][toc] BGS 파라미터 지정
 
 ```js
 FMOD_MV.SetBGSParameter(guid, name, value, skip);
@@ -731,7 +742,7 @@ FMOD_MV.SetBGSParameter(guid, name, value, skip);
 Set the event parameter in BGS categorized specific event.
 
 - `guid` : The Event GUID you want to set parameter in the BGS category.  
-  You can use the event defined in [**`GUID script`**][guids-js].  
+  You can use the event defined in [**`GUID 스크립트`**][guids-js].  
   If you're not sure what to put in, check out the example below.
 
 - `name` : The parameter name you want to specify in the event.  
@@ -747,10 +758,10 @@ Set the event parameter in BGS categorized specific event.
 
 **Example**
 
-This is similar to [Set BGM Parameter](#622-set-bgm-parameter), check out the [Set BGM Parameter](#622-set-bgm-parameter)'s example.  
+This is similar to [BGM 파라미터 지정](#622-bgm-파라미터-지정), check out the [BGM 파라미터 지정](#622-bgm-파라미터-지정)'s example.  
 The only difference is that BGM is replaced as BGS. (`FMOD_MV.SetBGSParameter(...)`)
 
-### [6.3.6.][toc] Check BGS categorized event is playing
+### [6.3.6.][toc] BGS 카테고리의 이벤트가 재생 중인지 확인
 
 ```js
 FMOD_MV.BGSIsPlaying(guid)
@@ -761,16 +772,16 @@ Check if the event is playing in the BGS category.
 > Note : Even when the event is stopping, it is detected as being played.
 
 - `guid` : (Optional) The Event you want to check is playing in the BGS category.  
-  You can use the event defined in [**`GUID script`**][guids-js].  
+  You can use the event defined in [**`GUID 스크립트`**][guids-js].  
   If you're not sure what to put in, check out the example below.  
   Default is `null`(any events is playing in BGS).
 
 **Example**
 
-This is similar to [Check BGM categorized event is playing](#623-check-bgm-categorized-event-is-playing), check out the [Check BGM categorized event is playing](#623-check-bgm-categorized-event-is-playing)'s example.  
+This is similar to [BGM 카테고리의 이벤트가 재생 중인지 확인](#623-bgm-카테고리의-이벤트가-재생-중인지-확인), check out the [BGM 카테고리의 이벤트가 재생 중인지 확인](#623-bgm-카테고리의-이벤트가-재생-중인지-확인)'s example.  
 The only difference is that BGM is replaced as BGS. (`FMOD_MV.BGSIsPlaying(...)`)
 
-### [6.3.7.][toc] Stop ME
+### [6.3.7.][toc] ME 정지
 
 ```js
 FMOD_MV.StopME(immediateStop, specifiedGuid);
@@ -783,16 +794,16 @@ Stops the ME categorized Event.
   Acceptable value is `true` for yes, `false` for no, and default is `false`.
 
 - `specifiedGuid` : (Optional) The Event you want to stop in the ME category.  
-  You can use the event defined in [**`GUID script`**][guids-js].  
+  You can use the event defined in [**`GUID 스크립트`**][guids-js].  
   If you're not sure what to put in, check out the example below.  
   Default is `null`(all events).
 
 **Example**
 
-This is similar to [Stop BGM](#621-stop-bgm), check out the [Stop BGM](#621-stop-bgm)'s example.  
+This is similar to [BGM 정지](#621-bgm-정지), check out the [BGM 정지](#621-bgm-정지)'s example.  
 The only difference is that BGM is replaced as ME. (`FMOD_MV.StopME(...)`)
 
-### [6.3.8.][toc] Set ME Parameter
+### [6.3.8.][toc] ME 파라미터 지정
 
 ```js
 FMOD_MV.SetMEParameter(guid, name, value, skip);
@@ -801,7 +812,7 @@ FMOD_MV.SetMEParameter(guid, name, value, skip);
 Set the event parameter in ME categorized specific event.
 
 - `guid` : The Event GUID you want to set parameter in the ME category.  
-  You can use the event defined in [**`GUID script`**][guids-js].  
+  You can use the event defined in [**`GUID 스크립트`**][guids-js].  
   If you're not sure what to put in, check out the example below.
 
 - `name` : The parameter name you want to specify in the event.  
@@ -817,10 +828,10 @@ Set the event parameter in ME categorized specific event.
 
 **Example**
 
-This is similar to [Set BGM Parameter](#622-set-bgm-parameter), check out the [Set BGM Parameter](#622-set-bgm-parameter)'s example.  
+This is similar to [BGM 파라미터 지정](#622-bgm-파라미터-지정), check out the [BGM 파라미터 지정](#622-bgm-파라미터-지정)'s example.  
 The only difference is that BGM is replaced as ME. (`FMOD_MV.SetMEParameter(...)`)
 
-### [6.3.9.][toc] Check ME categorized event is playing
+### [6.3.9.][toc] ME 카테고리의 이벤트가 재생 중인지 확인
 
 ```js
 FMOD_MV.MEIsPlaying(guid)
@@ -831,16 +842,16 @@ Check if the event is playing in the ME category.
 > Note : Even when the event is stopping, it is detected as being played.
 
 - `guid` : (Optional) The Event you want to check is playing in the ME category.  
-  You can use the event defined in [**`GUID script`**][guids-js].  
+  You can use the event defined in [**`GUID 스크립트`**][guids-js].  
   If you're not sure what to put in, check out the example below.  
   Default is `null`(any events is playing in ME).
 
 **Example**
 
-This is similar to [Check BGM categorized event is playing](#623-check-bgm-categorized-event-is-playing), check out the [Check BGM categorized event is playing](#623-check-bgm-categorized-event-is-playing)'s example.  
+This is similar to [BGM 카테고리의 이벤트가 재생 중인지 확인](#623-bgm-카테고리의-이벤트가-재생-중인지-확인), check out the [BGM 카테고리의 이벤트가 재생 중인지 확인](#623-bgm-카테고리의-이벤트가-재생-중인지-확인)'s example.  
 The only difference is that BGM is replaced as BGS. (`FMOD_MV.BGSIsPlaying(...)`)
 
-### [6.3.10.][toc] Stop SE
+### [6.3.10.][toc] SE 정지
 
 ```js
 FMOD_MV.StopSE(immediateStop, specifiedGuid);
@@ -854,13 +865,13 @@ Stops the SE categorized Event.
   Acceptable value is `true` for yes, `false` for no, and default is `false`.
 
 - `specifiedGuid` : (Optional) The Event you want to stop in the SE category.  
-  You can use the event defined in [**`GUID script`**][guids-js].  
+  You can use the event defined in [**`GUID 스크립트`**][guids-js].  
   If you're not sure what to put in, check out the example below.  
   Default is `null`(all events).
   > Note : If you want to stop the sound from the speaker of
-  > a specific character(like player, event, etc.), check the [Speaker](#63-speaker) section.
+  > a specific character(like player, event, etc.), check the [Speaker](#64-스피커) section.
 
-## [6.4.][toc] Speaker
+## [6.4.][toc] 스피커
 
 Speaker is made for make the sound as if it is coming from the target
 by attributing the FMOD Event, or to manage the parameters of
@@ -894,7 +905,7 @@ Speakers can be obtained from characters such as events or player.
    $gameMap.event(1).speaker()
    ```
 
-### [6.4.1.][toc] Stop Event of target speaker
+### [6.4.1.][toc] 대상 스피커의 이벤트 정지
 
 ```js
 (target).speaker().stopEvent(immediateStop, specifiedGuid);
@@ -907,13 +918,13 @@ Stops target Speaker's Event.
   Acceptable value is `true` for yes, `false` for no, and default is `false`.
 
 - `specifiedGuid` : (Optional) The Event you want to stop in target Speaker's binded Event.  
-  You can use the event defined in [**`GUID script`**][guids-js].  
+  You can use the event defined in [**`GUID 스크립트`**][guids-js].  
   If you're not sure what to put in, check out the example below.
   Default is `null`(all events).
 
 **Example**
 
-These examples assume after starting the FMOD Event in the 2, 3, 4, 5 example of [Play SE][play-se].
+These examples assume after starting the FMOD Event in the 2, 3, 4, 5 example of [SE 재생][play-se].
 
 1. Stops all events of target Speaker.
    ```js
@@ -935,7 +946,7 @@ These examples assume after starting the FMOD Event in the 2, 3, 4, 5 example of
    (target).speaker().stopEvent(true, FMOD_FSPRO.Event.game_general_spring);
    ```
 
-### [6.4.2.][toc] Set specific event's parameter of target speaker
+### [6.4.2.][toc] 대상 스피커의 이벤트 파라미터 지정
 
 ```js
 (target).speaker().setParameter(guid, name, value, skip);
@@ -951,7 +962,7 @@ Parameters set for the event character's Speaker operating on the current map
 or player character's Speaker are saved in the game save.
 
 - `guid` : The Event GUID you want to set parameter in this speaker.  
-  You can use the event defined in [**`GUID script`**][guids-js].  
+  You can use the event defined in [**`GUID 스크립트`**][guids-js].  
   If you're not sure what to put in, check out the example below.
 
 - `name` : The parameter name you want to specify in the event.  
@@ -976,7 +987,7 @@ Playing `char_dialogue_madeline` event in SE category to the `<target>` via [Pla
 As you can see this in [Celeste FMOD Studio project](#4-quick-example),
 this event is always playing, so only can stop this event by manually stop it.
 
-Use [Stop Event of target speaker](#631-stop-event-of-target-speaker) in this example's case.
+Use [대상 스피커의 이벤트 정지](#631-대상-스피커의-이벤트-정지) in this example's case.
 
 1. Start talking sound in normal by setting parameter `dialogue_portrait` to `1`.
    ```js
@@ -995,7 +1006,7 @@ Use [Stop Event of target speaker](#631-stop-event-of-target-speaker) in this ex
    (target).speaker().setParameter(FMOD_FSPRO.Event.char_dialogue_madeline, "dialogue_portrait", 6);
    ```
 
-### [6.4.3.][toc] Clear specific memorized event parameter settings of Speaker
+### [6.4.3.][toc] 대상 스피커가 기억하는 특정 이벤트의 파라미터 설정 지우기
 
 ```js
 (target).speaker().clearParameter(guid);
@@ -1007,7 +1018,7 @@ Clears all parameter settings memorized with the specified event GUID in target 
 > so the parameter settings of the already playing event are not set to the initial values.
 
 - `guid` : The Event GUID you want to set parameter in this speaker.  
-  You can use the event defined in [**`GUID script`**][guids-js].  
+  You can use the event defined in [**`GUID 스크립트`**][guids-js].  
   If you're not sure what to put in, check out the example below.
 
 **Example**
@@ -1018,7 +1029,7 @@ Clears the parameter settings memorized as `char_dialogue_madeline` on the targe
 (target).speaker().clearParameter(FMOD_FSPRO.Event.char_dialogue_madeline);
 ```
 
-### [6.4.4.][toc] Clear all memorized event parameter settings of Speaker
+### [6.4.4.][toc] 대상 스피커가 기억하는 모든 이벤트의 파라미터 설정 지우기
 
 ```js
 (target).speaker().clearAllParameter();
@@ -1029,7 +1040,7 @@ Clears all parameter settings memorized of all event GUID in target Speaker.
 > Note : Since this is a function that clears the memorized parameter settings,
 > so the parameter settings of the already playing event are not set to the initial values.
 
-### [6.4.5.][toc] Check any Event of specified GUID is binded
+### [6.4.5.][toc] GUID에 해당하는 이벤트가 바인딩 됐는지 확인
 
 ```js
 (target).speaker().isBinded(guid)
@@ -1038,7 +1049,7 @@ Clears all parameter settings memorized of all event GUID in target Speaker.
 Checks if there is an event that is active on the target speaker through the event GUID.
 
 - `guid` : The Event GUID you want to set parameter in this speaker.  
-  You can use the event defined in [**`GUID script`**][guids-js].  
+  You can use the event defined in [**`GUID 스크립트`**][guids-js].  
   If you're not sure what to put in, check out the example below.
 
 **Example**
@@ -1074,7 +1085,7 @@ Since the sound effects are not saved in the game save, so you can use this meth
 > 
 > And don't forget that the playback state of BGM/BGS is saved in the save.
 
-## [6.5.][toc] Control snapshots
+## [6.5.][toc] 스냅샷 제어하기
 
 ```mermaid
 graph LR;
@@ -1097,7 +1108,7 @@ When game is return to the title screen, they are all disabled.
 > Note : If you want to control your own from the title screen,
 > please search `Scene_Title.prototype.playTitleMusic` in plugin's source code.
 
-### [6.5.1.][toc] Start snapshot
+### [6.5.1.][toc] 스냅샷 시작
 
 ```js
 FMOD_MV.StartSnapshot(guid);
@@ -1108,12 +1119,12 @@ Enables target snapshot.
 Note that the GUID used here must be the GUID of `Snapshot`, not `Event`.
 
 - `guid` : The snapshot GUID you want to start.  
-  You can use the snapshots defined in [**`GUID script`**][guids-js].  
+  You can use the snapshots defined in [**`GUID 스크립트`**][guids-js].  
   If you're not sure what to put in, check out the example below.
 
 **Example**
 
-These examples assume after starting the FMOD Event in the example of [Play BGM](#611-play-bgm).
+These examples assume after starting the FMOD Event in the example of [BGM 재생](#611-bgm-재생).
 
 This example activates `pause_menu`, a snapshot
 that controls the Bus to which music events are routed.
@@ -1124,7 +1135,7 @@ FMOD_MV.StartSnapshot(FMOD_FSPRO.Snapshot.pause_menu);
 
 You can hear how it feels as if you are listening to a sound while you are wrapped in a pillow.
 
-### [6.5.2.][toc] Stop snapshot
+### [6.5.2.][toc] 스냡샷 중단
 
 ```js
 FMOD_MV.StopSnapshot(immediateStop, specifiedGuid);
@@ -1137,13 +1148,13 @@ Stops snapshot.
   Acceptable value is `true` for yes, `false` for no, and default is `false`.
 
 - `specifiedGuid` : (Optional) The Snapshot you want to stop.  
-  You can use the snapshot defined in [**`GUID script`**][guids-js].  
+  You can use the snapshot defined in [**`GUID 스크립트`**][guids-js].  
   If you're not sure what to put in, check out the example below.
   Default is `null`(all snapshot).
 
 **Example**
 
-These examples assume after starting the FMOD Event in the example of [Play BGM](#611-play-bgm).
+These examples assume after starting the FMOD Event in the example of [BGM 재생](#611-bgm-재생).
 
 1. Stops all snapshots.
    ```js
@@ -1165,10 +1176,6 @@ These examples assume after starting the FMOD Event in the example of [Play BGM]
    FMOD_MV.StopSnapshot(true, FMOD_FSPRO.Event.pause_menu);
    ```
 
----
-
-
-
 [releases]: https://github.com/creta5164/fmod-rmmv/releases
 [LICENSE]: https://github.com/creta5164/fmod-rmmv/blob/main/LICENSE
 [1map]: https://1map1chicken.com/entries/jam2022
@@ -1182,6 +1189,6 @@ These examples assume after starting the FMOD Event in the example of [Play BGM]
 [fmod-learning-resources]: https://www.fmod.com/download#learningresources
 [nwjs-problem]: https://qa.fmod.com/t/problem-with-html5-build-on-nw-js/19116
 [toc]: #목차
-[guids-js]: #54-guids-js-path
+[guids-js]: #54-guid-스크립트-경로
 [guid-events-location]: ./img/guid-events-location.png
-[play-se]: #624-play-se
+[play-se]: #624-se-재생

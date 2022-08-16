@@ -83,7 +83,7 @@ If you curious what it does, watch this video.
   * 5.7. [System music effects](#57-system-music-effects)
   * 5.8. [System sound effects](#58-system-sound-effects)
 - 6\. [How to use](#6-how-to-use)
-  * 6.1. [How Events work in FMOD_MV.js](#61-how-events-work-in-fmod-mvjs)
+  * 6.1. [How Events work in FMOD_MV.js](#61-how-events-work-in-fmod_mvjs)
   * 6.2. [Playing event](#62-playing-event)
     + 6.2.1. [Play BGM](#621-play-bgm)
     + 6.2.2. [Play BGS](#622-play-bgs)
@@ -173,6 +173,8 @@ Currently, the limitations I have identified are as follows.
 
 ## [3.1.][toc] Add plugin to your project
 
+![added-to-plugins](./img/added-to-plugins.png)
+
 Put `FMOD_MV.js` in the `plugins` folder, and then add the plugin in your RPG Maker project.  
 Plugin's order doesn't matter, unless you're using additional audio-related featured plugins.
 
@@ -190,9 +192,9 @@ Because of we downloaded the `2.01.13` version of engine above, so I recommended
 Put `fmodstudio.js` and `fmodstudio.wasm` in `api/studio/lib/upstream/wasm` of the downloaded zip file into `js/lib` in the project folder.
 
 ![modify-fmodstudio.js](./img/modify-fmodstudio.js.png)  
-Then open `fmodstudio.js` and find the section
+Then open `fmodstudio.js` with text editor and find the section
 ```js
-...ENVIRONMENT_IS_NODE=typeof process==="object"&&typeof process...
+ENVIRONMENT_IS_NODE=typeof process==="object"&&typeof process
 ```
 Add `false&&` after `ENVIRONMENT_IS_NODE=` and save it.
 
@@ -202,7 +204,7 @@ Then, open `index.html` in the project folder and add the following line as belo
 <script type="text/javascript" src="js/libs/fmodstudio.js"></script>
 ```
 
-If you've been working on the index.html you created as a new project, it should look like this :
+If you've been working on the `index.html` you created as a new project, it should look like this :
 
 ```diff
  <!DOCTYPE html>
@@ -254,8 +256,10 @@ and [GUIDs js path](#54-guids-js-path) in this section.
 Make the map as large as possible (75x75 or larger) so that you can clearly
 determine the direction and location of the sounds.
 
-The space in Celeste is larger than in RPG Maker.  
+Because the space in Celeste is larger than in RPG Maker.  
 (Celeste uses 8 units per tile, so larger than 1 unit per tile in RPG Maker)
+
+When you start the test play, you can check that the system sounds and title music are played of Celeste's audio.
 
 Now you can check directly at the examples based on this setup
 in the [How to use](#6-how-to-use) section after this section.
@@ -318,7 +322,7 @@ If you leave these blank, FMOD_MV.js will try finds a VCA name
 with `BGM`, `BGS`, `ME`, `SE`, if found them then
 it will be used automatically.
 
-Applicable VCA names can be found in `VCA` of [**`GUID script`**][guids-js] created in [GUIDs js path][guids-js].
+Applicable VCA names can be found in `VCA` of [**`GUID script`**][guids-js].
 
 ## [5.6.][toc] System musics
 
@@ -328,7 +332,7 @@ If you leave it blank, it will be played as the music set by RPG Maker. (RM Audi
 
 ![guid-events-location][guid-events-location]
 
-Applicable event names can be found in `Event` of [**`GUID script`**][guids-js] created in [GUIDs js path section][guids-js].
+Applicable event names can be found in `Event` of [**`GUID script`**][guids-js].
 
 > Note : Battle-related system audio assignments are available for future use.  
 > Battle-related parts are not implemented yet, so unintended behavior may occur.
@@ -341,7 +345,7 @@ If you leave it blank, it will be played as the music effect set by RPG Maker. (
 
 ![guid-events-location][guid-events-location]
 
-Applicable event names can be found in `Event` of [**`GUID script`**][guids-js] created in [GUIDs js path section][guids-js].
+Applicable event names can be found in `Event` of [**`GUID script`**][guids-js].
 
 > Note : Battle-related system audio assignments are available for future use.  
 > Battle-related parts are not implemented yet, so unintended behavior may occur.
@@ -354,7 +358,7 @@ If you leave it blank, it will be played as the sound effect set by RPG Maker. (
 
 ![guid-events-location][guid-events-location]
 
-Applicable event names can be found in `Event` of [**`GUID script`**][guids-js] created in [GUIDs js path section][guids-js].
+Applicable event names can be found in `Event` of [**`GUID script`**][guids-js].
 
 # [6.][toc] How to use
 
@@ -375,10 +379,10 @@ Such as assigning the Event played in the `BGM` and `BGS` categories in the save
 
 ![speaker](./img/speaker.png)
 
-And in FMOD_MV.js, the concept is implemented that called [Speaker](#63-speaker), in all character elements (e.g. events on the map, player characters, party members, vehicles, etc.).
+And in FMOD_MV.js, the concept is implemented that called [Speaker](#64-speaker), in all character elements (e.g. events on the map, player characters, party members, vehicles, etc.).
 
-[Speakers](#63-speaker) work so that sound is attached to a specific object.  
-If the FMOD Event is 3D, stereo sound can be used, and for this purpose, [Speaker](#63-speaker) is used.
+[Speakers](#64-speaker) work so that sound is attached to a specific object.  
+This is for supports features such as stereo sound when FMOD events are 3D are available.
 
 So keep this in mind.
 
@@ -576,7 +580,7 @@ It has the most functions, please read carefully and check it with examples.
    You can hear footstep sounds when walk around there with the player.
 
 > Note : If you want to change a parameter that is playing in the middle
-> or stop a specific FMOD Event on the target, please refer to the [Speaker](#63-speaker) section.
+> or stop a specific FMOD Event on the target, please refer to the [Speaker](#64-speaker) section.
 
 ## [6.3.][toc] Controls event
 
@@ -858,7 +862,7 @@ Stops the SE categorized Event.
   If you're not sure what to put in, check out the example below.  
   Default is `null`(all events).
   > Note : If you want to stop the sound from the speaker of
-  > a specific character(like player, event, etc.), check the [Speaker](#63-speaker) section.
+  > a specific character(like player, event, etc.), check the [Speaker](#64-speaker) section.
 
 ## [6.4.][toc] Speaker
 
@@ -1164,10 +1168,6 @@ These examples assume after starting the FMOD Event in the example of [Play BGM]
    ```js
    FMOD_MV.StopSnapshot(true, FMOD_FSPRO.Event.pause_menu);
    ```
-
----
-
-
 
 [releases]: https://github.com/creta5164/fmod-rmmv/releases
 [LICENSE]: https://github.com/creta5164/fmod-rmmv/blob/main/LICENSE
