@@ -457,7 +457,7 @@ Plays Event as BGS category.
 
 **Example**
 
-This is similar to [Play BGM](#611-play-bgm), check out the [Play BGM](#611-play-bgm)'s example.  
+This is similar to [Play BGM](#621-play-bgm), check out the [Play BGM](#621-play-bgm)'s example.  
 The only difference is that BGM is replaced as BGS. (`FMOD_MV.PlayBGS(...)`)
 
 ### [6.2.3.][toc] Play ME
@@ -603,7 +603,7 @@ Stops the BGM categorized Event.
 
 **Example**
 
-These examples assume after starting the FMOD Event in the example of [Play BGM](#611-play-bgm).
+These examples assume after starting the FMOD Event in the example of [Play BGM](#621-play-bgm).
 
 1. Stops all BGM categorized events.
    ```js
@@ -650,11 +650,11 @@ Set the event parameter in BGM categorized specific event.
 
 **Example**
 
-This example assume after starting the FMOD Event, `music_lvl1_main` in the example of [Play BGM](#611-play-bgm).
+This example assume after starting the FMOD Event, `music_lvl1_main` in the example of [Play BGM](#621-play-bgm).
 
 1. Set Event `music_lvl1_main`'s parameter, `layer1` to `0` and `layer3` to `0`.  
    > Note : This example assume after starting the FMOD Event,
-   > `music_lvl1_main` in the example of [Play BGM](#611-play-bgm)'s first example.
+   > `music_lvl1_main` in the example of [Play BGM](#621-play-bgm)'s first example.
    ```js
    FMOD_MV.SetBGMParameter(FMOD_FSPRO.Event.music_lvl1_main, "layer1", 0);
    FMOD_MV.SetBGMParameter(FMOD_FSPRO.Event.music_lvl1_main, "layer3", 0);
@@ -662,7 +662,7 @@ This example assume after starting the FMOD Event, `music_lvl1_main` in the exam
 
 2. Set Event `music_lvl1_main`'s parameter, `layer1` to `0` and `layer2` to `0` and `layer3` to `1` immediately.  
    > Note : This example assume after starting the FMOD Event,
-   > `music_lvl1_main` in the example of [Play BGM](#611-play-bgm)'s first example.
+   > `music_lvl1_main` in the example of [Play BGM](#621-play-bgm)'s first example.
    ```js
    FMOD_MV.SetBGMParameter(FMOD_FSPRO.Event.music_lvl1_main, "layer1", 0, true);
    FMOD_MV.SetBGMParameter(FMOD_FSPRO.Event.music_lvl1_main, "layer2", 0, true);
@@ -670,7 +670,7 @@ This example assume after starting the FMOD Event, `music_lvl1_main` in the exam
    ```
 
 3. Stop BGM events and play `music_lvl6_main` then set parameter `layer2` to `1` immediately.  
-   > Note : [`PlayBGM`](#611-play-bgm) automatically stops it's categorized events
+   > Note : [`PlayBGM`](#621-play-bgm) automatically stops it's categorized events
    > before starting event if additional option not set.
    ```js
    FMOD_MV.PlayBGM(FMOD_FSPRO.Event.music_lvl6_main);
@@ -1117,7 +1117,7 @@ Note that the GUID used here must be the GUID of `Snapshot`, not `Event`.
 
 **Example**
 
-These examples assume after starting the FMOD Event in the example of [Play BGM](#611-play-bgm).
+These examples assume after starting the FMOD Event in the example of [Play BGM](#621-play-bgm).
 
 This example activates `pause_menu`, a snapshot
 that controls the Bus to which music events are routed.
@@ -1147,7 +1147,7 @@ Stops snapshot.
 
 **Example**
 
-These examples assume after starting the FMOD Event in the example of [Play BGM](#611-play-bgm).
+These examples assume after starting the FMOD Event in the example of [Play BGM](#621-play-bgm).
 
 1. Stops all snapshots.
    ```js
