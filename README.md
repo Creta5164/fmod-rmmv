@@ -110,7 +110,7 @@ If you curious what it does, watch this video.
     + 6.5.1. [Start snapshot](#651-start-snapshot)
     + 6.5.2. [Stop snapshot](#652-stop-snapshot)
 
-# [1.](#table-of-content) Basic knowledge requirements
+# [1.][toc] Basic knowledge requirements
 
 - Knows how to use FMOD Studio.
 
@@ -118,7 +118,7 @@ If you curious what it does, watch this video.
   and [legal information][fmod-legal] of FMOD.
 
 
-# [2.](#table-of-content) Limitation
+# [2.][toc] Limitation
 
 This plug-in was made in a short period of almost a week,
 so some RPG Maker features that were not contained from DOWNFALLEN,
@@ -169,14 +169,14 @@ Currently, the limitations I have identified are as follows.
 - All of the battle related features  
   Since we didn't have to use it while making DOWNFALLEN.
 
-# [3.](#table-of-content) Setup project
+# [3.][toc] Setup project
 
-## [3.1.](#table-of-content) Add plugin to your project
+## [3.1.][toc] Add plugin to your project
 
 Put `FMOD_MV.js` in the `plugins` folder, and then add the plugin in your RPG Maker project.  
 Plugin's order doesn't matter, unless you're using additional audio-related featured plugins.
 
-## [3.2.](#table-of-content) Add FMOD Engine
+## [3.2.][toc] Add FMOD Engine
 
 ![download-fmod-html5](./img/download-fmod-html5.png)  
 [Download FMOD Engine at here][fmod-download], it requires HTML5 version.  
@@ -239,7 +239,7 @@ If you've been working on the index.html you created as a new project, it should
 
 Then you are ready to go!
 
-# [4.](#table-of-content) Quick example
+# [4.][toc] Quick example
 
 To see an quick example in action, create a new RPG Maker project,
 and overwrite the `plugins.js` enclosed in the repository with `js/plugins.js` in your newly created project directory.
@@ -260,17 +260,17 @@ The space in Celeste is larger than in RPG Maker.
 Now you can check directly at the examples based on this setup
 in the [How to use](#6-how-to-use) section after this section.
 
-# [5.](#table-of-content) Plugin options
+# [5.][toc] Plugin options
 
 ![plugins-options](./img/plugins-options.png)  
 This section covers the plugin options menu.
 
-## [5.1.](#table-of-content) Total memory
+## [5.1.][toc] Total memory
 
 FMOD's virtual memories' maximum size. (byte units)  
 Default setting is `64MB`. (`64 * 1024 * 1024`)
 
-## [5.2.](#table-of-content) Bank asset path
+## [5.2.][toc] Bank asset path
 
 Specify the path where the FMOD's Bank assets are.  
 Default setting is `audio/bank`.
@@ -278,14 +278,14 @@ Default setting is `audio/bank`.
 ![bank-files](./img/bank-files.png)  
 Bank files created by building in FMOD Studio must all be in the this path.
 
-## [5.3.](#table-of-content) Bank assets
+## [5.3.][toc] Bank assets
 
 Specify banks to load.  
 Master bank and it's strings must be assigned.  
 i.e. if you have `Master Bank.bank`, `Master Bank.strings.bank`, `Music.bank` then
 you should add `Master Bank`, `Master Bank.strings`, `Music` at this option.
 
-## [5.4.](#table-of-content) GUIDs js path
+## [5.4.][toc] GUIDs js path
 
 Specify GUID collection script file.  
 Default setting is `audio/bank/fmod_studio_guids.js`.  
@@ -311,7 +311,7 @@ From now on, we'll call it **`GUID script`**.
 
 That's it!  
 
-## [5.5.](#table-of-content) Integrated VCAs
+## [5.5.][toc] Integrated VCAs
 
 Specify which VCA is used for each types of channels.  
 If you leave these blank, FMOD_MV.js will try finds a VCA name
@@ -320,7 +320,7 @@ it will be used automatically.
 
 Applicable VCA names can be found in `VCA` of [**`GUID script`**][guids-js] created in [GUIDs js path][guids-js].
 
-## [5.6.](#table-of-content) System musics
+## [5.6.][toc] System musics
 
 Replaces system music with FMOD events.  
 Each item corresponds to the corresponding system music.  
@@ -333,7 +333,7 @@ Applicable event names can be found in `Event` of [**`GUID script`**][guids-js] 
 > Note : Battle-related system audio assignments are available for future use.  
 > Battle-related parts are not implemented yet, so unintended behavior may occur.
 
-## [5.7.](#table-of-content) System music effects
+## [5.7.][toc] System music effects
 
 Replaces system music effect(ME) with FMOD events.  
 Each item corresponds to the corresponding system music effects.  
@@ -346,7 +346,7 @@ Applicable event names can be found in `Event` of [**`GUID script`**][guids-js] 
 > Note : Battle-related system audio assignments are available for future use.  
 > Battle-related parts are not implemented yet, so unintended behavior may occur.
 
-## [5.8.](#table-of-content) System sound effects
+## [5.8.][toc] System sound effects
 
 Replaces system sound effect(SE) with FMOD events.  
 Each item corresponds to the corresponding system sound effects.  
@@ -356,7 +356,7 @@ If you leave it blank, it will be played as the sound effect set by RPG Maker. (
 
 Applicable event names can be found in `Event` of [**`GUID script`**][guids-js] created in [GUIDs js path section][guids-js].
 
-# [6.](#table-of-content) How to use
+# [6.][toc] How to use
 
 FMOD_MV.js is designed in a way to maintain as much unity as possible with RPG Maker.  
 However, it has not yet been implemented to harmonize with all functions of RPG Maker.  
@@ -367,7 +367,7 @@ if you have created a project set up as instructed in that project!
 
 All guides presented here are based on **script event**.
 
-## [6.1.](#table-of-content) How Events work in FMOD_MV.js
+## [6.1.][toc] How Events work in FMOD_MV.js
 
 By default, in FMOD, all sounds is Event, but here you can decide which category to play the Event you want to play in: `BGM`, `BGS`, `ME`, `SE`.  
 As mentioned earlier, this is because the focus is on unifying the functional elements with RPG Maker.  
@@ -394,9 +394,9 @@ And the reason I've put the listener at a distance of `10 units` is to make sure
 
 So, when you designing an Event in FMOD Studio, keep in mind that the listener is always `10 units` apart.
 
-## [6.2.](#table-of-content) Playing event
+## [6.2.][toc] Playing event
 
-### [6.2.1.](#table-of-content) Play BGM
+### [6.2.1.][toc] Play BGM
 
 ```js
 FMOD_MV.PlayBGM(guid, isAppend, immediateStop);
@@ -432,7 +432,7 @@ Plays Event as BGM category.
    FMOD_MV.PlayBGM(FMOD_FSPRO.Event.music_lvl2_chase, false, true);
    ```
 
-### [6.2.2.](#table-of-content) Play BGS
+### [6.2.2.][toc] Play BGS
 
 ```js
 FMOD_MV.PlayBGS(guid, isAppend, immediateStop);
@@ -456,7 +456,7 @@ Plays Event as BGS category.
 This is similar to [Play BGM](#611-play-bgm), check out the [Play BGM](#611-play-bgm)'s example.  
 The only difference is that BGM is replaced as BGS. (`FMOD_MV.PlayBGS(...)`)
 
-### [6.2.3.](#table-of-content) Play ME
+### [6.2.3.][toc] Play ME
 
 ```js
 FMOD_MV.PlayME(guid, immediateStop);
@@ -488,7 +488,7 @@ When all MEs are finished or stopped, the BGM recalls what it remembered and pla
    FMOD_MV.PlayME(FMOD_FSPRO.Event.ui_postgame_strawberry_total_all, true);
    ```
 
-### [6.2.4.](#table-of-content) Play SE
+### [6.2.4.][toc] Play SE
 
 ```js
 FMOD_MV.PlaySE(guid, at, parameters);
@@ -578,9 +578,9 @@ It has the most functions, please read carefully and check it with examples.
 > Note : If you want to change a parameter that is playing in the middle
 > or stop a specific FMOD Event on the target, please refer to the [Speaker](#63-speaker) section.
 
-## [6.3.](#table-of-content) Controls event
+## [6.3.][toc] Controls event
 
-### [6.3.1.](#table-of-content) Stop BGM
+### [6.3.1.][toc] Stop BGM
 
 ```js
 FMOD_MV.StopBGM(immediateStop, specifiedGuid);
@@ -621,7 +621,7 @@ These examples assume after starting the FMOD Event in the example of [Play BGM]
    FMOD_MV.StopBGM(true, FMOD_FSPRO.Event.music_lvl1_main);
    ```
 
-### [6.3.2.](#table-of-content) Set BGM Parameter
+### [6.3.2.][toc] Set BGM Parameter
 
 ```js
 FMOD_MV.SetBGMParameter(guid, name, value, skip);
@@ -673,7 +673,7 @@ This example assume after starting the FMOD Event, `music_lvl1_main` in the exam
    FMOD_MV.SetBGMParameter(FMOD_FSPRO.Event.music_lvl6_main, "layer2", 1, true);
    ```
 
-### [6.3.3.](#table-of-content) Check BGM categorized event is playing
+### [6.3.3.][toc] Check BGM categorized event is playing
 
 ```js
 FMOD_MV.BGMIsPlaying(guid)
@@ -700,7 +700,7 @@ With or without `music_lvl1_main` being played as BGM, you can check both dialog
 :Condition End
 ```
 
-### [6.3.4.](#table-of-content) Stop BGS
+### [6.3.4.][toc] Stop BGS
 
 ```js
 FMOD_MV.StopBGS(immediateStop, specifiedGuid);
@@ -722,7 +722,7 @@ Stops the BGS categorized Event.
 This is similar to [Stop BGM](#621-stop-bgm), check out the [Stop BGM](#621-stop-bgm)'s example.  
 The only difference is that BGM is replaced as BGS. (`FMOD_MV.StopBGS(...)`)
 
-### [6.3.5.](#table-of-content) Set BGS Parameter
+### [6.3.5.][toc] Set BGS Parameter
 
 ```js
 FMOD_MV.SetBGSParameter(guid, name, value, skip);
@@ -750,7 +750,7 @@ Set the event parameter in BGS categorized specific event.
 This is similar to [Set BGM Parameter](#622-set-bgm-parameter), check out the [Set BGM Parameter](#622-set-bgm-parameter)'s example.  
 The only difference is that BGM is replaced as BGS. (`FMOD_MV.SetBGSParameter(...)`)
 
-### [6.3.6.](#table-of-content) Check BGS categorized event is playing
+### [6.3.6.][toc] Check BGS categorized event is playing
 
 ```js
 FMOD_MV.BGSIsPlaying(guid)
@@ -770,7 +770,7 @@ Check if the event is playing in the BGS category.
 This is similar to [Check BGM categorized event is playing](#623-check-bgm-categorized-event-is-playing), check out the [Check BGM categorized event is playing](#623-check-bgm-categorized-event-is-playing)'s example.  
 The only difference is that BGM is replaced as BGS. (`FMOD_MV.BGSIsPlaying(...)`)
 
-### [6.3.7.](#table-of-content) Stop ME
+### [6.3.7.][toc] Stop ME
 
 ```js
 FMOD_MV.StopME(immediateStop, specifiedGuid);
@@ -792,7 +792,7 @@ Stops the ME categorized Event.
 This is similar to [Stop BGM](#621-stop-bgm), check out the [Stop BGM](#621-stop-bgm)'s example.  
 The only difference is that BGM is replaced as ME. (`FMOD_MV.StopME(...)`)
 
-### [6.3.8.](#table-of-content) Set ME Parameter
+### [6.3.8.][toc] Set ME Parameter
 
 ```js
 FMOD_MV.SetMEParameter(guid, name, value, skip);
@@ -820,7 +820,7 @@ Set the event parameter in ME categorized specific event.
 This is similar to [Set BGM Parameter](#622-set-bgm-parameter), check out the [Set BGM Parameter](#622-set-bgm-parameter)'s example.  
 The only difference is that BGM is replaced as ME. (`FMOD_MV.SetMEParameter(...)`)
 
-### [6.3.9.](#table-of-content) Check ME categorized event is playing
+### [6.3.9.][toc] Check ME categorized event is playing
 
 ```js
 FMOD_MV.MEIsPlaying(guid)
@@ -840,7 +840,7 @@ Check if the event is playing in the ME category.
 This is similar to [Check BGM categorized event is playing](#623-check-bgm-categorized-event-is-playing), check out the [Check BGM categorized event is playing](#623-check-bgm-categorized-event-is-playing)'s example.  
 The only difference is that BGM is replaced as BGS. (`FMOD_MV.BGSIsPlaying(...)`)
 
-### [6.3.10.](#table-of-content) Stop SE
+### [6.3.10.][toc] Stop SE
 
 ```js
 FMOD_MV.StopSE(immediateStop, specifiedGuid);
@@ -860,7 +860,7 @@ Stops the SE categorized Event.
   > Note : If you want to stop the sound from the speaker of
   > a specific character(like player, event, etc.), check the [Speaker](#63-speaker) section.
 
-## [6.4.](#table-of-content) Speaker
+## [6.4.][toc] Speaker
 
 Speaker is made for make the sound as if it is coming from the target
 by attributing the FMOD Event, or to manage the parameters of
@@ -894,7 +894,7 @@ Speakers can be obtained from characters such as events or player.
    $gameMap.event(1).speaker()
    ```
 
-### [6.4.1.](#table-of-content) Stop Event of target speaker
+### [6.4.1.][toc] Stop Event of target speaker
 
 ```js
 (target).speaker().stopEvent(immediateStop, specifiedGuid);
@@ -935,7 +935,7 @@ These examples assume after starting the FMOD Event in the 2, 3, 4, 5 example of
    (target).speaker().stopEvent(true, FMOD_FSPRO.Event.game_general_spring);
    ```
 
-### [6.4.2.](#table-of-content) Set specific event's parameter of target speaker
+### [6.4.2.][toc] Set specific event's parameter of target speaker
 
 ```js
 (target).speaker().setParameter(guid, name, value, skip);
@@ -995,7 +995,7 @@ Use [Stop Event of target speaker](#631-stop-event-of-target-speaker) in this ex
    (target).speaker().setParameter(FMOD_FSPRO.Event.char_dialogue_madeline, "dialogue_portrait", 6);
    ```
 
-### [6.4.3.](#table-of-content) Clear specific memorized event parameter settings of Speaker
+### [6.4.3.][toc] Clear specific memorized event parameter settings of Speaker
 
 ```js
 (target).speaker().clearParameter(guid);
@@ -1018,7 +1018,7 @@ Clears the parameter settings memorized as `char_dialogue_madeline` on the targe
 (target).speaker().clearParameter(FMOD_FSPRO.Event.char_dialogue_madeline);
 ```
 
-### [6.4.4.](#table-of-content) Clear all memorized event parameter settings of Speaker
+### [6.4.4.][toc] Clear all memorized event parameter settings of Speaker
 
 ```js
 (target).speaker().clearAllParameter();
@@ -1029,7 +1029,7 @@ Clears all parameter settings memorized of all event GUID in target Speaker.
 > Note : Since this is a function that clears the memorized parameter settings,
 > so the parameter settings of the already playing event are not set to the initial values.
 
-### [6.4.5.](#table-of-content) Check any Event of specified GUID is binded
+### [6.4.5.][toc] Check any Event of specified GUID is binded
 
 ```js
 (target).speaker().isBinded(guid)
@@ -1074,7 +1074,7 @@ Since the sound effects are not saved in the game save, so you can use this meth
 > 
 > And don't forget that the playback state of BGM/BGS is saved in the save.
 
-## [6.5.](#table-of-content) Control snapshots
+## [6.5.][toc] Control snapshots
 
 ```mermaid
 graph LR;
@@ -1097,7 +1097,7 @@ When game is return to the title screen, they are all disabled.
 > Note : If you want to control your own from the title screen,
 > please search `Scene_Title.prototype.playTitleMusic` in plugin's source code.
 
-### [6.5.1.](#table-of-content) Start snapshot
+### [6.5.1.][toc] Start snapshot
 
 ```js
 FMOD_MV.StartSnapshot(guid);
@@ -1124,7 +1124,7 @@ FMOD_MV.StartSnapshot(FMOD_FSPRO.Snapshot.pause_menu);
 
 You can hear how it feels as if you are listening to a sound while you are wrapped in a pillow.
 
-### [6.5.2.](#table-of-content) Stop snapshot
+### [6.5.2.][toc] Stop snapshot
 
 ```js
 FMOD_MV.StopSnapshot(immediateStop, specifiedGuid);
@@ -1181,6 +1181,7 @@ These examples assume after starting the FMOD Event in the example of [Play BGM]
 [fmod-download]: https://www.fmod.com/download#fmodengine
 [fmod-learning-resources]: https://www.fmod.com/download#learningresources
 [nwjs-problem]: https://qa.fmod.com/t/problem-with-html5-build-on-nw-js/19116
+[toc]: #table-of-content
 [guids-js]: #54-guids-js-path
 [guid-events-location]: ./img/guid-events-location.png
 [play-se]: #624-play-se
