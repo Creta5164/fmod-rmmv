@@ -4,70 +4,70 @@
   <img alt="FMOD_MV.js" width="640" src="./og-image.png"/>
 </p>
 
-### [Download plugin][releases]
+### [플러그인 다운로드][releases]
 
-This plugin integrated with FMOD by Firelight Technologies Pty Ltd.  
-You can use industry-leading audio engine for RPG Maker MV.
+이 플러그인은 Firelight Technologies Pty Ltd의 FMOD를 적용합니다.  
+게임 업계 최고의 오디오 엔진을 RPG 만들기 MV에 사용해 보세요.
 
-Created by Creta Park (https://creft.me/cretapark)
+제작 : Creta Park (https://creft.me/cretapark)
 
-This plugin's license is a variant of the MIT License,
-so you are free to use it as long as you comply with these terms.
+이 플러그인의 라이선스는 MIT 라이선스의 변형을 사용하므로,
+아래의 조건을 준수하는 한 자유롭게 사용할 수 있습니다.
 
-Please observe the license terms below :
+아래의 라이센스 허가 조건을 준수하세요.
 
-1. When using this plugin with other software, the software must be
-   a game developed and made with RPG Maker, and `FMOD_MV.js by Creta Park`
-   must be written in the credit of these game.
+1. 이 플러그인을 다른 소프트웨어와 함께 사용하는 경우,
+   소프트웨어는 RPG 만들기로 개발 및 제작 된 게임이어야 하며,
+   게임의 크레딧에는 `FMOD_MV.js by Creta Park`가 반드시 들어가야 합니다.
 
-2. Should not be confused 1's content with the attribution of FMOD.  
-   Mark completely separate from the attribution of the FMOD.
+2. 1의 내용을 FMOD의 저작권 표기와 혼동해서는 안 됩니다.  
+   FMOD의 저작자 표기와 완전히 별개로 표기하세요.
 
-3. Neither this plugin nor any of its individual components,
-   in Original or Modified Versions, may be sold by itself.
+3. 이 플러그인의 원본 또는 수정된 버전이나
+   개별 구성 요소는 단독으로 판매될 수 없습니다.
 
-4. When redistributed after modification, the original author must be indicated.
+4. 수정 후 재배포를 하는 경우, 원저작자를 반드시 표기해야 합니다.
 
-*This can also be found in the [LICENSE][LICENSE] file.*
+*이 내용은 [LICENSE][LICENSE] 파일에서도 찾을 수 있습니다.*
 
 ---
 
-## What is FMOD?
+## FMOD가 뭔가요?
 
-FMOD is an audio middleware that processes and manages sound.  
-Mainly used for video games, it helps you use adaptive audio.
+FMOD는 소리를 처리하고 관리하는 오디오 미들웨어(Middleware)입니다.  
+주로 비디오 게임에 사용되며 적응형 오디오를 사용하는 데 도움이 됩니다.
 
-For more details, please watch this video summarized by Scruffy.
+자세한 내용은 아래에 Scruffy님이 요약한 동영상을 확인하세요.
 
 <p align="center">
   <a href="https://youtu.be/p-FLWabby4Y">
-    <img alt="'Scruffy - What is Adaptive Audio?' video thumbnail" width="640" src="https://img.youtube.com/vi/p-FLWabby4Y/maxresdefault.jpg"/>
+    <img alt="'Scruffy - What is Adaptive Audio?' 비디오 썸네일" width="640" src="https://img.youtube.com/vi/p-FLWabby4Y/maxresdefault.jpg"/>
   </a>
 </p>
 
-## Background
+## 만들게 된 배경
 
-This plugin was created for the [2022 1Chicken game jam contest][1map],
-a game jam event hosted by [1Map1Chicken RPG Maker contest][1map-twitter] in Korea.
+이 플러그인은 [1맵 1치킨 알만툴 대회][1map-twitter]에서 주최하는 게임잼 이벤트인
+[2022 1치킨 게임잼][1map]을 위해 만들었습니다.
 
-The game we made by participating in this game jam was DOWNFALLEN,
-and it was the opportunity to create the corresponding plug-in for this game.
+이번 게임잼에 참여해서 만든 게임은 DOWNFALLEN(다운폴른)이었고,
+이 게임에 맞는 플러그인을 만들 수 있는 기회가 만들어졌기 때문입니다.
 
-[You can play it here][DOWNFALLEN].
+[여기에서 플레이 할 수 있습니다][DOWNFALLEN].
 
-## Demonstration
+## 데모
 
-If you curious what it does, watch this video.
+어떤 기능을 하는 지 궁금하시다면 이 영상을 확인하세요.
 
 <p align="center">
   <a href="https://youtu.be/YcVaRldGb4c">
-    <img alt="DOWNFALLEN demonstration video thumbnail" width="640" src="https://img.youtube.com/vi/YcVaRldGb4c/maxresdefault.jpg"/>
+    <img alt="DOWNFALLEN 데모 video thumbnail" width="640" src="https://img.youtube.com/vi/YcVaRldGb4c/maxresdefault.jpg"/>
   </a>
 </p>
 
-## Table of content
+## 목차
 
-- 1\. [Basic knowledge requirements](#1-basic-knowledge-requirements)
+- 1\. [기본적인 지식 요구사항](#1-basic-knowledge-requirements)
 - 2\. [Limitation](#2-limitation)
 - 3\. [Setup project](#3-setup-project)
   * 3.1. [Add plugin to your project](#31-add-plugin-to-your-project)
@@ -110,7 +110,7 @@ If you curious what it does, watch this video.
     + 6.5.1. [Start snapshot](#651-start-snapshot)
     + 6.5.2. [Stop snapshot](#652-stop-snapshot)
 
-# [1.](#table-of-content) Basic knowledge requirements
+# [1.](#table-of-content) 기본적인 지식 요구사항
 
 - Knows how to use FMOD Studio.
 
@@ -1173,7 +1173,7 @@ These examples assume after starting the FMOD Event in the example of [Play BGM]
 [LICENSE]: https://github.com/creta5164/fmod-rmmv/blob/main/LICENSE
 [1map]: https://1map1chicken.com/entries/jam2022
 [1map-twitter]: https://twitter.com/1map1chicken
-[DOWNFALLEN]: https://creta5164.itch.io/downfallen
+[DOWNFALLEN]: https://1map1chicken.com/entries/jam2022/downfallen-다운폴른
 [fmod]: https://www.fmod.com
 [fmod-license]: https://www.fmod.com/licensing
 [fmod-attribution]: https://www.fmod.com/attribution
