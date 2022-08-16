@@ -67,7 +67,48 @@ If you curious what it does, watch this video.
 
 ## Table of content
 
-
+- 1\. [Basic knowledge requirements](#1-basic-knowledge-requirements)
+- 2\. [Limitation](#2-limitation)
+- 3\. [Setup project](#3-setup-project)
+  * 3.1. [Add plugin to your project](#31-add-plugin-to-your-project)
+  * 3.2. [Add FMOD Engine](#32-add-fmod-engine)
+- 4\. [Quick example](#4-quick-example)
+- 5\. [Plugin options](#5-plugin-options)
+  * 5.1. [Total memory](#51-total-memory)
+  * 5.2. [Bank asset path](#52-bank-asset-path)
+  * 5.3. [Bank assets](#53-bank-assets)
+  * 5.4. [GUIDs js path](#54-guids-js-path)
+  * 5.5. [Integrated VCAs](#55-integrated-vcas)
+  * 5.6. [System musics](#56-system-musics)
+  * 5.7. [System music effects](#57-system-music-effects)
+  * 5.8. [System sound effects](#58-system-sound-effects)
+- 6\. [Documentation](#6-documentation)
+  * 6.1. [How Events work in FMOD_MV.js](#61-how-events-work-in-fmod-mvjs)
+  * 6.2. [Playing event](#62-playing-event)
+    + 6.2.1. [Play BGM](#621-play-bgm)
+    + 6.2.2. [Play BGS](#622-play-bgs)
+    + 6.2.3. [Play ME](#623-play-me)
+    + 6.2.4. [Play SE](#624-play-se)
+  * 6.3. [Controls event](#63-controls-event)
+    + 6.3.1. [Stop BGM](#631-stop-bgm)
+    + 6.3.2. [Set BGM Parameter](#632-set-bgm-parameter)
+    + 6.3.3. [Check BGM categorized event is playing](#633-check-bgm-categorized-event-is-playing)
+    + 6.3.4. [Stop BGS](#634-stop-bgs)
+    + 6.3.5. [Set BGS Parameter](#635-set-bgs-parameter)
+    + 6.3.6. [Check BGS categorized event is playing](#636-check-bgs-categorized-event-is-playing)
+    + 6.3.7. [Stop ME](#637-stop-me)
+    + 6.3.8. [Set ME Parameter](#638-set-me-parameter)
+    + 6.3.9. [Check ME categorized event is playing](#639-check-me-categorized-event-is-playing)
+    + 6.3.10. [Stop SE](#6310-stop-se)
+  * 6.4. [Speaker](#64-speaker)
+    + 6.4.1. [Stop Event of target speaker](#641-stop-event-of-target-speaker)
+    + 6.4.2. [Set specific event's parameter of target speaker](#642-set-specific-event-s-parameter-of-target-speaker)
+    + 6.4.3. [Clear specific memorized event parameter settings of Speaker](#643-clear-specific-memorized-event-parameter-settings-of-speaker)
+    + 6.4.4. [Clear all memorized event parameter settings of Speaker](#644-clear-all-memorized-event-parameter-settings-of-speaker)
+    + 6.4.5. [Check any Event of specified GUID is binded](#645-check-any-event-of-specified-guid-is-binded)
+  * 6.5. [Control snapshots](#65-control-snapshots)
+    + 6.5.1. [Start snapshot](#651-start-snapshot)
+    + 6.5.2. [Stop snapshot](#652-stop-snapshot)
 
 # [1.](#table-of-content) Basic knowledge requirements
 
@@ -217,7 +258,7 @@ The space in Celeste is larger than in RPG Maker.
 (Celeste uses 8 units per tile, so larger than 1 unit per tile in RPG Maker)
 
 Now you can check directly at the examples based on this setup
-in the [Basic Usage](#6-basic-usage) section after this section.
+in the [Documentation](#6-documentation) section after this section.
 
 # [5.](#table-of-content) Plugin options
 
@@ -315,7 +356,7 @@ If you leave it blank, it will be played as the sound effect set by RPG Maker. (
 
 Applicable event names can be found in `Event` of [**`GUID script`**][guids-js] created in [GUIDs js path section][guids-js].
 
-# [6.](#table-of-content) Basic usage
+# [6.](#table-of-content) Documentation
 
 FMOD_MV.js is designed in a way to maintain as much unity as possible with RPG Maker.  
 However, it has not yet been implemented to harmonize with all functions of RPG Maker.  
