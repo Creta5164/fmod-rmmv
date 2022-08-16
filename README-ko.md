@@ -859,6 +859,9 @@ FMOD_MV.StopSE(immediateStop, specifiedGuid);
 
 Stops the SE categorized Event.
 
+> Note : If you want to stop the sound from the speaker of
+> a specific character(like player, event, etc.), check the [Speaker](#64-스피커) section.
+
 - `immediateStop` : (Optional) Specifies whether to stop the Event immediately.  
   If not set immediate stop, the event will be stopped gradually as the behavior
   defined for the Event in FMOD Studio.  
@@ -868,8 +871,6 @@ Stops the SE categorized Event.
   You can use the event defined in [**`GUID 스크립트`**][guids-js].  
   If you're not sure what to put in, check out the example below.  
   Default is `null`(all events).
-  > Note : If you want to stop the sound from the speaker of
-  > a specific character(like player, event, etc.), check the [Speaker](#64-스피커) section.
 
 ## [6.4.][toc] 스피커
 
