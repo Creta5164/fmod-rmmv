@@ -723,7 +723,7 @@ Stops the BGS categorized Event.
 
 **Example**
 
-This is similar to [Stop BGM](#621-stop-bgm), check out the [Stop BGM](#621-stop-bgm)'s example.  
+This is similar to [Stop BGM](#631-stop-bgm), check out the [Stop BGM](#631-stop-bgm)'s example.  
 The only difference is that BGM is replaced as BGS. (`FMOD_MV.StopBGS(...)`)
 
 ### [6.3.5.][toc] Set BGS Parameter
@@ -751,7 +751,7 @@ Set the event parameter in BGS categorized specific event.
 
 **Example**
 
-This is similar to [Set BGM Parameter](#622-set-bgm-parameter), check out the [Set BGM Parameter](#622-set-bgm-parameter)'s example.  
+This is similar to [Set BGM Parameter](#632-set-bgm-parameter), check out the [Set BGM Parameter](#632-set-bgm-parameter)'s example.  
 The only difference is that BGM is replaced as BGS. (`FMOD_MV.SetBGSParameter(...)`)
 
 ### [6.3.6.][toc] Check BGS categorized event is playing
@@ -771,7 +771,7 @@ Check if the event is playing in the BGS category.
 
 **Example**
 
-This is similar to [Check BGM categorized event is playing](#623-check-bgm-categorized-event-is-playing), check out the [Check BGM categorized event is playing](#623-check-bgm-categorized-event-is-playing)'s example.  
+This is similar to [Check BGM categorized event is playing](#633-check-bgm-categorized-event-is-playing), check out the [Check BGM categorized event is playing](#633-check-bgm-categorized-event-is-playing)'s example.  
 The only difference is that BGM is replaced as BGS. (`FMOD_MV.BGSIsPlaying(...)`)
 
 ### [6.3.7.][toc] Stop ME
@@ -793,7 +793,7 @@ Stops the ME categorized Event.
 
 **Example**
 
-This is similar to [Stop BGM](#621-stop-bgm), check out the [Stop BGM](#621-stop-bgm)'s example.  
+This is similar to [Stop BGM](#631-stop-bgm), check out the [Stop BGM](#631-stop-bgm)'s example.  
 The only difference is that BGM is replaced as ME. (`FMOD_MV.StopME(...)`)
 
 ### [6.3.8.][toc] Set ME Parameter
@@ -821,7 +821,7 @@ Set the event parameter in ME categorized specific event.
 
 **Example**
 
-This is similar to [Set BGM Parameter](#622-set-bgm-parameter), check out the [Set BGM Parameter](#622-set-bgm-parameter)'s example.  
+This is similar to [Set BGM Parameter](#632-set-bgm-parameter), check out the [Set BGM Parameter](#632-set-bgm-parameter)'s example.  
 The only difference is that BGM is replaced as ME. (`FMOD_MV.SetMEParameter(...)`)
 
 ### [6.3.9.][toc] Check ME categorized event is playing
@@ -841,7 +841,7 @@ Check if the event is playing in the ME category.
 
 **Example**
 
-This is similar to [Check BGM categorized event is playing](#623-check-bgm-categorized-event-is-playing), check out the [Check BGM categorized event is playing](#623-check-bgm-categorized-event-is-playing)'s example.  
+This is similar to [Check BGM categorized event is playing](#633-check-bgm-categorized-event-is-playing), check out the [Check BGM categorized event is playing](#633-check-bgm-categorized-event-is-playing)'s example.  
 The only difference is that BGM is replaced as BGS. (`FMOD_MV.BGSIsPlaying(...)`)
 
 ### [6.3.10.][toc] Stop SE

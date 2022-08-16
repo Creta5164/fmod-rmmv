@@ -85,7 +85,7 @@ FMOD는 소리를 처리하고 관리하는 오디오 미들웨어(Middleware)�
 - 6\. [사용법](#6-사용법)
   * 6.1. [FMOD_MV.js에서 이벤트가 동작하는 방식](#61-fmod_mvjs에서-이벤트가-동작하는-방식)
   * 6.2. [이벤트 재생하기](#62-이벤트-재생하기)
-    + 6.2.1. [BGM 재생](#621-bgm-재생)
+    + 6.2.1. [BGM 재생](#631-bgm-재생)
     + 6.2.2. [BGS 재생](#622-bgs-재생)
     + 6.2.3. [ME 재생](#623-me-재생)
     + 6.2.4. [SE 재생](#624-se-재생)
@@ -464,7 +464,7 @@ Plays Event as BGS category.
 
 **Example**
 
-This is similar to [BGM 재생](#621-bgm-재생), check out the [BGM 재생](#621-bgm-재생)'s example.  
+This is similar to [BGM 재생](#631-bgm-재생), check out the [BGM 재생](#631-bgm-재생)'s example.  
 The only difference is that BGM is replaced as BGS. (`FMOD_MV.PlayBGS(...)`)
 
 ### [6.2.3.][toc] ME 재생
@@ -610,7 +610,7 @@ Stops the BGM categorized Event.
 
 **Example**
 
-These examples assume after starting the FMOD Event in the example of [BGM 재생](#621-bgm-재생).
+These examples assume after starting the FMOD Event in the example of [BGM 재생](#631-bgm-재생).
 
 1. Stops all BGM categorized events.
    ```js
@@ -657,11 +657,11 @@ Set the event parameter in BGM categorized specific event.
 
 **Example**
 
-This example assume after starting the FMOD Event, `music_lvl1_main` in the example of [BGM 재생](#621-bgm-재생).
+This example assume after starting the FMOD Event, `music_lvl1_main` in the example of [BGM 재생](#631-bgm-재생).
 
 1. Set Event `music_lvl1_main`'s parameter, `layer1` to `0` and `layer3` to `0`.  
    > Note : This example assume after starting the FMOD Event,
-   > `music_lvl1_main` in the example of [BGM 재생](#621-bgm-재생)'s first example.
+   > `music_lvl1_main` in the example of [BGM 재생](#631-bgm-재생)'s first example.
    ```js
    FMOD_MV.SetBGMParameter(FMOD_FSPRO.Event.music_lvl1_main, "layer1", 0);
    FMOD_MV.SetBGMParameter(FMOD_FSPRO.Event.music_lvl1_main, "layer3", 0);
@@ -669,7 +669,7 @@ This example assume after starting the FMOD Event, `music_lvl1_main` in the exam
 
 2. Set Event `music_lvl1_main`'s parameter, `layer1` to `0` and `layer2` to `0` and `layer3` to `1` immediately.  
    > Note : This example assume after starting the FMOD Event,
-   > `music_lvl1_main` in the example of [BGM 재생](#621-bgm-재생)'s first example.
+   > `music_lvl1_main` in the example of [BGM 재생](#631-bgm-재생)'s first example.
    ```js
    FMOD_MV.SetBGMParameter(FMOD_FSPRO.Event.music_lvl1_main, "layer1", 0, true);
    FMOD_MV.SetBGMParameter(FMOD_FSPRO.Event.music_lvl1_main, "layer2", 0, true);
@@ -677,7 +677,7 @@ This example assume after starting the FMOD Event, `music_lvl1_main` in the exam
    ```
 
 3. BGM 정지 events and play `music_lvl6_main` then set parameter `layer2` to `1` immediately.  
-   > Note : [`PlayBGM`](#621-bgm-재생) automatically stops it's categorized events
+   > Note : [`PlayBGM`](#631-bgm-재생) automatically stops it's categorized events
    > before starting event if additional option not set.
    ```js
    FMOD_MV.PlayBGM(FMOD_FSPRO.Event.music_lvl6_main);
@@ -730,7 +730,7 @@ Stops the BGS categorized Event.
 
 **Example**
 
-This is similar to [BGM 정지](#621-bgm-정지), check out the [BGM 정지](#621-bgm-정지)'s example.  
+This is similar to [BGM 정지](#631-bgm-정지), check out the [BGM 정지](#631-bgm-정지)'s example.  
 The only difference is that BGM is replaced as BGS. (`FMOD_MV.StopBGS(...)`)
 
 ### [6.3.5.][toc] BGS 파라미터 지정
@@ -758,7 +758,7 @@ Set the event parameter in BGS categorized specific event.
 
 **Example**
 
-This is similar to [BGM 파라미터 지정](#622-bgm-파라미터-지정), check out the [BGM 파라미터 지정](#622-bgm-파라미터-지정)'s example.  
+This is similar to [BGM 파라미터 지정](#632-bgm-파라미터-지정), check out the [BGM 파라미터 지정](#632-bgm-파라미터-지정)'s example.  
 The only difference is that BGM is replaced as BGS. (`FMOD_MV.SetBGSParameter(...)`)
 
 ### [6.3.6.][toc] BGS 카테고리의 이벤트가 재생 중인지 확인
@@ -778,7 +778,7 @@ Check if the event is playing in the BGS category.
 
 **Example**
 
-This is similar to [BGM 카테고리의 이벤트가 재생 중인지 확인](#623-bgm-카테고리의-이벤트가-재생-중인지-확인), check out the [BGM 카테고리의 이벤트가 재생 중인지 확인](#623-bgm-카테고리의-이벤트가-재생-중인지-확인)'s example.  
+This is similar to [BGM 카테고리의 이벤트가 재생 중인지 확인](#633-bgm-카테고리의-이벤트가-재생-중인지-확인), check out the [BGM 카테고리의 이벤트가 재생 중인지 확인](#633-bgm-카테고리의-이벤트가-재생-중인지-확인)'s example.  
 The only difference is that BGM is replaced as BGS. (`FMOD_MV.BGSIsPlaying(...)`)
 
 ### [6.3.7.][toc] ME 정지
@@ -800,7 +800,7 @@ Stops the ME categorized Event.
 
 **Example**
 
-This is similar to [BGM 정지](#621-bgm-정지), check out the [BGM 정지](#621-bgm-정지)'s example.  
+This is similar to [BGM 정지](#631-bgm-정지), check out the [BGM 정지](#631-bgm-정지)'s example.  
 The only difference is that BGM is replaced as ME. (`FMOD_MV.StopME(...)`)
 
 ### [6.3.8.][toc] ME 파라미터 지정
@@ -828,7 +828,7 @@ Set the event parameter in ME categorized specific event.
 
 **Example**
 
-This is similar to [BGM 파라미터 지정](#622-bgm-파라미터-지정), check out the [BGM 파라미터 지정](#622-bgm-파라미터-지정)'s example.  
+This is similar to [BGM 파라미터 지정](#632-bgm-파라미터-지정), check out the [BGM 파라미터 지정](#632-bgm-파라미터-지정)'s example.  
 The only difference is that BGM is replaced as ME. (`FMOD_MV.SetMEParameter(...)`)
 
 ### [6.3.9.][toc] ME 카테고리의 이벤트가 재생 중인지 확인
@@ -848,7 +848,7 @@ Check if the event is playing in the ME category.
 
 **Example**
 
-This is similar to [BGM 카테고리의 이벤트가 재생 중인지 확인](#623-bgm-카테고리의-이벤트가-재생-중인지-확인), check out the [BGM 카테고리의 이벤트가 재생 중인지 확인](#623-bgm-카테고리의-이벤트가-재생-중인지-확인)'s example.  
+This is similar to [BGM 카테고리의 이벤트가 재생 중인지 확인](#633-bgm-카테고리의-이벤트가-재생-중인지-확인), check out the [BGM 카테고리의 이벤트가 재생 중인지 확인](#633-bgm-카테고리의-이벤트가-재생-중인지-확인)'s example.  
 The only difference is that BGM is replaced as BGS. (`FMOD_MV.BGSIsPlaying(...)`)
 
 ### [6.3.10.][toc] SE 정지
@@ -1124,7 +1124,7 @@ Note that the GUID used here must be the GUID of `Snapshot`, not `Event`.
 
 **Example**
 
-These examples assume after starting the FMOD Event in the example of [BGM 재생](#621-bgm-재생).
+These examples assume after starting the FMOD Event in the example of [BGM 재생](#631-bgm-재생).
 
 This example activates `pause_menu`, a snapshot
 that controls the Bus to which music events are routed.
@@ -1154,7 +1154,7 @@ Stops snapshot.
 
 **Example**
 
-These examples assume after starting the FMOD Event in the example of [BGM 재생](#621-bgm-재생).
+These examples assume after starting the FMOD Event in the example of [BGM 재생](#631-bgm-재생).
 
 1. Stops all snapshots.
    ```js
