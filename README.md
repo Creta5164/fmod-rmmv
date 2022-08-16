@@ -82,7 +82,7 @@ If you curious what it does, watch this video.
   * 5.6. [System musics](#56-system-musics)
   * 5.7. [System music effects](#57-system-music-effects)
   * 5.8. [System sound effects](#58-system-sound-effects)
-- 6\. [Documentation](#6-documentation)
+- 6\. [How to use](#6-how-to-use)
   * 6.1. [How Events work in FMOD_MV.js](#61-how-events-work-in-fmod-mvjs)
   * 6.2. [Playing event](#62-playing-event)
     + 6.2.1. [Play BGM](#621-play-bgm)
@@ -258,7 +258,7 @@ The space in Celeste is larger than in RPG Maker.
 (Celeste uses 8 units per tile, so larger than 1 unit per tile in RPG Maker)
 
 Now you can check directly at the examples based on this setup
-in the [Documentation](#6-documentation) section after this section.
+in the [How to use](#6-how-to-use) section after this section.
 
 # [5.](#table-of-content) Plugin options
 
@@ -356,7 +356,7 @@ If you leave it blank, it will be played as the sound effect set by RPG Maker. (
 
 Applicable event names can be found in `Event` of [**`GUID script`**][guids-js] created in [GUIDs js path section][guids-js].
 
-# [6.](#table-of-content) Documentation
+# [6.](#table-of-content) How to use
 
 FMOD_MV.js is designed in a way to maintain as much unity as possible with RPG Maker.  
 However, it has not yet been implemented to harmonize with all functions of RPG Maker.  
