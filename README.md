@@ -253,6 +253,9 @@ And then build the [Celeste FMOD Studio Project][fmod-learning-resources], and s
 [Bank assets](#53-bank-assets),
 and [GUIDs js path](#54-guids-js-path) in this section.
 
+> **Note : If the Celeste FMOD Studio project used in this document is used for**
+> **purposes other than checking examples, legal problems may arise.**
+
 Make the map as large as possible (75x75 or larger) so that you can clearly
 determine the direction and location of the sounds.
 
