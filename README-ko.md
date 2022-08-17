@@ -12,9 +12,7 @@
 제작 : Creta Park (https://creft.me/cretapark)
 
 이 플러그인의 라이선스는 MIT 라이선스의 변형을 사용하므로,
-아래의 조건을 준수하는 한 자유롭게 사용할 수 있습니다.
-
-아래의 라이센스 허가 조건을 준수하세요.
+아래의 라이센스 허가 조건을 준수하는 한 자유롭게 사용할 수 있습니다.
 
 1. 이 플러그인을 다른 소프트웨어와 함께 사용하는 경우,
    소프트웨어는 RPG 만들기로 개발 및 제작 된 게임이어야 하며,
@@ -199,7 +197,8 @@ ENVIRONMENT_IS_NODE=typeof process==="object"&&typeof process
 ```
 `ENVIRONMENT_IS_NODE=` 뒤에 `false&&`를 쓴 후, 저장하세요.
 
-그런 다음, 프로젝트 폴더의 `index.html`을 열고, `<body>` 태그 안에 아래와 같이 한 줄을 추가합니다.
+그런 다음, 프로젝트 폴더의 `index.html`을 열고, `<body>` 태그 안에
+아래와 같이 한 줄을 `rpg_core.js`가 포함 된 태그보다 앞에 추가합니다.
 
 ```
 <script type="text/javascript" src="js/libs/fmodstudio.js"></script>

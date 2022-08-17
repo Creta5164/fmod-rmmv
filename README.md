@@ -14,8 +14,6 @@ Created by Creta Park (https://creft.me/cretapark)
 This plugin's license is a variant of the MIT License,
 so you are free to use it as long as you comply with these terms.
 
-Please observe the license terms below :
-
 1. When using this plugin with other software, the software must be
    a game developed and made with RPG Maker, and `FMOD_MV.js by Creta Park`
    must be written in the credit of these game.
@@ -198,7 +196,8 @@ ENVIRONMENT_IS_NODE=typeof process==="object"&&typeof process
 ```
 Add `false&&` after `ENVIRONMENT_IS_NODE=` and save it.
 
-Then, open `index.html` in the project folder and add the following line as below into `<body>` tags.
+Then, open `index.html` in the project folder, and add a line
+like the following inside the `<body>` tag before tag that contained `rpg_core.js`.
 
 ```
 <script type="text/javascript" src="js/libs/fmodstudio.js"></script>
