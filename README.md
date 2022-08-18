@@ -179,12 +179,7 @@ Plugin's order doesn't matter, unless you're using additional audio-related feat
 ## [3.2.][toc] Add FMOD Engine
 
 ![download-fmod-html5](./img/download-fmod-html5.png)  
-[Download FMOD Engine at here][fmod-download], it requires HTML5 version.  
-Please use version `2.01.13` for now, it's verified by me (works well on DOWNFALLEN).  
-[Here's why in this thread][nwjs-problem].
-
-![download-fmod-studio](./img/download-fmod-studio.png)  
-Because of we downloaded the `2.01.13` version of engine above, so I recommended to use Studio program with `2.01.13` version too for minimize problems.
+[Download FMOD Engine at here][fmod-download], it requires HTML5 version.
 
 ![add-library-to-project](./img/add-library-to-project.png)  
 Put `fmodstudio.js` and `fmodstudio.wasm` in `api/studio/lib/upstream/wasm` of the downloaded zip file into `js/lib` in the project folder.
@@ -194,7 +189,10 @@ Then open `fmodstudio.js` with text editor and find the section
 ```js
 ENVIRONMENT_IS_NODE=typeof process==="object"&&typeof process
 ```
-Add `false&&` after `ENVIRONMENT_IS_NODE=` and save it.
+Add `false&&` after `ENVIRONMENT_IS_NODE=` and save it.  
+
+> Note : This modification is to force the FMOD engine to run in the web environment.  
+> The reason is explained in [this thread][nwjs-problem].
 
 Then, open `index.html` in the project folder, and add a line
 like the following inside the `<body>` tag before tag that contained `rpg_core.js`.
@@ -375,7 +373,7 @@ All guides presented here are based on **script event**.
 
 ## [6.1.][toc] How Events work in FMOD_MV.js
 
-By default, in FMOD, all sounds is Event, but here you can decide which category to play the Event you want to play in: `BGM`, `BGS`, `ME`, `SE`.  
+Basically, in FMOD, every sound is an event, but here I made the concept of a category to classify the event into `BGM`, `BGS`, `ME`, `SE`.  
 As mentioned earlier, this is because the focus is on unifying the functional elements with RPG Maker.  
 Such as assigning the Event played in the `BGM` and `BGS` categories in the save and replaying them when they are recalled.
 
@@ -411,7 +409,7 @@ FMOD_MV.PlayBGM(guid, isAppend, immediateStop);
 Plays Event as BGM category.
 
 - `guid` : The Event GUID you want to play in the BGM category.  
-  You can use the event defined in [**`GUID script`**][guids-js].  
+  You can use the event guids defined in [**`GUID script`**][guids-js].  
   If you're not sure what to put in, check out the example below.
 
 - `isAppend` : (Optional) Determines whether to play a new BGM event while leaving the playing BGM as it is.  
@@ -447,7 +445,7 @@ FMOD_MV.PlayBGS(guid, isAppend, immediateStop);
 Plays Event as BGS category.
 
 - `guid` : The Event GUID you want to play in the BGS category.  
-  You can use the event defined in [**`GUID script`**][guids-js].  
+  You can use the event guids defined in [**`GUID script`**][guids-js].  
   If you're not sure what to put in, check out the example below.
 
 - `isAppend` : (Optional) Determines whether to play a new BGS event while leaving the playing BGS as it is.  
@@ -468,14 +466,16 @@ The only difference is that BGM is replaced as BGS. (`FMOD_MV.PlayBGS(...)`)
 FMOD_MV.PlayME(guid, immediateStop);
 ```
 
-Plays Event as ME category.  
-As with RPG Maker, when an event in the ME category is triggered, the BGM remembers the state and goes into a stopped state.  
-When all MEs are finished or stopped, the BGM recalls what it remembered and plays it again.
+Plays Event as ME category.
+
+As with RPG Maker, when an event in the ME category is triggered, the BGM remembers the state and goes into a stopped state.
+
+When MEs are finished or stopped, the BGM recalls what it remembered and plays it again.
 
 > Note : FMOD Events played in this category will not be recorded in save file.
 
 - `guid` : The Event GUID you want to play in the ME category.  
-  You can use the event defined in [**`GUID script`**][guids-js].  
+  You can use the event guids defined in [**`GUID script`**][guids-js].  
   If you're not sure what to put in, check out the example below.
 
 - `immediateStop` : (Optional) Determines how the FMOD stops previously playing music.  
@@ -506,22 +506,22 @@ It has the most functions, please read carefully and check it with examples.
 > Note : FMOD Events played in this category will not be recorded in save file.
 
 - `guid` : The Event GUID you want to play in the SE category.  
-  You can use the event defined in [**`GUID script`**][guids-js].  
+  You can use the event guids defined in [**`GUID script`**][guids-js].  
   If you're not sure what to put in, check out the example below.
 
 - `at` : (Optional) Specifies where the sound is coming from.  
-  Acceptable values are below, default is `null`(none).
+  Acceptable values are below, default is `null`(none, camera position).
   
   - `this` is for RPG Maker event itself that executing this script.  
     There's also have explicit expression as `this.event()`.  
-    It will be bound to this character's `Speaker`.
+    It will be bound to this event character's [Speaker](#64-speaker).
   
   - `$gamePlayer` is for player character.  
-    It will be bound to player character's `Speaker`.
+    It will be bound to player character's [Speaker](#64-speaker).
   
   - `$gameMap.event(<ID>)` is for RPG Maker event in current map by ID.  
     In example, if you want make sound to RPG Maker event with ID 12 then use `$gameMap.event(12)`.  
-    It will be bound to target RPG Maker event character's `Speaker`.
+    It will be bound to target RPG Maker event character's [Speaker](#64-speaker).
   
   - `{x:<X>,y:<Y>}` is for only specifying sound's location.  
     In example, if you want make sound to event on `X:51`, `Y:64` then use `{x:51,y:64}`.  
@@ -542,7 +542,8 @@ It has the most functions, please read carefully and check it with examples.
   - `Value` : The value to assign to the corresponding parameter.  
     FMOD Studio allows you to specify different formats for parameters, but these formats are all numeric as a result.
   
-  - `Immediate Set` : Specifies that this parameter will be assigned directly.  
+  - `Immediate Set` : Whether to override the acceleration setting of the parameter
+    specified in FMOD Studio and immediately assign the parameter's value.  
     Acceptable value is `true` for yes, `false` for no.
   
   For detailed usage examples, please refer to the **Example** below.
@@ -564,14 +565,14 @@ It has the most functions, please read carefully and check it with examples.
    FMOD_MV.PlaySE(FMOD_FSPRO.Event.game_general_spring, $gameMap.event(1));
    ```
 
-4. Play `char_madeline_footstep` at player, with set parameter `surface_index` to `5`.
+4. Play `char_madeline_footstep` at player, with set parameter `surface_index` to `5` immediately.
    ```js
    FMOD_MV.PlaySE(FMOD_FSPRO.Event.char_madeline_footstep, $gamePlayer, {
      "surface_index": [5, true]
    });
    ```
 
-5. Play `char_madeline_footstep` at player, with set parameter `surface_index` as player's located region ID.
+5. Play `char_madeline_footstep` at player, with set parameter `surface_index` as player's located region ID immediately.
    ```js
    FMOD_MV.PlaySE(FMOD_FSPRO.Event.char_madeline_footstep, $gamePlayer, {
      "surface_index": [$gameMap.regionId($gamePlayer.x, $gamePlayer.y), true]
@@ -594,18 +595,20 @@ FMOD_MV.StopBGM(immediateStop, specifiedGuid);
 
 Stops the BGM categorized Event.
 
+> Note : This only stops the audio on the FMOD side.
+
 - `immediateStop` : (Optional) Specifies whether to stop the Event immediately.  
   If not set immediate stop, the event will be stopped gradually as the behavior defined for the Event in FMOD Studio.  
   Acceptable value is `true` for yes, `false` for no, and default is `false`.
 
 - `specifiedGuid` : (Optional) The Event you want to stop in the BGM category.  
-  You can use the event defined in [**`GUID script`**][guids-js].  
+  You can use the event guids defined in [**`GUID script`**][guids-js].  
   If you're not sure what to put in, check out the example below.
   Default is `null`(all events).
 
 **Example**
 
-These examples assume after starting the FMOD Event in the example of [Play BGM](#621-play-bgm).
+This example assume after starting the FMOD Event, `music_lvl1_main` in the example of [Play BGM](#621-play-bgm).
 
 1. Stops all BGM categorized events.
    ```js
@@ -617,12 +620,12 @@ These examples assume after starting the FMOD Event in the example of [Play BGM]
    FMOD_MV.StopBGM(true);
    ```
 
-3. Stops specific BGM. (`music_lvl1_main` in this case)
+3. Stops BGM of `music_lvl1_main`.
    ```js
    FMOD_MV.StopBGM(false, FMOD_FSPRO.Event.music_lvl1_main);
    ```
 
-4. Stops specific BGM immediately. (`music_lvl1_main` in this case)
+4. Stops BGM of `music_lvl1_main` immediately.
    ```js
    FMOD_MV.StopBGM(true, FMOD_FSPRO.Event.music_lvl1_main);
    ```
@@ -630,13 +633,13 @@ These examples assume after starting the FMOD Event in the example of [Play BGM]
 ### [6.3.2.][toc] Set BGM Parameter
 
 ```js
-FMOD_MV.SetBGMParameter(guid, name, value, skip);
+FMOD_MV.SetBGMParameter(guid, name, value, immediateSet);
 ```
 
 Set the event parameter in BGM categorized specific event.
 
 - `guid` : The Event GUID you want to set parameter in the BGM category.  
-  You can use the event defined in [**`GUID script`**][guids-js].  
+  You can use the event guids defined in [**`GUID script`**][guids-js].  
   If you're not sure what to put in, check out the example below.
 
 - `name` : The parameter name you want to specify in the event.  
@@ -646,7 +649,7 @@ Set the event parameter in BGM categorized specific event.
 - `value` : A numeric value to set for the parameter you want to assign.  
   The range of this value is the range set in FMOD Studio for the parameter you put in the target Event.
 
-- `skip` : Whether to override the acceleration setting of the parameter
+- `immediateSet` : Whether to override the acceleration setting of the parameter
   specified in FMOD Studio and immediately assign the parameter's value.  
   Acceptable value is `true` for yes, `false` for no, and default is `false`.
 
@@ -655,16 +658,12 @@ Set the event parameter in BGM categorized specific event.
 This example assume after starting the FMOD Event, `music_lvl1_main` in the example of [Play BGM](#621-play-bgm).
 
 1. Set Event `music_lvl1_main`'s parameter, `layer1` to `0` and `layer3` to `0`.  
-   > Note : This example assume after starting the FMOD Event,
-   > `music_lvl1_main` in the example of [Play BGM](#621-play-bgm)'s first example.
    ```js
    FMOD_MV.SetBGMParameter(FMOD_FSPRO.Event.music_lvl1_main, "layer1", 0);
    FMOD_MV.SetBGMParameter(FMOD_FSPRO.Event.music_lvl1_main, "layer3", 0);
    ```
 
 2. Set Event `music_lvl1_main`'s parameter, `layer1` to `0` and `layer2` to `0` and `layer3` to `1` immediately.  
-   > Note : This example assume after starting the FMOD Event,
-   > `music_lvl1_main` in the example of [Play BGM](#621-play-bgm)'s first example.
    ```js
    FMOD_MV.SetBGMParameter(FMOD_FSPRO.Event.music_lvl1_main, "layer1", 0, true);
    FMOD_MV.SetBGMParameter(FMOD_FSPRO.Event.music_lvl1_main, "layer2", 0, true);
@@ -687,10 +686,12 @@ FMOD_MV.BGMIsPlaying(guid)
 
 Check if the event is playing in the BGM category.
 
+> Note : This only checks on the FMOD side.
+
 > Note : Even when the event is stopping, it is detected as being played.
 
 - `guid` : (Optional) The Event you want to check is playing in the BGM category.  
-  You can use the event defined in [**`GUID script`**][guids-js].  
+  You can use the event guids defined in [**`GUID script`**][guids-js].  
   If you're not sure what to put in, check out the example below.  
   Default is `null`(any events is playing in BGM).
 
@@ -703,7 +704,7 @@ With or without `music_lvl1_main` being played as BGM, you can check both dialog
   ◆ Dialogue : music_lvl1_main is playing!
 : Else
   ◆ Dialogue : music_lvl1_main is not playing...
-:Condition End
+: Condition End
 ```
 
 ### [6.3.4.][toc] Stop BGS
@@ -714,12 +715,14 @@ FMOD_MV.StopBGS(immediateStop, specifiedGuid);
 
 Stops the BGS categorized Event.
 
+> Note : This only stops the audio on the FMOD side.
+
 - `immediateStop` : (Optional) Specifies whether to stop the Event immediately.  
   If not set immediate stop, the event will be stopped gradually as the behavior defined for the Event in FMOD Studio.  
   Acceptable value is `true` for yes, `false` for no, and default is `false`.
 
 - `specifiedGuid` : (Optional) The Event you want to stop in the BGS category.  
-  You can use the event defined in [**`GUID script`**][guids-js].  
+  You can use the event guids defined in [**`GUID script`**][guids-js].  
   If you're not sure what to put in, check out the example below.
   Default is `null`(all events).
 
@@ -731,13 +734,13 @@ The only difference is that BGM is replaced as BGS. (`FMOD_MV.StopBGS(...)`)
 ### [6.3.5.][toc] Set BGS Parameter
 
 ```js
-FMOD_MV.SetBGSParameter(guid, name, value, skip);
+FMOD_MV.SetBGSParameter(guid, name, value, immediateSet);
 ```
 
 Set the event parameter in BGS categorized specific event.
 
 - `guid` : The Event GUID you want to set parameter in the BGS category.  
-  You can use the event defined in [**`GUID script`**][guids-js].  
+  You can use the event guids defined in [**`GUID script`**][guids-js].  
   If you're not sure what to put in, check out the example below.
 
 - `name` : The parameter name you want to specify in the event.  
@@ -747,7 +750,7 @@ Set the event parameter in BGS categorized specific event.
 - `value` : A numeric value to set for the parameter you want to assign.  
   The range of this value is the range set in FMOD Studio for the parameter you put in the target Event.
 
-- `skip` : Whether to override the acceleration setting of the parameter
+- `immediateSet` : Whether to override the acceleration setting of the parameter
   specified in FMOD Studio and immediately assign the parameter's value.  
   Acceptable value is `true` for yes, `false` for no, and default is `false`.
 
@@ -764,10 +767,12 @@ FMOD_MV.BGSIsPlaying(guid)
 
 Check if the event is playing in the BGS category.
 
+> Note : This only checks on the FMOD side.
+
 > Note : Even when the event is stopping, it is detected as being played.
 
 - `guid` : (Optional) The Event you want to check is playing in the BGS category.  
-  You can use the event defined in [**`GUID script`**][guids-js].  
+  You can use the event guids defined in [**`GUID script`**][guids-js].  
   If you're not sure what to put in, check out the example below.  
   Default is `null`(any events is playing in BGS).
 
@@ -784,12 +789,14 @@ FMOD_MV.StopME(immediateStop, specifiedGuid);
 
 Stops the ME categorized Event.
 
+> Note : This only stops the audio on the FMOD side.
+
 - `immediateStop` : (Optional) Specifies whether to stop the Event immediately.  
   If not set immediate stop, the event will be stopped gradually as the behavior defined for the Event in FMOD Studio.  
   Acceptable value is `true` for yes, `false` for no, and default is `false`.
 
 - `specifiedGuid` : (Optional) The Event you want to stop in the ME category.  
-  You can use the event defined in [**`GUID script`**][guids-js].  
+  You can use the event guids defined in [**`GUID script`**][guids-js].  
   If you're not sure what to put in, check out the example below.  
   Default is `null`(all events).
 
@@ -801,13 +808,13 @@ The only difference is that BGM is replaced as ME. (`FMOD_MV.StopME(...)`)
 ### [6.3.8.][toc] Set ME Parameter
 
 ```js
-FMOD_MV.SetMEParameter(guid, name, value, skip);
+FMOD_MV.SetMEParameter(guid, name, value, immediateSet);
 ```
 
 Set the event parameter in ME categorized specific event.
 
 - `guid` : The Event GUID you want to set parameter in the ME category.  
-  You can use the event defined in [**`GUID script`**][guids-js].  
+  You can use the event guids defined in [**`GUID script`**][guids-js].  
   If you're not sure what to put in, check out the example below.
 
 - `name` : The parameter name you want to specify in the event.  
@@ -817,7 +824,7 @@ Set the event parameter in ME categorized specific event.
 - `value` : A numeric value to set for the parameter you want to assign.  
   The range of this value is the range set in FMOD Studio for the parameter you put in the target Event.
 
-- `skip` : Whether to override the acceleration setting of the parameter
+- `immediateSet` : Whether to override the acceleration setting of the parameter
   specified in FMOD Studio and immediately assign the parameter's value.  
   Acceptable value is `true` for yes, `false` for no, and default is `false`.
 
@@ -834,10 +841,12 @@ FMOD_MV.MEIsPlaying(guid)
 
 Check if the event is playing in the ME category.
 
+> Note : This only checks on the FMOD side.
+
 > Note : Even when the event is stopping, it is detected as being played.
 
 - `guid` : (Optional) The Event you want to check is playing in the ME category.  
-  You can use the event defined in [**`GUID script`**][guids-js].  
+  You can use the event guids defined in [**`GUID script`**][guids-js].  
   If you're not sure what to put in, check out the example below.  
   Default is `null`(any events is playing in ME).
 
@@ -854,6 +863,8 @@ FMOD_MV.StopSE(immediateStop, specifiedGuid);
 
 Stops the SE categorized Event.
 
+> Note : This only stops the audio on the FMOD side.
+
 > Note : If you want to stop the sound from the speaker of
 > a specific character(like player, event, etc.), check the [Speaker](#64-speaker) section.
 
@@ -863,18 +874,15 @@ Stops the SE categorized Event.
   Acceptable value is `true` for yes, `false` for no, and default is `false`.
 
 - `specifiedGuid` : (Optional) The Event you want to stop in the SE category.  
-  You can use the event defined in [**`GUID script`**][guids-js].  
+  You can use the event guids defined in [**`GUID script`**][guids-js].  
   If you're not sure what to put in, check out the example below.  
   Default is `null`(all events).
 
 ## [6.4.][toc] Speaker
 
 Speaker is made for make the sound as if it is coming from the target
-by attributing the FMOD Event, or to manage the parameters of
+by binding the FMOD Event, or to manage the parameters of
 a specific Event separately.
-
-Remember that you can manage parameters separately by attributing
-specific sounds as well.
 
 Events that are playing on the speaker are automatically removed
 from the speaker when playback ends.
@@ -896,7 +904,7 @@ Speakers can be obtained from characters such as events or player.
    this.event().speaker()
    ```
 
-3. Get the speaker of the specific event with `ID:1`.
+3. Get the speaker of the specific event with `ID:1`
    ```js
    $gameMap.event(1).speaker()
    ```
@@ -914,7 +922,7 @@ Stops target Speaker's Event.
   Acceptable value is `true` for yes, `false` for no, and default is `false`.
 
 - `specifiedGuid` : (Optional) The Event you want to stop in target Speaker's binded Event.  
-  You can use the event defined in [**`GUID script`**][guids-js].  
+  You can use the event guids defined in [**`GUID script`**][guids-js].  
   If you're not sure what to put in, check out the example below.
   Default is `null`(all events).
 
@@ -932,12 +940,12 @@ These examples assume after starting the FMOD Event in the 2, 3, 4, 5 example of
    (target).speaker().stopEvent(true);
    ```
 
-3. Stops specific (`game_general_spring` in this case) Event of target Speaker
+3. Stops `game_general_spring` Event of target Speaker
    ```js
    (target).speaker().stopEvent(false, FMOD_FSPRO.Event.game_general_spring);
    ```
 
-4. Stops specific (`game_general_spring` in this case) Event of target Speaker immediately.
+4. Stops `game_general_spring` Event of target Speaker immediately.
    ```js
    (target).speaker().stopEvent(true, FMOD_FSPRO.Event.game_general_spring);
    ```
@@ -945,7 +953,7 @@ These examples assume after starting the FMOD Event in the 2, 3, 4, 5 example of
 ### [6.4.2.][toc] Set specific event's parameter of target speaker
 
 ```js
-(target).speaker().setParameter(guid, name, value, skip);
+(target).speaker().setParameter(guid, name, value, immediateSet);
 ```
 
 Set the event parameter in this speaker's specific event.
@@ -954,11 +962,11 @@ If you specify a parameter for the corresponding event GUID,
 Speaker remembers the set value of the parameter and assigns each parameter of the binded event
 with the corresponding ID to the memorized value.
 
-Parameters set for the event character's Speaker operating on the current map
-or player character's Speaker are saved in the game save.
+> Note : Parameters set for the event character's Speaker operating on the current map
+> or player character's Speaker are saved in the game save.
 
 - `guid` : The Event GUID you want to set parameter in this speaker.  
-  You can use the event defined in [**`GUID script`**][guids-js].  
+  You can use the event guids defined in [**`GUID script`**][guids-js].  
   If you're not sure what to put in, check out the example below.
 
 - `name` : The parameter name you want to specify in the event.  
@@ -968,7 +976,7 @@ or player character's Speaker are saved in the game save.
 - `value` : A numeric value to set for the parameter you want to assign.  
   The range of this value is the range set in FMOD Studio for the parameter you put in the target Event.
 
-- `skip` : Whether to override the acceleration setting of the parameter
+- `immediateSet` : Whether to override the acceleration setting of the parameter
   specified in FMOD Studio and immediately assign the parameter's value.  
   Acceptable value is `true` for yes, `false` for no, and default is `false`.
 
@@ -978,12 +986,12 @@ This example assumes runs script below.
 ```js
 FMOD_MV.PlaySE(FMOD_FSPRO.Event.char_dialogue_madeline, <target>);
 ```
-Playing `char_dialogue_madeline` event in SE category to the `<target>` via [PlaySE][play-se].
+Plays `char_dialogue_madeline` event in SE category to the `<target>`'s speaker via [PlaySE][play-se].
 
 As you can see this in [Celeste FMOD Studio project](#4-quick-example),
 this event is always playing, so only can stop this event by manually stop it.
 
-Use [Stop Event of target speaker](#631-stop-event-of-target-speaker) in this example's case.
+Use [Stop Event of target speaker](#631-stop-event-of-target-speaker) to stop in this example's case.
 
 1. Start talking sound in normal by setting parameter `dialogue_portrait` to `1`.
    ```js
@@ -1013,8 +1021,8 @@ Clears all parameter settings memorized with the specified event GUID in target 
 > Note : Since this is a function that clears the memorized parameter settings,
 > so the parameter settings of the already playing event are not set to the initial values.
 
-- `guid` : The Event GUID you want to set parameter in this speaker.  
-  You can use the event defined in [**`GUID script`**][guids-js].  
+- `guid` : The Event GUID you want to clear parameter in this speaker.  
+  You can use the event guids defined in [**`GUID script`**][guids-js].  
   If you're not sure what to put in, check out the example below.
 
 **Example**
@@ -1045,7 +1053,7 @@ Clears all parameter settings memorized of all event GUID in target Speaker.
 Checks if there is an event that is active on the target speaker through the event GUID.
 
 - `guid` : The Event GUID you want to set parameter in this speaker.  
-  You can use the event defined in [**`GUID script`**][guids-js].  
+  You can use the event guids defined in [**`GUID script`**][guids-js].  
   If you're not sure what to put in, check out the example below.
 
 **Example**
@@ -1066,12 +1074,12 @@ Put the event contents below into an parallel processing transparent event.
   ◆ Wait : 60 frame(s)
 : Else
   ◆ Script : FMOD_MV.PlaySE(FMOD_FSPRO.Event.env_local_03_resort_broken_window_large, this);
-:Condition End
+: Condition End
 ```
 
 Since the sound effects are not saved in the game save, so you can use this method to play the 3D ambient sound infinitely.
 
-> Note : You can also check this replacing event to `env_local_03_resort_broken_window_small`.
+> Note : You can also check this by replacing event to `env_local_03_resort_broken_window_small`.
 
 > Note : When routing events to FMOD's Bus/VCA, local environment sounds (for example, sound of wind `env_local_03_resort_broken_window_large` of this example) are should routed to BGS, and when using them in RPG Maker, I recommended to use [PlaySE][play-se].
 > 
@@ -1085,9 +1093,9 @@ Since the sound effects are not saved in the game save, so you can use this meth
 
 ```mermaid
 graph LR;
-  audio[Audio resource]--Uses to-->event[Event];
+  audio[Audio files]--Uses to-->event[Event];
   event--Route to Bus-->bus[Bus];
-  bus--Post-processing-->vca[VCA];
+  bus--Post-processed audio-->vca[VCA];
   vca--Audio with volume-->device[User's audio device];
   snap[Snapshots]--Applies preset-->bus;
 ```
@@ -1138,6 +1146,8 @@ FMOD_MV.StopSnapshot(immediateStop, specifiedGuid);
 ```
 
 Stops snapshot.
+
+Note that the GUID used here must be the GUID of `Snapshot`, not `Event`.
 
 - `immediateStop` : (Optional) Specifies whether to stop the snapshot immediately.  
   If not set immediate stop, the snapshot will be stopped gradually as the behavior defined for the snapshot in FMOD Studio.  
