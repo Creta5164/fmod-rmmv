@@ -4,6 +4,8 @@
   <img alt="FMOD_MV.js" width="640" src="./og-image.png"/>
 </p>
 
+[한국어](./README-ko.md)
+
 This plugin integrated with FMOD by Firelight Technologies Pty Ltd.  
 You can use industry-leading audio engine for RPG Maker MV.
 
