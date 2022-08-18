@@ -3,7 +3,7 @@
 <p align="center">
   <img alt="FMOD_MV.js" width="640" src="./og-image.png"/>
   <br>
-  <a href="./README-ko.md">한국어</a>
+  <a href="./README-ko.md">한국어 메뉴얼 보기</a>
 </p>
 
 This plugin integrated with FMOD by Firelight Technologies Pty Ltd.  
