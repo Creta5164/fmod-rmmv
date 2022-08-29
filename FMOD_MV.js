@@ -2440,6 +2440,12 @@ function FMOD_MV() {
     
     FMOD_MV.InitializeVCAs = function() {
         
+        if (typeof FMOD_FSPRO.VCA === 'undefined') {
+            
+            FMOD_MV.Warn("No VCA found in GUID, you must use VCA for control volume feature.\nSee FMOD docs : https://www.fmod.com/docs/2.01/studio/mixing.html#vcas ");
+            return;
+        }
+        
         //BGM
         if (!FMOD_MV.VCA_BGM && FMOD_FSPRO.VCA.BGM)
             FMOD_MV.VCA_BGM = FMOD_FSPRO.VCA.BGM;
