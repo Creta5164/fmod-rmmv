@@ -1,6 +1,6 @@
 /*:
  * @plugindesc This plugin integrated with FMOD by Firelight Technologies Pty Ltd.
- * Version : alpha-1.0.1
+ * Version : alpha-1.0.2
  * @author Creta Park (https://creft.me/cretapark)
  *
  * @help
@@ -263,7 +263,7 @@
  */
 /*:ko
  * @plugindesc 이 플러그인은 Firelight Technologies Pty Ltd의 FMOD를 적용합니다.
- * 버전 : alpha-1.0.1
+ * 버전 : alpha-1.0.2
  * @author Creta Park (https://creft.me/cretapark)
  *
  * @help
