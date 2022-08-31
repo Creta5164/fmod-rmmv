@@ -2447,32 +2447,80 @@ function FMOD_MV() {
         }
         
         //BGM
-        if (!FMOD_MV.VCA_BGM && FMOD_FSPRO.VCA.BGM)
-            FMOD_MV.VCA_BGM = FMOD_FSPRO.VCA.BGM;
+        if (!FMOD_MV.VCA_BGM) {
+            
+            if (FMOD_FSPRO.VCA.BGM) {
+                
+                FMOD_MV.VCA_BGM = FMOD_FSPRO.VCA.BGM;
+                FMOD_MV.Log("VCA for BGM found.");
+            }
+            
+            else
+                FMOD_MV.Warn("BGM VCA was not specified, so FMOD MV tried to find BGM, but it's not exist in the VCA.");
+        }
         
-        else if (FMOD_MV.VCA_BGM in FMOD_FSPRO.VCA)
+        else if (FMOD_MV.VCA_BGM in FMOD_FSPRO.VCA) {
+            
+            FMOD_MV.Log("Manually setted VCA for BGM found.");
             FMOD_MV.VCA_BGM = FMOD_FSPRO.VCA[FMOD_MV.VCA_BGM];
+        }
         
         //BGS
-        if (!FMOD_MV.VCA_BGS && FMOD_FSPRO.VCA.BGS)
-            FMOD_MV.VCA_BGS = FMOD_FSPRO.VCA.BGS;
+        if (!FMOD_MV.VCA_BGS) {
+            
+            if (FMOD_FSPRO.VCA.BGS) {
+                
+                FMOD_MV.VCA_BGS = FMOD_FSPRO.VCA.BGS;
+                FMOD_MV.Log("VCA for BGS found.");
+            }
+            
+            else
+                FMOD_MV.Warn("BGS VCA was not specified, so FMOD MV tried to find BGS, but it's not exist in the VCA.");
+        }
         
-        else if (FMOD_MV.VCA_BGS in FMOD_FSPRO.VCA)
+        else if (FMOD_MV.VCA_BGS in FMOD_FSPRO.VCA) {
+            
+            FMOD_MV.Log("Manually setted VCA for BGS found.");
             FMOD_MV.VCA_BGS = FMOD_FSPRO.VCA[FMOD_MV.VCA_BGS];
+        }
         
         //ME
-        if (!FMOD_MV.VCA_ME && FMOD_FSPRO.VCA.ME)
-            FMOD_MV.VCA_ME = FMOD_FSPRO.VCA.ME;
+        if (!FMOD_MV.VCA_ME) {
+            
+            if (FMOD_FSPRO.VCA.ME) {
+                
+                FMOD_MV.VCA_ME = FMOD_FSPRO.VCA.ME;
+                FMOD_MV.Log("VCA for ME found.");
+            }
+            
+            else
+                FMOD_MV.Warn("ME VCA was not specified, so FMOD MV tried to find ME, but it's not exist in the VCA.");
+        }
         
-        else if (FMOD_MV.VCA_ME in FMOD_FSPRO.VCA)
+        else if (FMOD_MV.VCA_ME in FMOD_FSPRO.VCA) {
+            
+            FMOD_MV.Log("Manually setted VCA for ME found.");
             FMOD_MV.VCA_ME = FMOD_FSPRO.VCA[FMOD_MV.VCA_ME];
+        }
         
         //SE
-        if (!FMOD_MV.VCA_SE && FMOD_FSPRO.VCA.SE)
-            FMOD_MV.VCA_SE = FMOD_FSPRO.VCA.SE;
+        if (!FMOD_MV.VCA_SE) {
+            
+            if (FMOD_FSPRO.VCA.SE) {
+                
+                FMOD_MV.VCA_SE = FMOD_FSPRO.VCA.SE;
+                FMOD_MV.Log("VCA for SE found.");
+            }
+            
+            else
+                FMOD_MV.Warn("SE VCA was not specified, so FMOD MV tried to find SE, but it's not exist in the VCA.");
+        }
         
-        else if (FMOD_MV.VCA_SE in FMOD_FSPRO.VCA)
+        else if (FMOD_MV.VCA_SE in FMOD_FSPRO.VCA) {
+            
+            FMOD_MV.Log("Manually setted VCA for SE found.");
             FMOD_MV.VCA_SE = FMOD_FSPRO.VCA[FMOD_MV.VCA_SE];
+        }
     }
     
     FMOD_MV.InitializeSystemBGM = function() {
