@@ -2447,6 +2447,7 @@ function FMOD_MV() {
         }
         
         //BGM
+        FMOD_MV.Log(`Looking for VCA '${FMOD_MV.VCA_BGM}' used to BGM...`);
         if (!FMOD_MV.VCA_BGM) {
             
             if (FMOD_FSPRO.VCA.BGM) {
@@ -2466,6 +2467,7 @@ function FMOD_MV() {
         }
         
         //BGS
+        FMOD_MV.Log(`Looking for VCA '${FMOD_MV.VCA_BGS}' used to BGS...`);
         if (!FMOD_MV.VCA_BGS) {
             
             if (FMOD_FSPRO.VCA.BGS) {
@@ -2485,6 +2487,7 @@ function FMOD_MV() {
         }
         
         //ME
+        FMOD_MV.Log(`Looking for VCA '${FMOD_MV.VCA_ME}' used to ME...`);
         if (!FMOD_MV.VCA_ME) {
             
             if (FMOD_FSPRO.VCA.ME) {
@@ -2504,6 +2507,7 @@ function FMOD_MV() {
         }
         
         //SE
+        FMOD_MV.Log(`Looking for VCA '${FMOD_MV.VCA_SE}' used to SE...`);
         if (!FMOD_MV.VCA_SE) {
             
             if (FMOD_FSPRO.VCA.SE) {
