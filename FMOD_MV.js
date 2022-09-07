@@ -787,6 +787,9 @@ function FMOD_MV() {
         FMOD_MV.Assert(FMOD_MV.FGlobalSystemCore.mixerResume());
         FMOD_MV.IsAudioResumed = true;
         
+        if (typeof OutputAudioWorklet_resumeAudio === "function")
+            OutputAudioWorklet_resumeAudio();
+        
         FMOD_MV.Initialized = true;
     }
     
@@ -2415,7 +2418,7 @@ function FMOD_MV() {
         }
         
         if (typeof FMOD_FSPRO === 'object')
-            FMOD_MV.InitializePredefinedGUIDs();
+            FMOD_MV.InitializePredefinedEvents();
         
         //Bootloader
         FMOD = {
@@ -2427,7 +2430,7 @@ function FMOD_MV() {
         FMODModule(FMOD);
     }
     
-    FMOD_MV.InitializePredefinedGUIDs = function() {
+    FMOD_MV.InitializePredefinedEvents = function() {
         
         FMOD_MV.InitializeVCAs();
         FMOD_MV.InitializeSystemBGM();
