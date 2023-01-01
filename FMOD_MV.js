@@ -1,6 +1,6 @@
 /*:
  * @plugindesc This plugin integrated with FMOD by Firelight Technologies Pty Ltd.
- * Version : alpha-1.0.3
+ * Version : alpha-1.0.4
  * @author Creta Park (https://creft.me/cretapark)
  *
  * @help
@@ -263,7 +263,7 @@
  */
 /*:ko
  * @plugindesc 이 플러그인은 Firelight Technologies Pty Ltd의 FMOD를 적용합니다.
- * 버전 : alpha-1.0.3
+ * 버전 : alpha-1.0.4
  * @author Creta Park (https://creft.me/cretapark)
  *
  * @help
@@ -800,6 +800,15 @@ function FMOD_MV() {
         document.addEventListener("touchend", FMOD_MV.ResumeAudio.bind(this), false);
         document.addEventListener('touchstart', FMOD_MV.ResumeAudio.bind(this));
         document.addEventListener('visibilitychange', FMOD_MV.OnVisibilityChange.bind(this));
+        document.addEventListener('blur', FMOD_MV.OnBlur.bind(this));
+        document.addEventListener('focus', FMOD_MV.OnFocus.bind(this));
+        
+        if (!Utils.isNwjs())
+            return;
+        
+        var window = nw.Window.get();
+        window.on('focus', FMOD_MV.OnFocus.bind(this));
+        window.on('blur', FMOD_MV.OnBlur.bind(this));
     }
     
     FMOD_MV.Vector = function(x, y, z, to) {
@@ -1057,6 +1066,17 @@ function FMOD_MV() {
         
         else
             FMOD_MV.ResumeAudio.call(this);
+    }
+    
+    FMOD_MV.OnBlur = function() {
+        
+        FMOD_MV.Assert(FMOD_MV.FGlobalSystemCore.mixerSuspend());
+        FMOD_MV.IsAudioResumed = false;
+    }
+    
+    FMOD_MV.OnFocus = function() {
+        
+        FMOD_MV.ResumeAudio.call(this);
     }
     
     FMOD_MV.LoadBank = function(name) {
