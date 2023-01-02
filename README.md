@@ -127,7 +127,14 @@ Pull request or contribution are always welcome!
 
 Currently, the limitations I have identified are as follows.
 
-- Velocity for doppler effect, etc.  
+- Stable with newest `NW.js` runtime  
+  Recently discovered native memory allocation issue since `alpha-1.0.4`,
+  I'm currently investigating the cause.  
+  Since this issue does not occur in the latest `NW.js` runtime,
+  if you want to use it stable as possible, please update `NW.js`.  
+  As of `NW.js` `0.66.0`, there were no major problems.
+
+- Velocity for doppler effect, etc  
   The characters in RPG Maker have very consistent movement speeds,
   so when I applied velocity to them, the results were very strange
   so I didn't implement it.

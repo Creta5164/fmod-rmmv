@@ -1,6 +1,6 @@
 /*:
  * @plugindesc This plugin integrated with FMOD by Firelight Technologies Pty Ltd.
- * Version : alpha-1.0.4
+ * Version : alpha-1.0.5
  * @author Creta Park (https://creft.me/cretapark)
  *
  * @help
@@ -12,7 +12,12 @@
  * GitHub page : https://github.com/creta5164/fmod-rmmv
  * Recommended MV version : 1.6.2^
  * Recommended FMOD version : 2.01.13^
- * Tested on NW.js 0.29.4
+ * Recommended NW.js version : 0.66.0^
+ * Tested on NW.js 0.66.0
+ * * The NW.js version provided by the existing RPG Maker MV is-
+ *   experiencing an ArrayBuffer allocation failed issue.
+ *   If possible, I recommended to update to NW.js 0.66.0 to resolve it.
+ *   I'm looking for a solution, but until then, please take this way.
  * 
  * License : https://github.com/creta5164/fmod-rmmv/blob/main/LICENSE
  * 
@@ -263,7 +268,7 @@
  */
 /*:ko
  * @plugindesc 이 플러그인은 Firelight Technologies Pty Ltd의 FMOD를 적용합니다.
- * 버전 : alpha-1.0.4
+ * 버전 : alpha-1.0.5
  * @author Creta Park (https://creft.me/cretapark)
  *
  * @help
@@ -275,7 +280,12 @@
  * GitHub 페이지 : https://github.com/creta5164/fmod-rmmv
  * 권장 MV 버전 : 1.6.2 이상
  * 권장 FMOD 버전 : 2.01.13 이상
- * NW.js 0.29.4에서 테스트 완료
+ * 권장 NW.js 버전 : 0.66.0 이상
+ * NW.js 0.66.0에서 테스트 완료
+ * * 기존 RPG 만들기 MV에서 제공하는 NW.js 버전에는
+ *   ArrayBuffer allocation failed 문제가 발생하고 있습니다.
+ *   가급적이면 0.66.0 NW.js 버전을 올려서 해결하는 것을 권장합니다.
+ *   현재 해결방법을 찾고 있습니다, 그 전까지는 이렇게 사용하세요.
  * 
  * 라이센스 : https://github.com/creta5164/fmod-rmmv/blob/main/LICENSE
  * 
@@ -807,8 +817,18 @@ function FMOD_MV() {
             return;
         
         var window = nw.Window.get();
-        window.on('focus', FMOD_MV.OnFocus.bind(this));
-        window.on('blur', FMOD_MV.OnBlur.bind(this));
+        
+        if (window._FMOD_MV_OnFocus)
+            window.removeListener('focus', window._FMOD_MV_OnFocus);
+        
+        if (window._FMOD_MV_OnBlur)
+            window.removeListener('blur', window._FMOD_MV_OnBlur);
+        
+        window._FMOD_MV_OnFocus = FMOD_MV.OnFocus.bind(this);
+        window._FMOD_MV_OnBlur = FMOD_MV.OnBlur.bind(this);
+        
+        window.on('focus', window._FMOD_MV_OnFocus);
+        window.on('blur', window._FMOD_MV_OnBlur);
     }
     
     FMOD_MV.Vector = function(x, y, z, to) {
