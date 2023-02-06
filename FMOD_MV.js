@@ -1,6 +1,6 @@
 /*:
  * @plugindesc This plugin integrated with FMOD by Firelight Technologies Pty Ltd.
- * Version : alpha-1.0.5
+ * Version : alpha-1.0.6
  * @author Creta Park (https://creft.me/cretapark)
  *
  * @help
@@ -96,6 +96,13 @@
  * @type text 
  * @desc Specify which VCA is used for Sound Effects. (SFX)
  * If SE exists in fmod GUIDs (VCA), leave it blank.
+ * 
+ * @param is-save-audio-time
+ * @text Save event's time state
+ * @desc Specifies whether to save up to the time of the
+ * event when save and load.
+ * @default true
+ * @type boolean
  * 
  * @param system-bgm
  * @text System musics
@@ -364,6 +371,13 @@
  * @type text 
  * @desc 어떤 VCA가 효과음으로 쓰이는지 이름을 쓰세요.
  * 만약 SE인 VCA가 fmod GUID에 있다면 비워두세요.
+ * 
+ * @param is-save-audio-time
+ * @text 이벤트 시간 상태 저장 여부
+ * @desc 게임을 저장하고 불러올 때 이벤트의
+ * 시간까지 저장할지 여부를 지정합니다.
+ * @default true
+ * @type boolean
  * 
  * @param system-bgm
  * @text 시스템 음악(BGM)들
@@ -668,6 +682,8 @@ function FMOD_MV() {
     FMOD_MV.VCA_ME  = FMOD_MV.Params["integrated-vcas-me"];
     FMOD_MV.VCA_SE  = FMOD_MV.Params["integrated-vcas-se"];
     
+    FMOD_MV.IsSaveAudioTime = FMOD_MV.Params["is-save-audio-time"] === 'true';
+    
     FMOD_MV.SystemBGM_Title       = FMOD_MV.Params["system-bgm-title"];
     FMOD_MV.SystemBGM_Battle      = FMOD_MV.Params["system-bgm-battle"];
     FMOD_MV.SystemBGM_Airship     = FMOD_MV.Params["system-bgm-airship"];
@@ -706,6 +722,11 @@ function FMOD_MV() {
     FMOD_MV.QueuedPauseBGMs = null;
     FMOD_MV.QueuedPauseBGSs = null;
     FMOD_MV.QueuedPauseBGMsByME = null;
+    
+    FMOD_MV.VCA_BGM_VOLUME = 1;
+    FMOD_MV.VCA_BGS_VOLUME = 1;
+    FMOD_MV.VCA_ME_VOLUME  = 1;
+    FMOD_MV.VCA_SE_VOLUME  = 1;
     
     FMOD_MV.MaximumHeapSize = Number(FMOD_MV.Params["total-memory"]) || 64 * 1024 * 1024;
     
@@ -1080,23 +1101,33 @@ function FMOD_MV() {
         
         if (document.visibilityState === 'hidden') {
             
-            FMOD_MV.Assert(FMOD_MV.FGlobalSystemCore.mixerSuspend());
-            FMOD_MV.IsAudioResumed = false;
+            FMOD_MV.OnBlur.call(FMOD_MV);
+            //FMOD_MV.Assert(FMOD_MV.FGlobalSystemCore.mixerSuspend());
+            //FMOD_MV.IsAudioResumed = false;
         }
         
         else
-            FMOD_MV.ResumeAudio.call(this);
+            FMOD_MV.OnFocus.call(FMOD_MV);
+            //FMOD_MV.ResumeAudio.call(this);
     }
     
     FMOD_MV.OnBlur = function() {
         
-        FMOD_MV.Assert(FMOD_MV.FGlobalSystemCore.mixerSuspend());
-        FMOD_MV.IsAudioResumed = false;
+        FMOD_MV.SetBGMVolume(0, true);
+        FMOD_MV.SetBGSVolume(0, true);
+        FMOD_MV.SetMEVolume(0, true);
+        FMOD_MV.SetSEVolume(0, true);
+        //FMOD_MV.Assert(FMOD_MV.FGlobalSystemCore.mixerSuspend());
+        //FMOD_MV.IsAudioResumed = false;
     }
     
     FMOD_MV.OnFocus = function() {
         
-        FMOD_MV.ResumeAudio.call(this);
+        FMOD_MV.SetBGMVolume(FMOD_MV.VCA_BGM_VOLUME);
+        FMOD_MV.SetBGSVolume(FMOD_MV.VCA_BGS_VOLUME);
+        FMOD_MV.SetMEVolume(FMOD_MV.VCA_ME_VOLUME);
+        FMOD_MV.SetSEVolume(FMOD_MV.VCA_SE_VOLUME);
+        //FMOD_MV.ResumeAudio.call(this);
     }
     
     FMOD_MV.LoadBank = function(name) {
@@ -1113,6 +1144,13 @@ function FMOD_MV() {
         //TODO : Cache all event's path in strings bank
     }
     
+    var Scene_Title_initialize = Scene_Title.prototype.initialize;
+    Scene_Title.prototype.initialize = function() {
+        
+        Scene_Title_initialize.call(this);
+        $gameMap.disposeEventSpeakers();
+    }
+    
     Scene_Title.prototype.playTitleMusic = function() {
         
         if (!FMOD_MV.SystemBGM_Title)
@@ -1124,14 +1162,6 @@ function FMOD_MV() {
         FMOD_MV.StopSnapshot();
         AudioManager.stopBgs();
         AudioManager.stopMe();
-        
-        $gameMap.stopAllEventSpeakers();
-    }
-    
-    Game_Map.prototype.stopAllEventSpeakers = function() {
-        
-        for (var event of this.events())
-            event.speaker().stopEvent();
     }
     
     var Scene_Boot_isReady = Scene_Boot.prototype.isReady;
@@ -1148,26 +1178,14 @@ function FMOD_MV() {
             FMOD_MV.Update();
     }
     
-    FMOD_MV.PlayEvent = function(type, guid, at, parameters) {
+    FMOD_MV.CreateEvent = function(type, guid, at, parameters) {
         
         var event = FMOD_MV.GetEvent(type, guid);
         
         if (!event)
-            return;
+            return null;
         
         var attribute = null;
-        
-        //if (!is3D) {
-        //    
-        //    var ptr_description = {}
-        //    FMOD_MV.Assert(event.getDescription(ptr_description));
-        //    var description = ptr_description.val;
-        //    
-        //    var ptr_is3D = {}
-        //    FMOD_MV.Assert(description.is3D(ptr_is3D));
-        //    var is3D = ptr_is3D.val;
-        //}
-        
         var speaker = null;
             
         if (at instanceof Game_CharacterBase) {
@@ -1216,7 +1234,6 @@ function FMOD_MV() {
         }
         
         FMOD_MV.ApplyParametersToEvent(event, parameters);
-        event.start();
         
         return event;
     }
@@ -1352,7 +1369,10 @@ function FMOD_MV() {
             FMOD_MV.StopBGM(immediateStop);
         
         FMOD_MV.ResetEventParameters(FMOD_MV.EventType.BGM, guid);
-        var event = FMOD_MV.PlayEvent(FMOD_MV.EventType.BGM, guid);
+        var event = FMOD_MV.CreateEvent(FMOD_MV.EventType.BGM, guid);
+        
+        if (event)
+            event.start();
         
         FMOD_MV.QueuedPauseBGMs = null;
         
@@ -1416,7 +1436,10 @@ function FMOD_MV() {
             FMOD_MV.StopBGS(immediateStop);
         
         FMOD_MV.ResetEventParameters(FMOD_MV.EventType.BGS, guid);
-        var event = FMOD_MV.PlayEvent(FMOD_MV.EventType.BGS, guid);
+        var event = FMOD_MV.CreateEvent(FMOD_MV.EventType.BGS, guid);
+        
+        if (event)
+            event.start();
         
         FMOD_MV.QueuedPauseBGSs = null;
         
@@ -1476,7 +1499,10 @@ function FMOD_MV() {
         FMOD_MV.StopME(immediateStop);
         
         FMOD_MV.ResetEventParameters(FMOD_MV.EventType.ME, guid);
-        var event = FMOD_MV.PlayEvent(FMOD_MV.EventType.ME, guid);
+        var event = FMOD_MV.CreateEvent(FMOD_MV.EventType.ME, guid);
+        
+        if (event)
+            event.start();
         
         if (FMOD_MV.QueuedPauseBGMsByME)
             return event;
@@ -1525,9 +1551,14 @@ function FMOD_MV() {
         }
     }
     
-    FMOD_MV.PlaySE = function(guid, at, parameters, forceBind) {
+    FMOD_MV.PlaySE = function(guid, at, parameters) {
         
-        return FMOD_MV.PlayEvent(FMOD_MV.EventType.SE, guid, at, parameters, forceBind);
+        var event = FMOD_MV.CreateEvent(FMOD_MV.EventType.SE, guid, at, parameters);
+        
+        if (event)
+            event.start();
+        
+        return event;
     }
     
     FMOD_MV.StopSE = function(immediateStop, specifiedGuid) {
@@ -1579,8 +1610,8 @@ function FMOD_MV() {
         var bgm = events[FMOD_MV.EventType.BGM];
         var bgs = events[FMOD_MV.EventType.BGS];
         
-        data.bgm = FMOD_MV.ExtractAllParameters(bgm, true);
-        data.bgs = FMOD_MV.ExtractAllParameters(bgs, true);
+        data.bgm = FMOD_MV.ExtractAllParameters(bgm, true, FMOD_MV.IsSaveAudioTime);
+        data.bgs = FMOD_MV.ExtractAllParameters(bgs, true, FMOD_MV.IsSaveAudioTime);
         
         data.snapshots = FMOD_MV.SaveSnapshots();
         
@@ -1670,10 +1701,12 @@ function FMOD_MV() {
             if (serializedData.isPlaying) {
                 
                 FMOD_MV.ResetEventParameters(type, guid);
-                var event = FMOD_MV.PlayEvent(type, guid);
+                var event = FMOD_MV.CreateEvent(type, guid);
                 
-                if (serializedData.time > 0)
+                if (event && serializedData.time > 0)
                     FMOD_MV.SetEventTimelinePosition(event, serializedData.time);
+                
+                event.start();
             }
             
             for (var parameter in serializedData.parameters) {
@@ -1947,13 +1980,17 @@ function FMOD_MV() {
     var Game_Map_setupEvents = Game_Map.prototype.setupEvents;
     Game_Map.prototype.setupEvents = function() {
         
+        this.disposeEventSpeakers();
+        Game_Map_setupEvents.call(this);
+    }
+    
+    Game_Map.prototype.disposeEventSpeakers = function() {
+        
         for (var event of this._events) {
             
             if (event && event.speaker())
                 event.speaker().dispose();
         }
-        
-        Game_Map_setupEvents.call(this);
     }
     
     Game_Interpreter.prototype.event = function() {
@@ -2310,36 +2347,68 @@ function FMOD_MV() {
             FMOD_MV.PlaySE(FMOD_MV.SystemSE_UseSkill);
     }
     
-    FMOD_MV.SetBGMVolume = function(volume) {
+    FMOD_MV.SetBGMVolume = function(volume, permanent) {
         
         if (!FMOD_MV || typeof FMOD_MV.VCA_BGM !== 'object' || FMOD_MV.VCA_BGM === null || FMOD_MV.VCA_BGM instanceof Guid)
             return;
         
-        FMOD_MV.VCA_BGM.setVolume(volume / 100);
+        if (!permanent) {
+            
+            FMOD_MV.VCA_BGM_VOLUME = volume;
+            FMOD_MV.VCA_BGM.setVolume(FMOD_MV.VCA_BGM_VOLUME / 100);
+            
+        } else {
+            
+            FMOD_MV.VCA_BGM.setVolume(volume / 100);
+        }
     }
     
-    FMOD_MV.SetBGSVolume = function(volume) {
+    FMOD_MV.SetBGSVolume = function(volume, permanent) {
         
         if (!FMOD_MV || typeof FMOD_MV.VCA_BGS !== 'object' || FMOD_MV.VCA_BGS === null || FMOD_MV.VCA_BGS instanceof Guid)
             return;
         
-        FMOD_MV.VCA_BGS.setVolume(volume / 100);
+        if (!permanent) {
+            
+            FMOD_MV.VCA_BGS_VOLUME = volume;
+            FMOD_MV.VCA_BGS.setVolume(FMOD_MV.VCA_BGS_VOLUME / 100);
+            
+        } else {
+            
+            FMOD_MV.VCA_BGS.setVolume(volume / 100);
+        }
     }
     
-    FMOD_MV.SetMEVolume = function(volume) {
+    FMOD_MV.SetMEVolume = function(volume, permanent) {
         
         if (!FMOD_MV || typeof FMOD_MV.VCA_ME !== 'object' || FMOD_MV.VCA_ME === null || FMOD_MV.VCA_ME instanceof Guid)
             return;
         
-        FMOD_MV.VCA_ME.setVolume(volume / 100);
+        if (!permanent) {
+            
+            FMOD_MV.VCA_ME_VOLUME = volume;
+            FMOD_MV.VCA_ME.setVolume(FMOD_MV.VCA_ME_VOLUME / 100);
+            
+        } else {
+            
+            FMOD_MV.VCA_ME.setVolume(volume / 100);
+        }
     }
     
-    FMOD_MV.SetSEVolume = function(volume) {
+    FMOD_MV.SetSEVolume = function(volume, permanent) {
         
         if (!FMOD_MV || typeof FMOD_MV.VCA_SE !== 'object' || FMOD_MV.VCA_SE === null || FMOD_MV.VCA_SE instanceof Guid)
             return;
         
-        FMOD_MV.VCA_SE.setVolume(volume / 100);
+        if (!permanent) {
+            
+            FMOD_MV.VCA_SE_VOLUME = volume;
+            FMOD_MV.VCA_SE.setVolume(FMOD_MV.VCA_SE_VOLUME / 100);
+            
+        } else {
+            
+            FMOD_MV.VCA_SE.setVolume(volume / 100);
+        }
     }
     
     Object.defineProperty(AudioManager, 'bgmVolume', {
