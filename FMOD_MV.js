@@ -682,7 +682,7 @@ function FMOD_MV() {
     FMOD_MV.VCA_ME  = FMOD_MV.Params["integrated-vcas-me"];
     FMOD_MV.VCA_SE  = FMOD_MV.Params["integrated-vcas-se"];
     
-    FMOD_MV.IsSaveAudioTime = FMOD_MV.Params["save-event-timeline-position"] === 'true';
+    FMOD_MV.SaveEventTimelinePosition = FMOD_MV.Params["save-event-timeline-position"] === 'true';
     
     FMOD_MV.SystemBGM_Title       = FMOD_MV.Params["system-bgm-title"];
     FMOD_MV.SystemBGM_Battle      = FMOD_MV.Params["system-bgm-battle"];
@@ -1610,8 +1610,8 @@ function FMOD_MV() {
         var bgm = events[FMOD_MV.EventType.BGM];
         var bgs = events[FMOD_MV.EventType.BGS];
         
-        data.bgm = FMOD_MV.ExtractAllParameters(bgm, true, FMOD_MV.IsSaveAudioTime);
-        data.bgs = FMOD_MV.ExtractAllParameters(bgs, true, FMOD_MV.IsSaveAudioTime);
+        data.bgm = FMOD_MV.ExtractAllParameters(bgm, true, FMOD_MV.SaveEventTimelinePosition);
+        data.bgs = FMOD_MV.ExtractAllParameters(bgs, true, FMOD_MV.SaveEventTimelinePosition);
         
         data.snapshots = FMOD_MV.SaveSnapshots();
         
