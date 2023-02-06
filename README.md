@@ -77,9 +77,10 @@ If you curious what it does, watch this video.
   * 5.3. [Bank assets](#53-bank-assets)
   * 5.4. [GUIDs js path](#54-guids-js-path)
   * 5.5. [Integrated VCAs](#55-integrated-vcas)
-  * 5.6. [System musics](#56-system-musics)
-  * 5.7. [System music effects](#57-system-music-effects)
-  * 5.8. [System sound effects](#58-system-sound-effects)
+  * 5.6. [Save event's time state](#56-save-events-time-state)
+  * 5.7. [System musics](#57-system-musics)
+  * 5.8. [System music effects](#58-system-music-effects)
+  * 5.9. [System sound effects](#59-system-sound-effects)
 - 6\. [How to use](#6-how-to-use)
   * 6.1. [How Events work in FMOD_MV.js](#61-how-events-work-in-fmod_mvjs)
   * 6.2. [Playing event](#62-playing-event)
@@ -331,7 +332,13 @@ it will be used automatically.
 
 Applicable VCA names can be found in `VCA` of [**`GUID script`**][guids-js].
 
-## [5.6.][toc] System musics
+## [5.6.][toc] Save event's time state
+
+When saving during gameplay, whether to save the timeline time positions of all events being played.
+
+Default setting is `ON`.
+
+## [5.7.][toc] System musics
 
 Replaces system music with FMOD events.  
 Each item corresponds to the corresponding system music.  
@@ -344,7 +351,7 @@ Applicable event names can be found in `Event` of [**`GUID script`**][guids-js].
 > Note : Battle-related system audio assignments are available for future use.  
 > Battle-related parts are not implemented yet, so unintended behavior may occur.
 
-## [5.7.][toc] System music effects
+## [5.8.][toc] System music effects
 
 Replaces system music effect(ME) with FMOD events.  
 Each item corresponds to the corresponding system music effects.  
@@ -357,7 +364,7 @@ Applicable event names can be found in `Event` of [**`GUID script`**][guids-js].
 > Note : Battle-related system audio assignments are available for future use.  
 > Battle-related parts are not implemented yet, so unintended behavior may occur.
 
-## [5.8.][toc] System sound effects
+## [5.9.][toc] System sound effects
 
 Replaces system sound effect(SE) with FMOD events.  
 Each item corresponds to the corresponding system sound effects.  

@@ -97,7 +97,7 @@
  * @desc Specify which VCA is used for Sound Effects. (SFX)
  * If SE exists in fmod GUIDs (VCA), leave it blank.
  * 
- * @param is-save-audio-time
+ * @param save-event-timeline-position
  * @text Save event's time state
  * @desc Specifies whether to save up to the time of the
  * event when save and load.
@@ -372,7 +372,7 @@
  * @desc 어떤 VCA가 효과음으로 쓰이는지 이름을 쓰세요.
  * 만약 SE인 VCA가 fmod GUID에 있다면 비워두세요.
  * 
- * @param is-save-audio-time
+ * @param save-event-timeline-position
  * @text 이벤트 시간 상태 저장 여부
  * @desc 게임을 저장하고 불러올 때 이벤트의
  * 시간까지 저장할지 여부를 지정합니다.
@@ -682,7 +682,7 @@ function FMOD_MV() {
     FMOD_MV.VCA_ME  = FMOD_MV.Params["integrated-vcas-me"];
     FMOD_MV.VCA_SE  = FMOD_MV.Params["integrated-vcas-se"];
     
-    FMOD_MV.IsSaveAudioTime = FMOD_MV.Params["is-save-audio-time"] === 'true';
+    FMOD_MV.IsSaveAudioTime = FMOD_MV.Params["save-event-timeline-position"] === 'true';
     
     FMOD_MV.SystemBGM_Title       = FMOD_MV.Params["system-bgm-title"];
     FMOD_MV.SystemBGM_Battle      = FMOD_MV.Params["system-bgm-battle"];
