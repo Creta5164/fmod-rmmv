@@ -436,7 +436,8 @@ So keep this in mind.
 If there is a sound, then there must be a listener to hear the sound.  
 Basically, the listener is a structure facing the front from the back `10 units (-Z)` from the position (depth) where the characters are as shown in the figure.
 
-Listeners are always being at the camera's center point.
+Listeners are always being at the camera's center point.  
+If you enabled of [Listener is player][listener-is-player] option, it'll always being at player's position.
 
 The reason I designed it this way is that after all, the player plays RPG Maker game through the screen.  
 And the reason I've put the listener at a distance of `10 units` is to make sure the sound doesn't feel like it's going 'through' the listener(the player)'s head.
@@ -1244,5 +1245,6 @@ These examples assume after starting the FMOD Event in the example of [Play BGM]
 [compatiability]: #21-possibility-of-interlocking-plugins
 [guids-js]: #54-guids-js-path
 [guid-events-location]: ./img/guid-events-location.png
+[listener-is-player]: #56-listener-is-player
 [play-se]: #624-play-se
 [speaker]: #64-speaker
