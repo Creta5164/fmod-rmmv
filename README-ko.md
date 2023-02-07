@@ -189,11 +189,13 @@ RPG 만들기의 기능이나 FMOD의 일부 기능이 현재 누락된 상태�
   `Game_CharacterBase.prototype.update`를 찾으세요.  
   여기에는 스피커 로직을 처리하는 코드가 포함되어 있습니다.
 
-| 플러그인 이름      | 확인한 버전 | 만든 이    | 타입        | 호환 여부  | 비고와 해결 방법 |
-|--------------------|-------------|------------|-------------|------------|:-----------------|
-| `DirectorView`     | `1.0.1`     | Creta Park | 카메라      | 가능       | ⭕ 이 플러그인은 [DOWNFALLEN][DOWNFALLEN]을 개발할 때 활용되었습니다. |
-| `SRD_CameraCore`   | `1.05`      | SumRndmDde | 카메라      | 일부 가능  | ⭕ 카메라의 청취자 위치는 정상적으로 반영되는 것을 확인했습니다.<br>❌ 확대 및 축소 기능은 확인하지 못했습니다, 따라서 카메라가 청취자로 설정된 상태로 확대나 축소를 하는 경우, 입체 음향이 의도대로 작동하지 않을 수 있습니다.<br>🛠️ 없음|
-| `QMovement`        | `1.6.3`     | Quxios     | 캐릭터 이동 | No         | ❌ 캐릭터 처리 동작에서 원본 기능을 사용하지 않기 때문에 [스피커][speaker]의 위치가 변경되지 않습니다.<br>🛠️ 스피커 처리 코드를(`FMOD_MV.js` 내에 `Game_CharacterBase.prototype.update`에 있음) 해당 플러그인의 `Game_CharacterBase.prototype.update` 코드 제일 하단에 넣어서 해결할 수 있습니다.|
+| 플러그인 이름           | 확인한 버전 | 만든 이    | 타입        | 호환 여부  | 비고와 해결 방법 |
+|-------------------------|-------------|------------|-------------|------------|:-----------------|
+| `DirectorView`          | `1.0.1`     | Creta Park | 카메라      | 가능       | ⭕ 이 플러그인은 [DOWNFALLEN][DOWNFALLEN]을 개발할 때 활용되었습니다. |
+| `SRD_CameraCore`        | `1.05`      | SumRndmDde | 카메라      | 일부 가능  | ⭕ 카메라의 청취자 위치는 정상적으로 반영되는 것을 확인했습니다.<br>❌ 확대 및 축소 기능은 확인하지 못했습니다, 따라서 카메라가 청취자로 설정된 상태로 확대나 축소를 하는 경우, 입체 음향이 의도대로 작동하지 않을 수 있습니다.<br>🛠️ 없음 |
+| `SuperOrangeMovement`   | `1.5.2`     | Hudell     | 캐릭터 이동 | 가능       | ⭕ 이 플러그인의 Ex 플러그인이 [DOWNFALLEN][DOWNFALLEN]을 개발할 때 활용되었습니다. |
+| `SuperOrangeMovementEx` | `1.5.1`     | Hudell     | 캐릭터 이동 | 가능       | ⭕ 이 플러그인은 [DOWNFALLEN][DOWNFALLEN]을 개발할 때 활용되었습니다. |
+| `QMovement`             | `1.6.3`     | Quxios     | 캐릭터 이동 | 불가능     | ❌ 캐릭터 처리 동작에서 원본 기능을 사용하지 않기 때문에 [스피커][speaker]의 위치가 변경되지 않습니다.<br>🛠️ 스피커 처리 코드를(`FMOD_MV.js` 내에 `Game_CharacterBase.prototype.update`에 있음) 해당 플러그인의 `Game_CharacterBase.prototype.update` 코드 제일 하단에 넣어서 해결할 수 있습니다. |
 
 이 플러그인을 사용하면서 호환성 상태를 확인하셨다면, [Issues][issues] 페이지에서 보고해 주세요.
 
