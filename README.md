@@ -67,6 +67,7 @@ If you curious what it does, watch this video.
 
 - 1\. [Basic knowledge requirements](#1-basic-knowledge-requirements)
 - 2\. [Limitation](#2-limitation)
+- 2.1. [Compatible status list of plugins](#21-compatible-status-list-of-plugins)
 - 3\. [Setup project](#3-setup-project)
   * 3.1. [Add plugin to your project](#31-add-plugin-to-your-project)
   * 3.2. [Add FMOD Engine](#32-add-fmod-engine)
@@ -77,10 +78,11 @@ If you curious what it does, watch this video.
   * 5.3. [Bank assets](#53-bank-assets)
   * 5.4. [GUIDs js path](#54-guids-js-path)
   * 5.5. [Integrated VCAs](#55-integrated-vcas)
-  * 5.6. [Save event's time state](#56-save-events-time-state)
-  * 5.7. [System musics](#57-system-musics)
-  * 5.8. [System music effects](#58-system-music-effects)
-  * 5.9. [System sound effects](#59-system-sound-effects)
+  * 5.6. [Listener is player](#56-listener-is-player)
+  * 5.7. [Save event's time state](#57-save-events-time-state)
+  * 5.8. [System musics](#58-system-musics)
+  * 5.9. [System music effects](#59-system-music-effects)
+  * 5.10. [System sound effects](#510-system-sound-effects)
 - 6\. [How to use](#6-how-to-use)
   * 6.1. [How Events work in FMOD_MV.js](#61-how-events-work-in-fmod_mvjs)
   * 6.2. [Playing event](#62-playing-event)
@@ -149,10 +151,10 @@ Currently, the limitations I have identified are as follows.
   FMOD can also create Event instances from audio files.  
   However, it has not been decided how to solve and implement RPG Maker's encryption/decryption pipeline.
 
-- Listener position and third-party camera plug-in compatibility unverified  
-  If you have a third-party camera plug-in that zooms in, zooms out or controls the camera, there is a chance that the sound won't sound right.  
-  If you want to make them compatible directly, search `Game_Map.prototype.updateListenerAttributes` in the `FMOD_MV.js`.  
-  This contains the code to update the listener's position.
+- Compatibility verification with 3rd party plugins is not done much.  
+  This plugin was created for use when developing [DOWNFALLEN][DOWNFALLEN],
+  and it is a plugin that has been verified in an environment where third-party plugins are not used a lot.  
+  For a list of third-party plugins that may or may not work, see [Compatible status list of plugins](compatiability) below.
 
 - Can't support event callbacks  
   Event callback is a feature that receives this signal from the game
@@ -174,6 +176,29 @@ Currently, the limitations I have identified are as follows.
 
 - All of the battle related features  
   Since we didn't have to use it while making DOWNFALLEN.
+
+# [2.1.][toc] Compatible status list of plugins
+
+Before list up of plugins, here's main problems of compatibility, includes how to resolve them.  
+(resolving requires few programming knowledge)
+
+- Listener position and third-party camera plug-in compatibility unverified  
+  If you have a third-party camera plug-in that zooms in, zooms out or controls the camera, there is a chance that the sound won't sound right.  
+  🛠️ If you want to make them compatible directly, search `Game_Map.prototype.updateListenerAttributes` in the `FMOD_MV.js`.  
+  This contains the code to update the listener's position.
+
+- Plugins that override character movement behavior may not work with [speakers][speaker]  
+  FMOD events that work with binaural sound may not work as I intended with these movement plugins.  
+  🛠️ If you want to make them compatible directly, search `Game_CharacterBase.prototype.update` in the `FMOD_MV.js`.  
+  This contains the code to update the speaker's position attribute.
+
+| Plugin name      | Checked version | Author     | Type     | Compatible | Note and resolve guide |
+|------------------|-----------------|------------|----------|------------|:-----------------------|
+| `DirectorView`   | `1.0.1`         | Creta Park | Camera   | Yes        | ⭕ This plugin was utilized in the development of [DOWNFALLEN][DOWNFALLEN]. |
+| `SRD_CameraCore` | `1.05`          | SumRndmDde | Camera   | Partially  | ⭕ Confirmed that the camera position works normally.<br>❌ Haven't verified with zooming in and out feature, so if the listener's position is a camera and zooming is used, stereo sound may not work as intended.<br>🛠️ N/A |
+| `QMovement`      | `1.6.3`         | Quxios     | Movement | No         | ❌ The position of [speaker][speaker] is not updated because the plugin does not call an existing method in the character handling action.<br>🛠️ Put update speaker code (Available in `FMOD_MV.js`'s `Game_CharacterBase.prototype.update`) into below of `Game_CharacterBase.prototype.update` method in this plugin. |
+
+If you experienced any other compatibility status, please report on the [Issues][issues] page.
 
 # [3.][toc] Setup project
 
@@ -332,13 +357,19 @@ it will be used automatically.
 
 Applicable VCA names can be found in `VCA` of [**`GUID script`**][guids-js].
 
-## [5.6.][toc] Save event's time state
+## [5.6.][toc] Listener is player
+
+Specifies listener is player or not(camera).
+
+Default setting is `OFF`.
+
+## [5.7.][toc] Save event's time state
 
 When saving during gameplay, whether to save the timeline time positions of all events being played.
 
 Default setting is `ON`.
 
-## [5.7.][toc] System musics
+## [5.8.][toc] System musics
 
 Replaces system music with FMOD events.  
 Each item corresponds to the corresponding system music.  
@@ -351,7 +382,7 @@ Applicable event names can be found in `Event` of [**`GUID script`**][guids-js].
 > Note : Battle-related system audio assignments are available for future use.  
 > Battle-related parts are not implemented yet, so unintended behavior may occur.
 
-## [5.8.][toc] System music effects
+## [5.9.][toc] System music effects
 
 Replaces system music effect(ME) with FMOD events.  
 Each item corresponds to the corresponding system music effects.  
@@ -364,7 +395,7 @@ Applicable event names can be found in `Event` of [**`GUID script`**][guids-js].
 > Note : Battle-related system audio assignments are available for future use.  
 > Battle-related parts are not implemented yet, so unintended behavior may occur.
 
-## [5.9.][toc] System sound effects
+## [5.10.][toc] System sound effects
 
 Replaces system sound effect(SE) with FMOD events.  
 Each item corresponds to the corresponding system sound effects.  
@@ -1208,7 +1239,10 @@ These examples assume after starting the FMOD Event in the example of [Play BGM]
 [fmod-download]: https://www.fmod.com/download#fmodengine
 [fmod-learning-resources]: https://www.fmod.com/download#learningresources
 [nwjs-problem]: https://qa.fmod.com/t/problem-with-html5-build-on-nw-js/19116
+[issues]: https://github.com/creta5164/fmod-rmmv/issues/new
 [toc]: #table-of-content
+[compatiability]: #21-possibility-of-interlocking-plugins
 [guids-js]: #54-guids-js-path
 [guid-events-location]: ./img/guid-events-location.png
 [play-se]: #624-play-se
+[speaker]: #64-speaker

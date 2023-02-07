@@ -1,6 +1,6 @@
 /*:
  * @plugindesc This plugin integrated with FMOD by Firelight Technologies Pty Ltd.
- * Version : alpha-1.0.6
+ * Version : alpha-1.0.7
  * @author Creta Park (https://creft.me/cretapark)
  *
  * @help
@@ -96,6 +96,12 @@
  * @type text 
  * @desc Specify which VCA is used for Sound Effects. (SFX)
  * If SE exists in fmod GUIDs (VCA), leave it blank.
+ * 
+ * @param listener-is-player
+ * @text Listener is player
+ * @desc Specifies listener is player or not(camera).
+ * @default false
+ * @type boolean
  * 
  * @param save-event-timeline-position
  * @text Save event's time state
@@ -275,7 +281,7 @@
  */
 /*:ko
  * @plugindesc 이 플러그인은 Firelight Technologies Pty Ltd의 FMOD를 적용합니다.
- * 버전 : alpha-1.0.5
+ * 버전 : alpha-1.0.7
  * @author Creta Park (https://creft.me/cretapark)
  *
  * @help
@@ -371,6 +377,13 @@
  * @type text 
  * @desc 어떤 VCA가 효과음으로 쓰이는지 이름을 쓰세요.
  * 만약 SE인 VCA가 fmod GUID에 있다면 비워두세요.
+ * 
+ * @param listener-is-player
+ * @text 플레이어를 청취자로 설정
+ * @desc 플레이어를 청취자로 설정할 지 여부입니다.
+ * (아닌 경우 카메라가 청취자가 됨)
+ * @default false
+ * @type boolean
  * 
  * @param save-event-timeline-position
  * @text 이벤트 시간 상태 저장 여부
@@ -683,6 +696,7 @@ function FMOD_MV() {
     FMOD_MV.VCA_SE  = FMOD_MV.Params["integrated-vcas-se"];
     
     FMOD_MV.SaveEventTimelinePosition = FMOD_MV.Params["save-event-timeline-position"] === 'true';
+    FMOD_MV.ListenerIsPlayer = FMOD_MV.Params["listener-is-player"] === 'true';
     
     FMOD_MV.SystemBGM_Title       = FMOD_MV.Params["system-bgm-title"];
     FMOD_MV.SystemBGM_Battle      = FMOD_MV.Params["system-bgm-battle"];
@@ -2497,8 +2511,21 @@ function FMOD_MV() {
     
     Game_Map.prototype.updateListenerAttributes = function() {
         
-        var normalizedCenterX = this.displayX() + (Graphics.width / $gameMap.tileWidth()) / 2;
-        var normalizedCenterY = this.displayY() + (Graphics.height / $gameMap.tileHeight()) / 2;
+        var normalizedCenterX = 0;
+        var normalizedCenterY = 0;
+        
+        if (FMOD_MV.ListenerIsPlayer && $gamePlayer) {
+            
+            normalizedCenterX = $gamePlayer.x;
+            normalizedCenterY = $gamePlayer.y;
+            
+        } else {
+            
+            normalizedCenterX = this.displayX() + (Graphics.width  / this.tileWidth())  / 2;
+            normalizedCenterY = this.displayY() + (Graphics.height / this.tileHeight()) / 2;
+        }
+        
+        //Y- up to Y+ up
         normalizedCenterY = -normalizedCenterY;
         
         FMOD_MV.SetListenerPosition(FMOD_MV.LISTENER_CAMERA, normalizedCenterX, normalizedCenterY, -10);
