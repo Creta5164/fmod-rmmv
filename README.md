@@ -190,7 +190,7 @@ Before list up of plugins, here's main problems of compatibility, includes how t
 - Plugins that override character movement behavior may not work with [speakers][speaker]  
   FMOD events that work with binaural sound may not work as I intended with these movement plugins.  
   🛠️ If you want to make them compatible directly, search `Game_CharacterBase.prototype.update` in the `FMOD_MV.js`.  
-  This contains the code to update the speaker's position attribute.
+  This contains the code to process the speaker logic.
 
 | Plugin name      | Checked version | Author     | Type     | Compatible | Note and resolve guide |
 |------------------|-----------------|------------|----------|------------|:-----------------------|
