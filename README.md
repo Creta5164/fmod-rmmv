@@ -67,7 +67,7 @@ If you curious what it does, watch this video.
 
 - 1\. [Basic knowledge requirements](#1-basic-knowledge-requirements)
 - 2\. [Limitation](#2-limitation)
-- 2.1. [Compatible status list of plugins](#21-compatible-status-list-of-plugins)
+  * 2.1. [Compatible status list of plugins](#21-compatible-status-list-of-plugins)
 - 3\. [Setup project](#3-setup-project)
   * 3.1. [Add plugin to your project](#31-add-plugin-to-your-project)
   * 3.2. [Add FMOD Engine](#32-add-fmod-engine)
