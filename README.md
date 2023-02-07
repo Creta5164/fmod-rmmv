@@ -154,7 +154,7 @@ Currently, the limitations I have identified are as follows.
 - Compatibility verification with 3rd party plugins is not done much.  
   This plugin was created for use when developing [DOWNFALLEN][DOWNFALLEN],
   and it is a plugin that has been verified in an environment where third-party plugins are not used a lot.  
-  For a list of third-party plugins that may or may not work, see [Compatible status list of plugins](compatiability) below.
+  For a list of third-party plugins that may or may not work, see [Compatible status list of plugins][compatiability] below.
 
 - Can't support event callbacks  
   Event callback is a feature that receives this signal from the game
