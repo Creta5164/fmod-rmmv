@@ -1244,7 +1244,7 @@ These examples assume after starting the FMOD Event in the example of [Play BGM]
 [nwjs-problem]: https://qa.fmod.com/t/problem-with-html5-build-on-nw-js/19116
 [issues]: https://github.com/creta5164/fmod-rmmv/issues/new
 [toc]: #table-of-content
-[compatiability]: #21-possibility-of-interlocking-plugins
+[compatiability]: #21-compatible-status-list-of-plugins
 [guids-js]: #54-guids-js-path
 [guid-events-location]: ./img/guid-events-location.png
 [listener-is-player]: #56-listener-is-player
