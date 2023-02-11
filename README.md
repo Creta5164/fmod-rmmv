@@ -11,6 +11,10 @@ You can use industry-leading audio engine for RPG Maker MV.
 
 Created by Creta Park (https://creft.me/cretapark)
 
+---
+
+## License notice
+
 This plugin's license is a variant of the MIT License,
 so you are free to use it as long as you comply with these terms.
 
@@ -27,6 +31,14 @@ so you are free to use it as long as you comply with these terms.
 4. When redistributed after modification, the original author must be indicated.
 
 *This can also be found in the [LICENSE][LICENSE] file.*
+
+## Disclaimer
+
+This repository is not sponsored by or affiliated with Firelight Technologies Pty Ltd.  
+"FMOD" is registered trademarks or trademarks of Firelight Technologies Pty Ltd.
+
+This plugin is for integrates the FMOD Engine into RPG Maker MV,
+the name "FMOD" in the plugin's name was used because to highlight the user's understanding due to this feature.
 
 ---
 
