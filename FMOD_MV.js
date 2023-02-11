@@ -1,6 +1,6 @@
 /*:
  * @plugindesc This plugin integrated with FMOD by Firelight Technologies Pty Ltd.
- * Version : alpha-1.0.7
+ * Version : alpha-1.0.8
  * @author Creta Park (https://creft.me/cretapark)
  *
  * @help
@@ -281,7 +281,7 @@
  */
 /*:ko
  * @plugindesc 이 플러그인은 Firelight Technologies Pty Ltd의 FMOD를 적용합니다.
- * 버전 : alpha-1.0.7
+ * 버전 : alpha-1.0.8
  * @author Creta Park (https://creft.me/cretapark)
  *
  * @help
@@ -787,10 +787,10 @@ function FMOD_MV() {
         if (result != FMOD.OK) {
             
             if (result in FMOD_MV.FMODError)
-                throw new Error(`[FMOD_MV] FMOD Error : ${FMOD_MV.FMODError[result]} - ${FMOD.ErrorString(result)}`);
+                throw new Error(`[FMOD_MV] FMOD Engine error occurred!<br>\n<br>\nThis might be caused by incorrect settings with Studio, you can search error code with 'FMOD Studio' to find more information.<br>\n<br>\n > Error code : ${FMOD_MV.FMODError[result]}<br>\n > Message : ${FMOD.ErrorString(result)}`);
             
             else
-                throw new Error(`[FMOD_MV] FMOD Error : UNKNOWN - ${FMOD.ErrorString(result)}`);
+                throw new Error(`[FMOD_MV] FMOD Engine error occurred!<br>\n<br>\nThis might be caused by incorrect settings with Studio, you can search error code with 'FMOD Studio' to find more information.<br>\n<br>\n > Error code : UNKNOWN (ID : ${result})<br>\n > Message : ${FMOD.ErrorString(result)}`);
         }
     }
     
