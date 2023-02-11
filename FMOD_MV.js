@@ -1258,6 +1258,7 @@ function FMOD_MV() {
             return;
         
         var parameter;
+        var value;
         var immediateSet;
         
         for (var key in parameters) {
@@ -1267,12 +1268,15 @@ function FMOD_MV() {
             if (parameter.length == 0)
                 continue;
             
+            value = parameter[0];
+            
             if (parameter.length <= 1)
                 immediateSet = false;
             
-            immediateSet = parameter[1] == true;
+            else
+                immediateSet = parameter[1] == true;
             
-            FMOD_MV.Assert(event.setParameterByName(key, parameters[key][0], immediateSet))
+            FMOD_MV.Assert(event.setParameterByName(key, value, immediateSet));
         }
     }
     
@@ -1834,6 +1838,14 @@ function FMOD_MV() {
         
         paramValue[0] = value || 0;
         paramValue[1] = immediateSet === true;
+        
+        if (!(guid in this._bindedEvents))
+            return;
+        
+        var bindedEvents = this._bindedEvents[guid];
+        
+        for (var event of bindedEvents)
+            FMOD_MV.ApplyParametersToEvent(event, parameter);
     }
     
     Speaker.prototype.clearParameter = function(guid) {
@@ -1893,7 +1905,6 @@ function FMOD_MV() {
         
         this.validateUpdate();
         this.update3DAttributes();
-        this.updateParameters();
     }
     
     Speaker.prototype.validateUpdate = function() {
@@ -1955,7 +1966,8 @@ function FMOD_MV() {
         ////    FMOD_MV.Vector(0, 0, 0, attribute.velocity);
     }
     
-    Speaker.prototype.updateParameters = function() {
+    //TODO : Need to call when load game if necessary.
+    Speaker.prototype.updateAllEventParameters = function() {
         
         if (this.isDisposed())
             return;
@@ -2017,10 +2029,7 @@ function FMOD_MV() {
     
     Game_Interpreter.prototype.speaker = function() {
         
-        if (!this.isOnCurrentMap())
-            return null;
-        
-        var event = $gameMap.event(this.eventId());
+        var event = this.event();
         
         if (!event)
             return null;
