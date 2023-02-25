@@ -204,13 +204,86 @@ Before list up of plugins, here's main problems of compatibility, includes how t
   🛠️ If you want to make them compatible directly, search `Game_CharacterBase.prototype.update` in the `FMOD_MV.js`.  
   This contains the code to process the speaker logic.
 
-| Plugin name             | Checked version | Author     | Type     | Compatible | Note and resolve guide |
-|-------------------------|-----------------|------------|----------|------------|:-----------------------|
-| `DirectorView`          | `1.0.1`         | Creta Park | Camera   | Yes        | ⭕ This plugin was utilized in the development of [DOWNFALLEN][DOWNFALLEN]. |
-| `SRD_CameraCore`        | `1.05`          | SumRndmDde | Camera   | Partially  | ⭕ Confirmed that the camera position works normally.<br>❌ Haven't verified with zooming in and out feature, so if the listener's position is a camera and zooming is used, stereo sound may not work as intended.<br>🛠️ N/A |
-| `SuperOrangeMovement`   | `1.5.1`         | Hudell     | Movement | Yes        | ⭕ This plugin's Ex plugin was utilized when developing [DOWNFALLEN][DOWNFALLEN]. |
-| `SuperOrangeMovementEx` | `1.5.2`         | Hudell     | Movement | Yes        | ⭕ This plugin was utilized in the development of [DOWNFALLEN][DOWNFALLEN]. |
-| `QMovement`             | `1.6.3`         | Quxios     | Movement | No         | ❌ The position of [speaker][speaker] is not updated because the plugin does not call an existing method in the character handling action.<br>🛠️ Put update speaker code (Available in `FMOD_MV.js`'s `Game_CharacterBase.prototype.update`) into below of `Game_CharacterBase.prototype.update` method in this plugin. |
+<table>
+  <thead>
+    <tr>
+      <th>Plugin name</th>
+      <th>Checked version</th>
+      <th>Author</th>
+      <th>Type</th>
+      <th>Compatible</th>
+      <th align="left">Note and resolve guide</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td><code>DirectorView</code></td>
+      <td><code>1.0.1</code></td>
+      <td>Creta Park</td>
+      <td>Camera</td>
+      <td>Yes</td>
+      <td align="left">
+
+⭕ This plugin was utilized in the development of [DOWNFALLEN].
+      </td>
+    </tr>
+    <tr>
+      <td><code>SRD_CameraCore</code></td>
+      <td><code>1.05</code></td>
+      <td>SumRndmDde</td>
+      <td>Camera</td>
+      <td>Partially</td>
+      <td align="left">
+
+⭕ Confirmed that the camera position works normally.
+
+❌ Haven't verified with zooming in and out feature, so if the listener's position is a camera and zooming is used, stereo sound may not work as intended.
+
+🛠️ N/A
+      </td>
+    </tr>
+    <tr>
+      <td><code>SuperOrangeMovement</code></td>
+      <td><code>1.5.1</code></td>
+      <td>Hudell</td>
+      <td>Movement</td>
+      <td>Yes</td>
+      <td align="left">
+
+⭕ This plugin's Ex plugin was utilized when developing [DOWNFALLEN].
+      </td>
+    </tr>
+    <tr>
+      <td><code>SuperOrangeMovementEx</code></td>
+      <td><code>1.5.2</code></td>
+      <td>Hudell</td>
+      <td>Movement</td>
+      <td>Yes</td>
+      <td align="left">
+
+⭕ This plugin was utilized in the development of [DOWNFALLEN].
+      </td>
+    </tr>
+    <tr>
+      <td><code>QMovement</code></td>
+      <td><code>1.6.3</code></td>
+      <td>Quxios</td>
+      <td>Movement</td>
+      <td>No</td>
+      <td align="left">
+
+❌ The position of [speaker] is not updated because the plugin does not call an existing method in the character handling action.
+
+🛠️ Put this code snippet into below of `Game_CharacterBase.prototype.update` method in this plugin.
+```js
+if (FMOD_MV.Initialized)
+  if (!this.speaker().isDisposed())
+    this.speaker().update();
+```
+</td>
+    </tr>
+  </tbody>
+</table>
 
 If you experienced any other compatibility status, please report on the [Issues][issues] page.
 
