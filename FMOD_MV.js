@@ -680,6 +680,11 @@ function FMOD_MV() {
     throw new Error("This is a static class.");
 }
 
+function FMOD_MV_Commands() {
+    
+    throw new Error("This is a static class.");
+}
+
 (function() {
     
     FMOD_MV.Params = PluginManager.parameters("FMOD_MV");
@@ -2035,6 +2040,131 @@ function FMOD_MV() {
             return null;
         
         return event.speaker();
+    }
+    
+    var Game_Interpreter_pluginCommand = Game_Interpreter.prototype.pluginCommand;
+    Game_Interpreter.prototype.pluginCommand = function(command, args) {
+        
+        switch (command.toLowerCase()) {
+            
+            default: Game_Interpreter_pluginCommand.call(this, command, args); break;
+            
+            case "fmod-play-bgm": FMOD_MV_Commands.PlayBGM(args); break;
+            case "fmod-play-bgs": FMOD_MV_Commands.PlayBGS(args); break;
+            case "fmod-play-me":  FMOD_MV_Commands.PlayME(args);  break;
+            case "fmod-play-se":  FMOD_MV_Commands.PlayME(args);  break;
+            
+            case "fmod-stop-bgm": FMOD_MV_Commands.PlayBGM(args); break;
+            case "fmod-stop-bgs": FMOD_MV_Commands.PlayBGS(args); break;
+            case "fmod-stop-me":  FMOD_MV_Commands.PlayME(args);  break;
+            case "fmod-stop-se":  FMOD_MV_Commands.PlayME(args);  break;
+            
+            case "fmod-bgm-param": FMOD_MV_Commands.SetBGMParameters(args); break;
+            case "fmod-bgs-param": FMOD_MV_Commands.SetBGSParameters(args); break;
+            case "fmod-me-param":  FMOD_MV_Commands.SetMEParameters(args);  break;
+            case "fmod-se-param":  FMOD_MV_Commands.SetMEParameters(args);  break;
+            
+            case "fmod-play-speaker":        FMOD_MV_Commands.PlaySpeaker(args);           break;
+            case "fmod-stop-speaker":        FMOD_MV_Commands.StopSpeaker(args);           break;
+            case "fmod-speaker-param":       FMOD_MV_Commands.SetSpeakerParameters(args);  break;
+            case "fmod-speaker-clear-param": FMOD_MV_Commands.ClearSpeakerParameter(args); break;
+            
+            case "fmod-start-snapshot": FMOD_MV_Commands.StartSnapshot(args); break;
+            case "fmod-stop-snapshot":  FMOD_MV_Commands.StopSnapshot(args);  break;
+            
+            case "fmod-execute": FMOD_MV_Commands.Execute(); break;
+        }
+    }
+    
+    FMOD_MV_Commands._Context = null;
+    
+    FMOD_MV_Commands.EnsureContextClosed = function() {
+        
+        if (!FMOD_MV_Commands._Context) {
+            
+            FMOD_MV_Commands._Context = this;
+            return;
+        }
+    }
+    
+    FMOD_MV_Commands.PlayBGM = function(args) {
+        
+    }
+    
+    FMOD_MV_Commands.PlayBGS = function(args) {
+        
+    }
+    
+    FMOD_MV_Commands.PlayME = function(args) {
+        
+    }
+    
+    FMOD_MV_Commands.PlayME = function(args) {
+        
+    }
+    
+    FMOD_MV_Commands.PlayBGM = function(args) {
+        
+    }
+    
+    FMOD_MV_Commands.PlayBGS = function(args) {
+        
+    }
+    
+    FMOD_MV_Commands.PlayME = function(args) {
+        
+    }
+    
+    FMOD_MV_Commands.PlayME = function(args) {
+        
+    }
+    
+    FMOD_MV_Commands.SetBGMParameters = function(args) {
+        
+    }
+    
+    FMOD_MV_Commands.SetBGSParameters = function(args) {
+        
+    }
+    
+    FMOD_MV_Commands.SetMEParameters = function(args) {
+        
+    }
+    
+    FMOD_MV_Commands.SetMEParameters = function(args) {
+        
+    }
+    
+    FMOD_MV_Commands.PlaySpeaker = function(args) {
+        
+    }
+    
+    FMOD_MV_Commands.StopSpeaker = function(args) {
+        
+    }
+    
+    FMOD_MV_Commands.SetSpeakerParameters = function(args) {
+        
+    }
+    
+    FMOD_MV_Commands.ClearSpeakerParameter = function(args) {
+        
+    }
+    
+    FMOD_MV_Commands.StartSnapshot = function(args) {
+        
+    }
+    
+    FMOD_MV_Commands.StopSnapshot = function(args) {
+        
+    }
+    
+    FMOD_MV_Commands.Execute = function() {
+        
+        if (!FMOD_MV_Commands._Context) {
+            
+            throw new Error("FMOD_MV Commands : You can execute commands with open context commands.");
+        }
     }
     
     var AudioManager_fadeOutBgm = AudioManager.fadeOutBgm;
