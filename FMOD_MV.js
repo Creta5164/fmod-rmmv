@@ -164,15 +164,36 @@
  * @type text
  * @text Cursor
  * 
+ * @param cursor-param-axis
+ * @parent system-se-cursor
+ * @type text
+ * @text Param name for axis move info
+ * @desc Passes which axis moved with specified name
+ * as param to the cursor event. (ignored if empty)
+ * 
  * @param system-se-ok
  * @parent system-se
  * @type text
  * @text Confirm (OK)
  * 
+ * @param ok-param-depth
+ * @parent system-se-ok
+ * @type text
+ * @text Param name for scene depth level
+ * @desc Passes scene depth level with specified name
+ * as param to the OK event. (ignored if empty)
+ * 
  * @param system-se-cancel
  * @parent system-se
  * @type text
  * @text Cancel
+ * 
+ * @param cancel-param-depth
+ * @parent system-se-cancel
+ * @type text
+ * @text Param name for scene depth level
+ * @desc Passes scene depth level with specified name
+ * as param to the cancel event. (ignored if empty)
  * 
  * @param system-se-buzzer
  * @parent system-se
@@ -446,15 +467,36 @@
  * @type text
  * @text 커서
  * 
+ * @param cursor-param-axis
+ * @parent system-se-cursor
+ * @type text
+ * @text 이동 축 유형을 쓸 파라미터 이름
+ * @desc 커서 이벤트에 지정한 이름의 파라미터로
+ * 커서 이동 축 정보를 보냅니다. (공란이면 무시)
+ * 
  * @param system-se-ok
  * @parent system-se
  * @type text
  * @text OK
  * 
+ * @param ok-param-depth
+ * @parent system-se-ok
+ * @type text
+ * @text 씬 깊이를 쓸 파라미터 이름
+ * @desc OK 이벤트에 지정한 이름의 파라미터로
+ * 씬 깊이 값을 보냅니다. (공란이면 무시)
+ * 
  * @param system-se-cancel
  * @parent system-se
  * @type text
  * @text 취소
+ * 
+ * @param cancel-param-depth
+ * @parent system-se-cancel
+ * @type text
+ * @text 씬 깊이를 쓸 파라미터 이름
+ * @desc 취소 이벤트에 지정한 이름의 파라미터로
+ * 씬 깊이 값을 보냅니다. (공란이면 무시)
  * 
  * @param system-se-buzzer
  * @parent system-se
@@ -732,6 +774,10 @@ function FMOD_MV() {
     FMOD_MV.SystemSE_Shop          = FMOD_MV.Params["system-se-shop"];
     FMOD_MV.SystemSE_UseItem       = FMOD_MV.Params["system-se-use-item"];
     FMOD_MV.SystemSE_UseSkill      = FMOD_MV.Params["system-se-use-skill"];
+    
+    FMOD_MV.SystemSE_CursorParamAxis  = FMOD_MV.Params["cursor-param-axis"];
+    FMOD_MV.SystemSE_OkParamDepth     = FMOD_MV.Params["ok-param-depth"];
+    FMOD_MV.SystemSE_CancelParamDepth = FMOD_MV.Params["cancel-param-depth"];
     
     FMOD_MV.QueuedPauseBGMs = null;
     FMOD_MV.QueuedPauseBGSs = null;
@@ -2136,6 +2182,12 @@ function FMOD_MV() {
         if (!FMOD_MV.SystemSE_Cursor)
             SoundManager_playCursor.call(this);
         
+        else if (FMOD_MV.SystemSE_CursorParamAxis) {
+            
+            var param = {};
+            param[FMOD_MV.SystemSE_CursorParamAxis] = [0, true];
+            FMOD_MV.PlaySE(FMOD_MV.SystemSE_Cursor, null, param);
+        }
         else
             FMOD_MV.PlaySE(FMOD_MV.SystemSE_Cursor);
     }
@@ -2146,6 +2198,12 @@ function FMOD_MV() {
         if (!FMOD_MV.SystemSE_Ok)
             SoundManager_playOk.call(this);
         
+        else if (FMOD_MV.SystemSE_CursorParamAxis) {
+            
+            var param = {};
+            param[FMOD_MV.SystemSE_OkParamDepth] = [SceneManager._stack.length + 1, true];
+            FMOD_MV.PlaySE(FMOD_MV.SystemSE_Ok, null, param);
+        }
         else
             FMOD_MV.PlaySE(FMOD_MV.SystemSE_Ok);
     }
@@ -2156,6 +2214,12 @@ function FMOD_MV() {
         if (!FMOD_MV.SystemSE_Cancel)
             SoundManager_playCancel.call(this);
         
+        else if (FMOD_MV.SystemSE_CursorParamAxis) {
+            
+            var param = {};
+            param[FMOD_MV.SystemSE_CancelParamDepth] = [Math.min(SceneManager._stack.length - 1, 0), true];
+            FMOD_MV.PlaySE(FMOD_MV.SystemSE_Cancel, null, param);
+        }
         else
             FMOD_MV.PlaySE(FMOD_MV.SystemSE_Cancel);
     }
